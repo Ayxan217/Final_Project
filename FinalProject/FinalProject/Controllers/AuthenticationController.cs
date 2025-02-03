@@ -45,5 +45,36 @@ namespace FinalProject.Controllers
                 return BadRequest(new { Message = ex.Message });
             }
         }
+
+        [HttpPost("forgot-password")]
+        
+        public async Task<IActionResult> ForgotPassword([FromForm] ForgotPasswordDto forgotPasswordDto)
+        {
+            try
+            {
+                await _authenticationService.ForgotPasswordAsync(forgotPasswordDto);
+                return Ok(new { message = "Password reset link has been sent to your email" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+       
+        [HttpPost("reset-password")]
+      
+        public async Task<IActionResult> ResetPassword([FromForm] ResetPasswordDto resetPasswordDto)
+        {
+            try
+            {
+                await _authenticationService.ResetPasswordAsync(resetPasswordDto);
+                return Ok(new { message = "Password has been reset successfully" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
     }
 }

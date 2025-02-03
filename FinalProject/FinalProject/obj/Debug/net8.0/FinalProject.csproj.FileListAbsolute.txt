@@ -191,3 +191,6 @@ C:\Users\pc\OneDrive\Masaüstü\Final_Project\FinalProject\FinalProject\obj\Debu
 C:\Users\pc\OneDrive\Masaüstü\Final_Project\FinalProject\FinalProject\obj\Debug\net8.0\FinalProject.pdb
 C:\Users\pc\OneDrive\Masaüstü\Final_Project\FinalProject\FinalProject\obj\Debug\net8.0\FinalProject.genruntimeconfig.cache
 C:\Users\pc\OneDrive\Masaüstü\Final_Project\FinalProject\FinalProject\obj\Debug\net8.0\ref\FinalProject.dll
+C:\Users\pc\OneDrive\Masaüstü\Final_Project\FinalProject\FinalProject\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\pc\OneDrive\Masaüstü\Final_Project\FinalProject\FinalProject\bin\Debug\net8.0\SendGrid.dll
+C:\Users\pc\OneDrive\Masaüstü\Final_Project\FinalProject\FinalProject\bin\Debug\net8.0\StarkbankEcdsa.dll

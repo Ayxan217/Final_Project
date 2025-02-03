@@ -25,8 +25,11 @@ namespace FinalProject.Persistence.ServiceRegisteratation
         {
             services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("Default")));
             services.AddScoped<IDepartmentRepository,DepartmentRepository>();
-                services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<IDoctorService, DoctorService>();
+            services.AddScoped<IDoctorRepository, DoctorRepository>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<AppDbContextInitalizer>();
             services.AddIdentity<AppUser, IdentityRole>(options =>
             {

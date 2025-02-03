@@ -14,6 +14,11 @@ namespace FinalProject.Application.MappingProfiles
         public DoctorProfile()
         {
             CreateMap<CreateDoctorDto, Doctor>();
+            CreateMap<UpdateDoctorDto, Doctor>().ForMember(x=>x.Id,opt=>opt.Ignore())
+                .ForSourceMember(x=>x.Name,opt=>opt.DoNotValidate());
+            CreateMap<Doctor,GetDoctorDto>().ReverseMap();
+            CreateMap<Doctor, DoctorItemDto>();
+
         }
     }
 }

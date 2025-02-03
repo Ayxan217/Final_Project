@@ -128,6 +128,47 @@ namespace FinalProject.Persistence.Migrations
                     b.ToTable("Appointments");
                 });
 
+            modelBuilder.Entity("FinalProject.Domain.Entities.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("FinalProject.Domain.Entities.Department", b =>
                 {
                     b.Property<int>("Id")
@@ -460,6 +501,17 @@ namespace FinalProject.Persistence.Migrations
                     b.Navigation("Patient");
                 });
 
+            modelBuilder.Entity("FinalProject.Domain.Entities.Comment", b =>
+                {
+                    b.HasOne("FinalProject.Domain.Entities.Doctor", "Doctor")
+                        .WithMany("Comments")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+                });
+
             modelBuilder.Entity("FinalProject.Domain.Entities.Doctor", b =>
                 {
                     b.HasOne("FinalProject.Domain.Entities.Department", "Department")
@@ -540,6 +592,8 @@ namespace FinalProject.Persistence.Migrations
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Doctor", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Payroll")
                         .IsRequired();
                 });

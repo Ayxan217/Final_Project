@@ -7,6 +7,8 @@ using System.Net.Mail;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using SendGrid.Helpers.Mail;
+using SendGrid;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -23,19 +25,23 @@ namespace FinalProject.Persistence.Implementations.Services
         {
             using var message = new MailMessage();
             message.To.Add(new MailAddress(to));
-            message.From = new MailAddress(_configuration["Email:From"]);
+            message.From = new MailAddress(_configuration["MailChimp:FromEmail"]);
             message.Subject = subject;
             message.Body = body;
             message.IsBodyHtml = true;
 
-            using var smtp = new SmtpClient(_configuration["Email:SmtpHost"])
+            // Mandrill SMTP ayarları
+            using var smtp = new SmtpClient
             {
-                Port = int.Parse(_configuration["Email:SmtpPort"]),
+                Host = "smtp.mandrillapp.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(
-                    _configuration["Email:Username"],
-                    _configuration["Email:Password"]
-                ),
-                EnableSsl = true
+                    _configuration["MailChimp:Username"], // Email adresiniz
+                    _configuration["MailChimp:ApiKey"]    // Mandrill API Key
+                )
             };
 
             await smtp.SendMailAsync(message);

@@ -13,8 +13,8 @@ namespace FinalProject.Application.Abstractions.Services
     {
         Task<TokenResponseDto> LoginAsync(LoginDto loginDto);
         Task RegisterAsync(RegisterDto registerDto);
-        //Task ForgotPasswordAsync(ForgotPasswordDto forgotPasswordDto);
-        //Task ResetPasswordAsync(ResetPasswordDto resetPasswordDto);
+        Task ForgotPasswordAsync(ForgotPasswordDto forgotPasswordDto);
+        Task ResetPasswordAsync(ResetPasswordDto resetPasswordDto);
 
 
     }

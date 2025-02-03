@@ -27,28 +27,25 @@ namespace FinalProject.Persistence.Implementations.Services
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ITokenHandler _tokenHandler;
-        //private readonly IEmailService _emailService;
-        //private readonly IConfiguration _configuration;
+        private readonly IEmailService _emailService;
+        private readonly IConfiguration _configuration;
 
         public AuthenticationService(UserManager<AppUser> userManager,
             IMapper mapper,
             ITokenHandler tokenhandler,
             SignInManager<AppUser> signInManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            IEmailService emailService,
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _mapper = mapper;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _tokenHandler = tokenhandler;
+            _configuration = configuration;
+            _emailService = emailService;
 
-        }
-
-        
-
-        public Task ForgotPasswordAsync(ForgotPasswordDto forgotPasswordDto)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<TokenResponseDto> LoginAsync(LoginDto loginDto)
@@ -98,9 +95,42 @@ namespace FinalProject.Persistence.Implementations.Services
            
         }
 
-        public Task ResetPasswordAsync(ResetPasswordDto resetPasswordDto)
+        public async Task ForgotPasswordAsync(ForgotPasswordDto forgotPasswordDto)
         {
-            throw new NotImplementedException();
+            AppUser? user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
+            if (user is null)
+                throw new Exception("User not found");
+
+            string resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            string resetLink = $"{_configuration["App:ClientUrl"]}/reset-password?email={forgotPasswordDto.Email}&token={resetToken}";
+
+            
+            await _emailService.SendEmailAsync(
+            
+                to : forgotPasswordDto.Email,
+                subject : "Password Reset",
+                body : $"Please click the link below to reset your password:\n\n{resetLink}"
+            );
+        }
+
+        public async Task ResetPasswordAsync(ResetPasswordDto resetPasswordDto)
+        {
+            AppUser? user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
+            if (user is null)
+                throw new Exception("User not found");
+
+            var result = await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                StringBuilder errorBuilder = new();
+                foreach (var error in result.Errors)
+                {
+                    errorBuilder.AppendLine(error.Description);
+                }
+                throw new Exception(errorBuilder.ToString());
+            }
         }
     }
 }
