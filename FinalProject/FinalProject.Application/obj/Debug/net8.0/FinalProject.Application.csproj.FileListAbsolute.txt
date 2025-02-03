@@ -1,0 +1,15 @@
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\bin\Debug\net8.0\FinalProject.Application.deps.json
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\bin\Debug\net8.0\FinalProject.Application.dll
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\bin\Debug\net8.0\FinalProject.Application.pdb
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\obj\Debug\net8.0\FinalProject.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\obj\Debug\net8.0\FinalProject.Application.AssemblyInfoInputs.cache
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\obj\Debug\net8.0\FinalProject.Application.AssemblyInfo.cs
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\obj\Debug\net8.0\FinalProject.Application.csproj.CoreCompileInputs.cache
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\obj\Debug\net8.0\FinalProject.Application.dll
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\obj\Debug\net8.0\refint\FinalProject.Application.dll
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\obj\Debug\net8.0\FinalProject.Application.pdb
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\obj\Debug\net8.0\ref\FinalProject.Application.dll
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\bin\Debug\net8.0\FinalProject.Domain.dll
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\bin\Debug\net8.0\FinalProject.Domain.pdb
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\obj\Debug\net8.0\FinalProject.Application.csproj.AssemblyReference.cache
+C:\Users\pc\OneDrive\Masaüstü\FinalProject\FinalProject.Application\obj\Debug\net8.0\FinalPro.D05BF7A5.Up2Date
