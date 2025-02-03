@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "deHKkSo48Wc=",
+  "dgSpecHash": "cPYklpYTwyA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Application\\FinalProject.Application.csproj",
+  "projectFilePath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Application\\FinalProject.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pc\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",

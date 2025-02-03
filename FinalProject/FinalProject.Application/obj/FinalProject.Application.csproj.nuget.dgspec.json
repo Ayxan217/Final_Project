@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Application\\FinalProject.Application.csproj": {}
+    "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Application\\FinalProject.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Application\\FinalProject.Application.csproj": {
+    "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Application\\FinalProject.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Application\\FinalProject.Application.csproj",
+        "projectUniqueName": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Application\\FinalProject.Application.csproj",
         "projectName": "FinalProject.Application",
-        "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Application\\FinalProject.Application.csproj",
+        "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Application\\FinalProject.Application.csproj",
         "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Application\\obj\\",
+        "outputPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -29,8 +29,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Domain\\FinalProject.Domain.csproj": {
-                "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Domain\\FinalProject.Domain.csproj"
+              "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Domain\\FinalProject.Domain.csproj": {
+                "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Domain\\FinalProject.Domain.csproj"
               }
             }
           }
@@ -87,14 +87,14 @@
         }
       }
     },
-    "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Domain\\FinalProject.Domain.csproj": {
+    "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Domain\\FinalProject.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Domain\\FinalProject.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Domain\\FinalProject.Domain.csproj",
         "projectName": "FinalProject.Domain",
-        "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Domain\\FinalProject.Domain.csproj",
+        "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Domain\\FinalProject.Domain.csproj",
         "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Domain\\obj\\",
+        "outputPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",

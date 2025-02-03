@@ -27,6 +27,7 @@ namespace FinalProject.Persistence.ServiceRegisteratation
             services.AddScoped<IDepartmentRepository,DepartmentRepository>();
                 services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<AppDbContextInitalizer>();
             services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 

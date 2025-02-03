@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using FinalProject.Application.Abstractions.Token;
 using FinalProject.Application.DTOs.Tokens;
+using FinalProject.Domain.Enums;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -23,8 +24,8 @@ namespace FinalProject.Persistence.Implementations.Services
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
-        //private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ITokenHandler _tokenHandler;
         //private readonly IEmailService _emailService;
         //private readonly IConfiguration _configuration;
@@ -32,14 +33,18 @@ namespace FinalProject.Persistence.Implementations.Services
         public AuthenticationService(UserManager<AppUser> userManager,
             IMapper mapper,
             ITokenHandler tokenhandler,
-            SignInManager<AppUser> signInManager)
+            SignInManager<AppUser> signInManager,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _mapper = mapper;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _tokenHandler = tokenhandler;
 
         }
+
+        
 
         public Task ForgotPasswordAsync(ForgotPasswordDto forgotPasswordDto)
         {
@@ -60,14 +65,7 @@ namespace FinalProject.Persistence.Implementations.Services
                 throw new Exception("Username ,email or Password incorrect");
             }
 
-
-      
-
-            
-            //var roles = await _userManager.GetRolesAsync(user);
-
-            
-            return _tokenHandler.CreateAccessToken(user,15);
+             return _tokenHandler.CreateAccessToken(user,15);
 
         }
 
@@ -82,6 +80,8 @@ namespace FinalProject.Persistence.Implementations.Services
                 throw new Exception("You must agree to the terms and conditions to register");
             }
 
+            AppUser user = _mapper.Map<AppUser>(userDto);
+
             var result = await _userManager.CreateAsync(_mapper.Map<AppUser>(userDto),userDto.Password);
             if (!result.Succeeded)
             {
@@ -94,6 +94,7 @@ namespace FinalProject.Persistence.Implementations.Services
                 throw new Exception(builder.ToString());
             }
 
+            await _userManager.AddToRoleAsync(user,Roles.Patient.ToString());
            
         }
 

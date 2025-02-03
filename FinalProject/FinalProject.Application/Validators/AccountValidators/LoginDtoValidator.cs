@@ -12,6 +12,9 @@ namespace FinalProject.Application.Validators.AccountValidators
     {
         public LoginDtoValidator()
         {
+            RuleFor(x => x.EmailOrUsername)
+                .NotEmpty();
+                
 
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Password is required")

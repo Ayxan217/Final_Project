@@ -896,11 +896,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Domain\\FinalProject.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Domain\\FinalProject.Domain.csproj",
       "projectName": "FinalProject.Domain",
-      "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Domain\\FinalProject.Domain.csproj",
+      "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Domain\\FinalProject.Domain.csproj",
       "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Domain\\obj\\",
+      "outputPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",

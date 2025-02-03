@@ -3404,11 +3404,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject\\FinalProject.csproj",
+      "projectUniqueName": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject\\FinalProject.csproj",
       "projectName": "FinalProject",
-      "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject\\FinalProject.csproj",
+      "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject\\FinalProject.csproj",
       "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject\\obj\\",
+      "outputPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3426,14 +3426,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Application\\FinalProject.Application.csproj": {
-              "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Application\\FinalProject.Application.csproj"
+            "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Application\\FinalProject.Application.csproj": {
+              "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Application\\FinalProject.Application.csproj"
             },
-            "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj"
+            "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj"
             },
-            "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Persistence\\FinalProject.Persistence.csproj": {
-              "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Next\\FinalProject\\FinalProject.Persistence\\FinalProject.Persistence.csproj"
+            "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Persistence\\FinalProject.Persistence.csproj": {
+              "projectPath": "C:\\Users\\pc\\OneDrive\\Masaüstü\\Final_Project\\FinalProject\\FinalProject.Persistence\\FinalProject.Persistence.csproj"
             }
           }
         }
