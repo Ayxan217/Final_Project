@@ -254,7 +254,7 @@
       },
       {
         "Name": "Image",
-        "Type": "System.String",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
       },
       {
@@ -346,7 +346,7 @@
       },
       {
         "Name": "Image",
-        "Type": "System.String",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
       },
       {

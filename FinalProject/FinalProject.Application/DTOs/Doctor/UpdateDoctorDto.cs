@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace FinalProject.Application.DTOs.Doctor
 {
     public record  UpdateDoctorDto(string Name,
     string Surname,
-    string Image,
+    IFormFile Image,
     string Email,
     string PhoneNumber,
     string Description,

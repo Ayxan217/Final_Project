@@ -4,6 +4,7 @@ using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Department;
 using FinalProject.Application.DTOs.Doctor;
 using FinalProject.Domain.Entities;
+using FinalProject.Persistence.Contexts;
 using FinalProject.Persistence.Implementations.Repositories;
 using Microsoft.EntityFrameworkCore;
 using SendGrid.Helpers.Errors.Model;
@@ -20,12 +21,15 @@ namespace FinalProject.Persistence.Implementations.Services
     {
         private readonly IDoctorRepository _doctorRepository;
         private readonly IMapper _mapper;
+        private readonly AppDbContext _context;
 
         public DoctorService(IDoctorRepository doctorRepository,
-            IMapper mapper)
+            IMapper mapper,
+            AppDbContext context)
         {
             _doctorRepository = doctorRepository;
             _mapper = mapper;
+            _context = context;
         }
         public async Task CreateAsync(CreateDoctorDto doctorDto)
         {
@@ -49,11 +53,18 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task<IEnumerable<DoctorItemDto>> GetAllAsync(int page,int take)
         {
-            IEnumerable<Doctor> doctors = await _doctorRepository
-               .GetAll(skip: (page - 1) * take, take: take)
-               .ToListAsync();
+            var doctors = await _context.Doctors
+         .AsNoTracking()
+          .Skip((page - 1) * take)
+          .Take(take)
+         .ToListAsync();
 
-            return _mapper.Map<IEnumerable<DoctorItemDto>>(doctors);
+            // Her bir doctor'ı ayrı ayrı mapleyelim
+            var doctorDtos = doctors.Select(doctor => _mapper.Map<DoctorItemDto>(doctor));
+
+            return doctorDtos;
+
+
         }
 
         public async Task<GetDoctorDto> GetByIdAsync(int id)

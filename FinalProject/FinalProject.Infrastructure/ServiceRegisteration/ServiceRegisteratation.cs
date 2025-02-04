@@ -2,6 +2,7 @@
 using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.Abstractions.Token;
 using FinalProject.Domain.Entities;
+using FinalProject.Infrastructure.Implementations.Services;
 using FinalProject.Persistence.Implementations.Token;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -46,6 +47,7 @@ namespace FinalProject.Infrastructure.ServiceRegisteration
             // Services
 
             services.AddScoped<ITokenHandler, TokenService>();
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
             services.AddAuthorization();
             return services;
 
