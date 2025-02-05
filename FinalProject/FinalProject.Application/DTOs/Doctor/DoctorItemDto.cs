@@ -9,9 +9,9 @@ namespace FinalProject.Application.DTOs.Doctor
 {
     
 
-    public record DoctorItemDto(string Name,
+    public record DoctorItemDto(int Id,
+        string Name,
     string Surname,
-    IFormFile Image,
     string Description,
     int DepartmentId,
     string Email,

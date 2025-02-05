@@ -53,16 +53,12 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task<IEnumerable<DoctorItemDto>> GetAllAsync(int page,int take)
         {
-            var doctors = await _context.Doctors
-         .AsNoTracking()
-          .Skip((page - 1) * take)
-          .Take(take)
-         .ToListAsync();
+            var doctors = await _doctorRepository
+                   .GetAll(skip: (page - 1) * take, take: take)
+                   .ToListAsync();
 
-            // Her bir doctor'ı ayrı ayrı mapleyelim
-            var doctorDtos = doctors.Select(doctor => _mapper.Map<DoctorItemDto>(doctor));
 
-            return doctorDtos;
+            return _mapper.Map<IEnumerable<DoctorItemDto>>(doctors);
 
 
         }

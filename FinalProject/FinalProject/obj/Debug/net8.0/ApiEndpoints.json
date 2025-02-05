@@ -253,11 +253,6 @@
         "IsRequired": false
       },
       {
-        "Name": "Image",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      },
-      {
         "Name": "Email",
         "Type": "System.String",
         "IsRequired": false
@@ -342,11 +337,6 @@
       {
         "Name": "Surname",
         "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Image",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
       },
       {

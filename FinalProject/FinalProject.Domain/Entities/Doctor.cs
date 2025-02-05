@@ -11,7 +11,6 @@ namespace FinalProject.Domain.Entities
     public class Doctor : BaseNameableEntity
     {
         public string Surname { get; set; }
-        public string Image { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public DateOnly JoinDate { get; set; }
@@ -26,6 +25,7 @@ namespace FinalProject.Domain.Entities
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
         public ICollection<Comment>? Comments { get; set; }
+        public int CommentId { get; set; }
 
     }
 }

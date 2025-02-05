@@ -9,7 +9,6 @@ namespace FinalProject.Application.DTOs.Doctor
 {
     public record CreateDoctorDto(string Name,
     string Surname,
-    IFormFile Image,    
     string Email,
     string PhoneNumber,
     DateOnly JoinDate,

@@ -9,7 +9,6 @@ namespace FinalProject.Application.DTOs.Doctor
 {
     public record  UpdateDoctorDto(string Name,
     string Surname,
-    IFormFile Image,
     string Email,
     string PhoneNumber,
     string Description,
