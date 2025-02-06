@@ -33,6 +33,13 @@ namespace FinalProject.Application.Validators.DoctorValidators
          .MinimumLength(5).WithMessage("Description must be at least 5 characters")
          .MaximumLength(3000).WithMessage("Description cannot exceed 3000 characters");
 
+            RuleFor(x => x.PhoneNumber)
+                .NotEmpty().WithMessage("Phone number is required")
+                .Matches(@"^\+?\d+$")
+                .WithMessage("Phone number can only contain digits and optionally start with +")
+                .MaximumLength(20)
+                .MinimumLength(7);
+
         }
     }
 }

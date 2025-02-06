@@ -25,7 +25,7 @@ namespace FinalProject.Domain.Entities
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
         public ICollection<Comment>? Comments { get; set; }
-        public int CommentId { get; set; }
+       
 
     }
 }

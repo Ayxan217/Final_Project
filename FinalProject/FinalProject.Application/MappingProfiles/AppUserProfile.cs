@@ -7,7 +7,7 @@ using FinalProject.Domain.Entities;
 
 namespace FinalProject.Application.MappingProfiles
 {
-    public class AppUserProfile : Profile
+    internal class AppUserProfile : Profile
     {
         public AppUserProfile()
         {

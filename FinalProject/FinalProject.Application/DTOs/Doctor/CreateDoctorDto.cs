@@ -11,7 +11,6 @@ namespace FinalProject.Application.DTOs.Doctor
     string Surname,
     string Email,
     string PhoneNumber,
-    DateOnly JoinDate,
     string Description,
     int DepartmentId,
     string? Twitter,

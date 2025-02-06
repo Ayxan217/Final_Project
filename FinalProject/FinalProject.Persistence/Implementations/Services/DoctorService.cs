@@ -21,22 +21,28 @@ namespace FinalProject.Persistence.Implementations.Services
     {
         private readonly IDoctorRepository _doctorRepository;
         private readonly IMapper _mapper;
-        private readonly AppDbContext _context;
+        private readonly IDepartmentRepository _departmentRepository;
 
         public DoctorService(IDoctorRepository doctorRepository,
             IMapper mapper,
-            AppDbContext context)
+            IDepartmentRepository departmentRepository
+            )
         {
             _doctorRepository = doctorRepository;
             _mapper = mapper;
-            _context = context;
+            _departmentRepository = departmentRepository;
+            
         }
+
         public async Task CreateAsync(CreateDoctorDto doctorDto)
         {
             
+            if (!await _departmentRepository.AnyAsync(d => d.Id == doctorDto.DepartmentId))
+                throw new Exception("Department does not exists");
             Doctor doctor = _mapper.Map<Doctor>(doctorDto);
             doctor.CreatedAt = DateTime.Now;
             doctor.ModifiedAt = DateTime.Now;
+            doctor.JoinDate = DateOnly.FromDateTime(DateTime.Now);
             await _doctorRepository.AddAsync(doctor);
             await _doctorRepository.SaveChangesAsync();
         }

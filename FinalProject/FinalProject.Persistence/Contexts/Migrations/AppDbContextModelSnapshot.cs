@@ -125,7 +125,7 @@ namespace FinalProject.Persistence.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Appointments");
+                    b.ToTable("Appointments", (string)null);
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Comment", b =>
@@ -166,7 +166,7 @@ namespace FinalProject.Persistence.Migrations
 
                     b.HasIndex("DoctorId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Department", b =>
@@ -205,7 +205,7 @@ namespace FinalProject.Persistence.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Departments");
+                    b.ToTable("Departments", (string)null);
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Doctor", b =>
@@ -215,9 +215,6 @@ namespace FinalProject.Persistence.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CommentId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -270,7 +267,7 @@ namespace FinalProject.Persistence.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Doctors");
+                    b.ToTable("Doctors", (string)null);
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Patient", b =>
@@ -285,11 +282,11 @@ namespace FinalProject.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("Age")
-                        .HasColumnType("tinyint");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateOnly>("DateOfBirth")
+                        .HasColumnType("date");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -316,7 +313,7 @@ namespace FinalProject.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Patients");
+                    b.ToTable("Patients", (string)null);
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Payroll", b =>
@@ -353,7 +350,7 @@ namespace FinalProject.Persistence.Migrations
                     b.HasIndex("DoctorId")
                         .IsUnique();
 
-                    b.ToTable("Payrolls");
+                    b.ToTable("Payrolls", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

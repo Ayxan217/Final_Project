@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Entity = FinalProject.Domain.Entities;
 
 namespace FinalProject.Application.DTOs.Doctor
 {
@@ -17,7 +19,8 @@ namespace FinalProject.Application.DTOs.Doctor
     string? Twitter,
     string? Skype,
     string? Facebook,
-    string? Ven
+    string? Ven,
+    ICollection<Entity.Comment> Comments
         );
    
 }

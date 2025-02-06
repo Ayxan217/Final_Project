@@ -28,9 +28,12 @@ namespace FinalProject.Persistence.ServiceRegisteratation
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IDoctorService, DoctorService>();
             services.AddScoped<IDoctorRepository, DoctorRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<AppDbContextInitalizer>();
+
             services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 

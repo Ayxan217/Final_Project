@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entity = FinalProject.Domain.Entities;
 
 namespace FinalProject.Application.DTOs.Doctor
 {
@@ -20,7 +22,9 @@ namespace FinalProject.Application.DTOs.Doctor
     string? Skype,
     string? Facebook,
     string? Ven,
-    int CommentId
+    ICollection<Entity.Comment> Comments
+
+
         );
    
 }
