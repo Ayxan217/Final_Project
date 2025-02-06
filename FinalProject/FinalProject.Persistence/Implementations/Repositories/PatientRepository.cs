@@ -26,6 +26,7 @@ namespace FinalProject.Persistence.Implementations.Repositories
            .Where(p => p.Name.Contains(searchTerm) ||
                       p.Surname.Contains(searchTerm)).ToListAsync();
                       
+                      
            
         }
     }

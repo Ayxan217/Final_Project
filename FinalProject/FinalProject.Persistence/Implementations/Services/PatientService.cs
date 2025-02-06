@@ -44,11 +44,11 @@ namespace FinalProject.Persistence.Implementations.Services
 
      
 
-        public async Task UpdateAsync(UpdatePatientDto updatePatientDto)
+        public async Task UpdateAsync(int id,UpdatePatientDto updatePatientDto)
         {
-            var patient = await _patientRepository.GetbyIdAsync(updatePatientDto.Id);
+            var patient = await _patientRepository.GetbyIdAsync(id);
             if (patient is null)
-                throw new NotFoundException($"Patient with ID {updatePatientDto.Id} not found.");
+                throw new NotFoundException($"Patient with ID {id} not found.");
 
             _mapper.Map(updatePatientDto, patient);
              _patientRepository.Update(patient);

@@ -41,10 +41,9 @@ namespace FinalProject.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromForm] UpdatePatientDto updatePatientDto)
         {
-            if (id != updatePatientDto.Id)
+            if (id < 1)
                 return BadRequest();
-
-            await _patientService.UpdateAsync(updatePatientDto);
+            await _patientService.UpdateAsync(id,updatePatientDto);
             return NoContent();
         }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FinalProject.Application.DTOs.Patient
 {
     public record UpdatePatientDto(
-        int Id,
+      
       string Name,
      string Surname,
      string Adress,

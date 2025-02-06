@@ -13,7 +13,7 @@ namespace FinalProject.Application.Abstractions.Services
         Task<ICollection<PatientItemDto>> GetAllAsync(int page,int take);
         Task<GetPatientDto> GetByIdAsync(int id);
         Task CreateAsync(CreatePatientDto createPatientDto);
-        Task UpdateAsync(UpdatePatientDto updatePatientDto);
+        Task UpdateAsync(int id,UpdatePatientDto updatePatientDto);
         Task DeleteAsync(int id);
         Task<IEnumerable<GetPatientDto>> SearchAsync(string searchTerm);
     }
