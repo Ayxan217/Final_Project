@@ -54,11 +54,19 @@ namespace FinalProject.Controllers
             return NoContent();
         }
 
-        [HttpGet("search")]
+        [HttpGet("search-by-name")]
         public async Task<IActionResult> Search([FromQuery] string searchTerm)
         {
             var patients = await _patientService.SearchAsync(searchTerm);
             return Ok(patients);
         }
+
+        [HttpGet("search-by-identity")]
+        public async Task<IActionResult> SearchIdentity([FromQuery] string identityCode)
+        {
+            var patient = await _patientService.SearchIdentityAsync(identityCode);
+            return Ok(patient);
+        }
+
     }
 }

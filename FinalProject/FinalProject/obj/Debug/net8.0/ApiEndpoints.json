@@ -530,8 +530,24 @@
   },
   {
     "ContainingType": "FinalProject.Controllers.PatientsController",
+    "Method": "SearchIdentity",
+    "RelativePath": "api/Patients/search-by-identity",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "identityCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProject.Controllers.PatientsController",
     "Method": "Search",
-    "RelativePath": "api/Patients/search",
+    "RelativePath": "api/Patients/search-by-name",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

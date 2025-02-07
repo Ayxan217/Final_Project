@@ -71,19 +71,29 @@ namespace FinalProject.Persistence.Implementations.Services
             return _mapper.Map<IEnumerable<GetPatientDto>>(patients);
         }
 
+
        
 
         public async Task CreateAsync(CreatePatientDto patientDto)
         {
-            Patient patient = _mapper.Map<Patient>(patientDto);
+            var patient = _mapper.Map<Patient>(patientDto);
             patient.CreatedAt = DateTime.Now;
             patient.ModifiedAt = DateTime.Now;
+            patient.IdentityCode = Guid.NewGuid().ToString().Substring(0,7).ToUpperInvariant();
             await _patientRepository.AddAsync(patient);
             await _patientRepository.SaveChangesAsync();
 
             
         }
 
-       
+        public async Task<GetPatientDto> SearchIdentityAsync(string IdentityCode)
+        {
+            if (IdentityCode.Length != 7)
+                throw new Exception("Identity code must be 7 length");
+            var patient = await _patientRepository.SearchPatientIdentityAsync(IdentityCode);
+            if(patient is null)
+                throw new Exception("Patient does not exists");
+            return _mapper.Map<GetPatientDto>(patient);
+        }
     }
 }

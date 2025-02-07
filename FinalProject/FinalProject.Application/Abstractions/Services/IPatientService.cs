@@ -16,5 +16,6 @@ namespace FinalProject.Application.Abstractions.Services
         Task UpdateAsync(int id,UpdatePatientDto updatePatientDto);
         Task DeleteAsync(int id);
         Task<IEnumerable<GetPatientDto>> SearchAsync(string searchTerm);
+        Task<GetPatientDto> SearchIdentityAsync(string IdentityCode);
     }
 }

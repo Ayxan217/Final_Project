@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Application.Abstractions.Repositories
 {
-    public interface IPatientRepository : IRepository<Patient>
+    public interface IAppointmentRepository : IRepository<Appointment>
     {
-        Task<IEnumerable<Patient>> SearchPatientsAsync(string searchTerm);
-        Task<Patient> SearchPatientIdentityAsync(string IdentityCode); 
+        Task<IEnumerable<Appointment>> SearchAppointmentsAsync(string searchTerm);
     }
 }

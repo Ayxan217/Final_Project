@@ -20,6 +20,15 @@ namespace FinalProject.Persistence.Implementations.Repositories
         
         }
 
+        public async Task<Patient> SearchPatientIdentityAsync(string IdentityCode)
+        {
+
+            return await _context.Patients
+                .FirstOrDefaultAsync(p => p.IdentityCode == IdentityCode);
+            
+            
+        }
+
         public async Task<IEnumerable<Patient>> SearchPatientsAsync(string searchTerm)
         {
             return await _context.Patients
@@ -29,5 +38,6 @@ namespace FinalProject.Persistence.Implementations.Repositories
                       
            
         }
+
     }
 }
