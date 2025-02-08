@@ -14,41 +14,25 @@ namespace FinalProject.Application.MappingProfiles
     {
         public AppointmentProfile()
         {
-            CreateMap<Appointment, AppointmentItemDto>()
-                .ConstructUsing(src => new AppointmentItemDto(
-                    src.Id,
-                    src.AppointmentDate,
-                    $"{src.Patient.Name} {src.Patient.Surname}",
-                    $"{src.Doctor.Name} {src.Doctor.Surname}"
-                ));
-
             CreateMap<Appointment, GetAppointmentDto>()
-                .ConstructUsing(src => new GetAppointmentDto(
-                    src.Id,
-                    src.AppointmentDate,
-                    src.,
-                    $"{src.Patient.Name} {src.Patient.Surname}",
-                    $"{src.Doctor.Name} {src.Doctor.Surname}",
-                    src.PatientId,
-                    src.DoctorId,
-                    src.CreatedDate,
-                    src.ModifiedAt
-                ));
+           .ForCtorParam(nameof(GetAppointmentDto.PatientName), opt => opt.MapFrom(src => src.Patient.Name))
+           .ForCtorParam(nameof(GetAppointmentDto.PatientSurname), opt => opt.MapFrom(src => src.Patient.Surname))
+           .ForCtorParam(nameof(GetAppointmentDto.PatientCode), opt => opt.MapFrom(src => src.Patient.IdentityCode))
+           .ForCtorParam(nameof(GetAppointmentDto.DoctorName), opt => opt.MapFrom(src => src.Doctor.Name))
+           .ForCtorParam(nameof(GetAppointmentDto.DoctorSurname), opt => opt.MapFrom(src => src.Doctor.Surname))
+           .ReverseMap();
 
-            CreateMap<CreateAppointmentDto, Appointment>()
-                .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => DateTime.Now))
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => true))
-                .ForMember(dest => dest.AppointmentDate, opt => opt.MapFrom(src => src.AppointmentDate))
-                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
-                .ForMember(dest => dest.PatientId, opt => opt.MapFrom(src => src.PatientId))
-                .ForMember(dest => dest.DoctorId, opt => opt.MapFrom(src => src.DoctorId));
+            CreateMap<CreateAppointmentDto, Appointment>();
+                
+            CreateMap<UpdateAppointmentDto, Appointment>().ForMember(c => c.Id, opt => opt.Ignore());
 
-            CreateMap<UpdateAppointmentDto, Appointment>()
-                .ForMember(dest => dest.ModifiedAt, opt => opt.MapFrom(src => DateTime.Now))
-                .ForMember(dest => dest.AppointmentDate, opt => opt.MapFrom(src => src.AppointmentDate))
-                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
-                .ForMember(dest => dest.PatientId, opt => opt.MapFrom(src => src.PatientId))
-                .ForMember(dest => dest.DoctorId, opt => opt.MapFrom(src => src.DoctorId));
+            CreateMap<Appointment, AppointmentItemDto>()
+           .ForCtorParam(nameof(GetAppointmentDto.PatientName), opt => opt.MapFrom(src => src.Patient.Name))
+           .ForCtorParam(nameof(GetAppointmentDto.PatientSurname), opt => opt.MapFrom(src => src.Patient.Surname))
+           .ForCtorParam(nameof(GetAppointmentDto.PatientCode), opt => opt.MapFrom(src => src.Patient.IdentityCode))
+           .ForCtorParam(nameof(GetAppointmentDto.DoctorName), opt => opt.MapFrom(src => src.Doctor.Name))
+           .ForCtorParam(nameof(GetAppointmentDto.DoctorSurname), opt => opt.MapFrom(src => src.Doctor.Surname));
+
         }
     }
 }

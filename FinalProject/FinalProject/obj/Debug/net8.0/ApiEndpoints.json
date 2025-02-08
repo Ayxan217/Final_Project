@@ -13,11 +13,6 @@
         "IsRequired": false
       },
       {
-        "Name": "Description",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
         "Name": "PatientId",
         "Type": "System.Int32",
         "IsRequired": false
@@ -44,9 +39,19 @@
         "IsRequired": false
       },
       {
-        "Name": "appointmentDto",
-        "Type": "FinalProject.Application.DTOs.Appointment.UpdateAppointmentDto",
-        "IsRequired": true
+        "Name": "AppointmentDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "DoctorId",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

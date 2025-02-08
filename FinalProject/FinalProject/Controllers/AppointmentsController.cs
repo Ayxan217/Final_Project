@@ -25,7 +25,7 @@ namespace FinalProject.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(int id,UpdateAppointmentDto appointmentDto)
+        public async Task<IActionResult> Update(int id,[FromForm]UpdateAppointmentDto appointmentDto)
         {
             if (id < 1) return BadRequest();
             await _appointmentService.UpdateAsync(id,appointmentDto);

@@ -18,17 +18,25 @@ namespace FinalProject.Persistence.Implementations.Services
     {
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly IMapper _mapper;
+        private readonly IDoctorRepository _doctorRepository;
+        private readonly IPatientRepository _patientRepository;
 
-        public AppointmentService(IAppointmentRepository appointmentRepository, IMapper mapper)
+        public AppointmentService(IAppointmentRepository appointmentRepository
+            , IMapper mapper
+            ,IDoctorRepository doctorRepository
+            ,IPatientRepository patientRepository)
         {
             _appointmentRepository = appointmentRepository;
             _mapper = mapper;
+            _doctorRepository = doctorRepository;
+            _patientRepository = patientRepository;
         }
 
         public async Task<GetAppointmentDto> GetByIdAsync(int id)
         {
-            var appointment = await _appointmentRepository.GetbyIdAsync(id);
-            if (appointment == null)
+            Appointment? appointment = await _appointmentRepository.GetAppointmentByIdWithDetailsAsync(id);
+
+            if (appointment is null)
                 throw new NotFoundException("Appointment not found");
 
             return _mapper.Map<GetAppointmentDto>(appointment);
@@ -37,15 +45,23 @@ namespace FinalProject.Persistence.Implementations.Services
         public async Task<IEnumerable<AppointmentItemDto>> GetAllAsync(int page,int take)
         {
             IEnumerable<Appointment> appointments = await _appointmentRepository
-                            .GetAll(skip:(page-1)*take,take:take)
-                            .ToListAsync();
+                            .GetAllAppointmentsWithDetailsAsync((page - 1) * take, take: take);
                             
-            return _mapper.Map<List<AppointmentItemDto>>(appointments);
+                            
+            return _mapper.Map<IEnumerable<AppointmentItemDto>>(appointments);
         }
 
         public async Task CreateAsync(CreateAppointmentDto appointmentDto)
         {
-            var appointment = _mapper.Map<Appointment>(appointmentDto);
+            if (!await _doctorRepository.AnyAsync(d => d.Id == appointmentDto.DoctorId))
+                throw new Exception("Doctor does not exists");
+
+            if (!await _patientRepository.AnyAsync(p => p.Id == appointmentDto.PatientId))
+                throw new Exception("Patient does not exists");
+
+            Appointment appointment = _mapper.Map<Appointment>(appointmentDto);
+            appointment.CreatedAt = DateTime.Now;
+            appointment.ModifiedAt = DateTime.Now;
             await _appointmentRepository.AddAsync(appointment);
             await _appointmentRepository.SaveChangesAsync();    
         }
@@ -56,7 +72,8 @@ namespace FinalProject.Persistence.Implementations.Services
             if (appointment is null)
                 throw new NotFoundException("Appointment not found");
 
-            _mapper.Map(appointment, appointment);
+            _mapper.Map(appointmentDto, appointment);
+            appointment.ModifiedAt = DateTime.Now;
              _appointmentRepository.Update(appointment);
             await _appointmentRepository.SaveChangesAsync();
 
@@ -67,10 +84,10 @@ namespace FinalProject.Persistence.Implementations.Services
         public async Task DeleteAsync(int id)
         {
             var appointment = await _appointmentRepository.GetbyIdAsync(id);
-            if (appointment == null)
+            if (appointment is null)
                 throw new NotFoundException("Appointment not found");
 
-            _appointmentRepository.Update(appointment);
+            _appointmentRepository.Delete(appointment);
             await _appointmentRepository.SaveChangesAsync();    
         }
     }

@@ -9,12 +9,10 @@ namespace FinalProject.Application.DTOs.Appointment
     public record GetAppointmentDto(
      int Id,
      DateTime AppointmentDate,
-     string Description,
-     string PatientFullName,
-     string DoctorFullName,
-     int PatientId,
-     int DoctorId,
-     DateTime CreatedAt,
-     DateTime? ModifiedAt
+     string PatientName,
+     string PatientCode,
+     string PatientSurname,
+     string DoctorName,
+     string DoctorSurname
  );
 }
