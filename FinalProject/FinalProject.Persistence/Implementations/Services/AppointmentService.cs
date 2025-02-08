@@ -3,6 +3,7 @@ using FinalProject.Application.Abstractions.Repositories;
 using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Appointment;
 using FinalProject.Domain.Entities;
+using FinalProject.Domain.Extensions;
 using FinalProject.Persistence.Implementations.Repositories;
 using Microsoft.EntityFrameworkCore;
 using SendGrid.Helpers.Errors.Model;
@@ -59,9 +60,29 @@ namespace FinalProject.Persistence.Implementations.Services
             if (!await _patientRepository.AnyAsync(p => p.Id == appointmentDto.PatientId))
                 throw new Exception("Patient does not exists");
 
+            DateTime roundedDate = appointmentDto.AppointmentDate.RoundToNearest10Minutes();
+
+            Appointment? existingAppointment = await _appointmentRepository
+           .GetAppointmentByDateAndDoctorAsync(roundedDate, appointmentDto.DoctorId);
+
+            if (existingAppointment is not null)
+                throw new Exception($"thre is already an appointment at this time");
+
+            var hasExistingAppointment = await _appointmentRepository
+          .HasPatientAppointmentForDateAsync(appointmentDto.PatientId, roundedDate.Date);
+
+            if (hasExistingAppointment)
+            {
+                throw new Exception(
+                    $"Patient already has an appointment on {roundedDate.Date:dd/MM/yyyy}. " +
+                    "Only one appointment per day is allowed.");
+            }
+
             Appointment appointment = _mapper.Map<Appointment>(appointmentDto);
+            appointment.AppointmentDate = roundedDate;
             appointment.CreatedAt = DateTime.Now;
             appointment.ModifiedAt = DateTime.Now;
+
             await _appointmentRepository.AddAsync(appointment);
             await _appointmentRepository.SaveChangesAsync();    
         }

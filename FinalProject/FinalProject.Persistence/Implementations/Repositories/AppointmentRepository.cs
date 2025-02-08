@@ -37,5 +37,34 @@ namespace FinalProject.Persistence.Implementations.Repositories
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
 
+        public async Task<Appointment?> GetAppointmentByDateAndDoctorAsync(DateTime date, int doctorId)
+        {
+            
+            return await _context.Appointments
+                .Include(a => a.Doctor)  
+                .Include(a => a.Patient) 
+                .FirstOrDefaultAsync(a =>
+                    a.DoctorId == doctorId && 
+                    a.AppointmentDate == date 
+                   
+                );
+        }
+
+
+        public async Task<bool> HasPatientAppointmentForDateAsync(int patientId, DateTime date)
+        {
+            
+            var startDate = date.Date;
+            
+            var endDate = startDate.AddDays(1).AddTicks(-1);
+
+            return await _context.Appointments
+                .AnyAsync(a =>
+                    a.PatientId == patientId &&
+                    a.AppointmentDate >= startDate &&
+                    a.AppointmentDate <= endDate  
+                );
+        }
+
     }
 }
