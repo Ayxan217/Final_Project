@@ -10,6 +10,6 @@ namespace FinalProject.Application.Abstractions.Repositories
 {
     public interface IAppointmentRepository : IRepository<Appointment>
     {
-        Task<IEnumerable<Appointment>> SearchAppointmentsAsync(string searchTerm);
+        
     }
 }

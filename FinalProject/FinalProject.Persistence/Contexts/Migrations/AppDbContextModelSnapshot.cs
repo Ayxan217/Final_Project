@@ -106,11 +106,14 @@ namespace FinalProject.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly>("AppointmentDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("AppointmentDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -123,9 +126,11 @@ namespace FinalProject.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DoctorId");
+
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Appointments", (string)null);
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Comment", b =>
@@ -166,7 +171,7 @@ namespace FinalProject.Persistence.Migrations
 
                     b.HasIndex("DoctorId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Department", b =>
@@ -205,7 +210,7 @@ namespace FinalProject.Persistence.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Departments", (string)null);
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Doctor", b =>
@@ -267,7 +272,7 @@ namespace FinalProject.Persistence.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Doctors", (string)null);
+                    b.ToTable("Doctors");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Patient", b =>
@@ -317,7 +322,7 @@ namespace FinalProject.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Patients", (string)null);
+                    b.ToTable("Patients");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Payroll", b =>
@@ -354,7 +359,7 @@ namespace FinalProject.Persistence.Migrations
                     b.HasIndex("DoctorId")
                         .IsUnique();
 
-                    b.ToTable("Payrolls", (string)null);
+                    b.ToTable("Payrolls");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -492,11 +497,19 @@ namespace FinalProject.Persistence.Migrations
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Appointment", b =>
                 {
-                    b.HasOne("FinalProject.Domain.Entities.Patient", "Patient")
+                    b.HasOne("FinalProject.Domain.Entities.Doctor", "Doctor")
                         .WithMany("Appointments")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FinalProject.Domain.Entities.Patient", "Patient")
+                        .WithMany()
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Doctor");
 
                     b.Navigation("Patient");
                 });
@@ -592,15 +605,12 @@ namespace FinalProject.Persistence.Migrations
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Doctor", b =>
                 {
+                    b.Navigation("Appointments");
+
                     b.Navigation("Comments");
 
                     b.Navigation("Payroll")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("FinalProject.Domain.Entities.Patient", b =>
-                {
-                    b.Navigation("Appointments");
                 });
 #pragma warning restore 612, 618
         }

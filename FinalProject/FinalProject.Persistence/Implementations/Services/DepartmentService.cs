@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
-    public class DepartmentService : IDepartmentService
+    internal class DepartmentService : IDepartmentService
     {
         private readonly IDepartmentRepository _departmentRepository;
         private readonly IMapper _mapper;

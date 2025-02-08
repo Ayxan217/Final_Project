@@ -12,7 +12,7 @@ using SendGrid;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
-    public class EmailService : IEmailService
+    internal class EmailService : IEmailService
     {
         private readonly IConfiguration _configuration;
 
