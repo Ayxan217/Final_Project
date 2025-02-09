@@ -92,6 +92,7 @@ namespace FinalProject.Persistence.Implementations.Services
             }
 
             await _userManager.AddToRoleAsync(user,Roles.Patient.ToString());
+            
            
         }
 

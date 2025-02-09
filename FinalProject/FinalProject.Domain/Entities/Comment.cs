@@ -10,12 +10,11 @@ namespace FinalProject.Domain.Entities
     public class Comment : BaseEntity
     {
         public string Content { get; set; }
-        public string UserName { get; set; }
-        public int UserId { get; set; }
-        public string? UserEmail { get; set; }
 
         // Relational
         public int DoctorId { get; set; }
         public Doctor Doctor { get; set; }
+        public int UserId { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }
