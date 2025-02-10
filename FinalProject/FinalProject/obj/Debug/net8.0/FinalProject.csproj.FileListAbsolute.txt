@@ -195,3 +195,4 @@ C:\Users\pc\OneDrive\Masaüstü\Final_Project\FinalProject\FinalProject\bin\Debu
 C:\Users\pc\OneDrive\Masaüstü\Final_Project\FinalProject\FinalProject\bin\Debug\net8.0\SendGrid.dll
 C:\Users\pc\OneDrive\Masaüstü\Final_Project\FinalProject\FinalProject\bin\Debug\net8.0\StarkbankEcdsa.dll
 C:\Users\pc\OneDrive\Masaüstü\Final_Project\FinalProject\FinalProject\bin\Debug\net8.0\CloudinaryDotNet.dll
+C:\Users\pc\OneDrive\Masaüstü\Final_Project\FinalProject\FinalProject\bin\Debug\net8.0\Postmark.dll

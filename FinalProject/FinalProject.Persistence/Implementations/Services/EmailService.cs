@@ -22,29 +22,42 @@ namespace FinalProject.Persistence.Implementations.Services
             _configuration = configuration;
         }
 
-
-
-        private const string APIKEY = "3355d1ea-dabd-407c-87c2-3637f466cdc1";
-
-        public  async Task SendEmailAsync(string to, string subject, string body)
+        public async Task SendEmailAsync(string to, string subject, string body)
         {
-            var client = new PostmarkClient(APIKEY);
-
-            var message = new PostmarkMessage
+            try
             {
-                From = "ayxanrm-bp217@code.edu.az",
-                To = "memmedliayxan@gmail.com",
-                Subject = "Reset",
-                HtmlBody = "<strong>Hello</strong> dear Postmark user.",
-                TextBody = "Reset your email"
-            };
+                using (var client = new SmtpClient(
+                    _configuration["SmtpSettings:Server"],
+                    Convert.ToInt32(_configuration["SmtpSettings:Port"])
+                ))
+                {
+                    client.Credentials = new NetworkCredential(
+                        _configuration["SmtpSettings:Username"],
+                        _configuration["SmtpSettings:Password"]
+                    );
+                    client.EnableSsl = Convert.ToBoolean(_configuration["SmtpSettings:EnableSsl"]);
 
-            var response = await client.SendMessageAsync(message);
+                    var mailMessage = new MailMessage
+                    {
+                        From = new MailAddress(_configuration["SmtpSettings:Username"]), 
+                        Subject = subject,
+                        Body = body,
+                        IsBodyHtml = true
+                    };
 
-            if (response.Status != PostmarkStatus.Success)
+                    mailMessage.To.Add(to);
+
+                    await client.SendMailAsync(mailMessage);
+                    Console.WriteLine("E-posta başarıyla gönderildi.");
+                }
+            }
+            catch (Exception ex)
             {
-                throw new Exception($"Email gönderimi başarısız: {response.Message}");
+                Console.WriteLine($"E-posta gönderme hatası: {ex.Message}");
             }
         }
+
+
     }
 }
+

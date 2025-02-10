@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace FinalProject.Application.DTOs.Account
 {
     public record ResetPasswordDto(
-     string Email,
-     string Token,
+     
+     string ResetCode,
      string NewPassword
       
         );

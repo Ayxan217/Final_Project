@@ -201,12 +201,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Token",
+        "Name": "ResetCode",
         "Type": "System.String",
         "IsRequired": false
       },

@@ -29,6 +29,9 @@ namespace FinalProject.Persistence.Implementations.Services
         private readonly ITokenHandler _tokenHandler;
         private readonly IEmailService _emailService;
         private readonly IConfiguration _configuration;
+        private string? resetCode;
+        private DateTime expireTime;
+
 
         public AuthenticationService(UserManager<AppUser> userManager,
             IMapper mapper,
@@ -102,26 +105,34 @@ namespace FinalProject.Persistence.Implementations.Services
             if (user is null)
                 throw new Exception("User not found");
 
-            string resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+           string resetCode = GenerateResetCode();
+           DateTime expireTime = DateTime.UtcNow.AddMinutes(5);
 
-            string resetLink = $"{_configuration["App:ClientUrl"]}/reset-password?email={forgotPasswordDto.Email}&token={resetToken}";
 
-            
+            user.ResetCode = resetCode;
+            user.ResetCodeExpireTime = expireTime;
+            await _userManager.UpdateAsync(user);
+
             await _emailService.SendEmailAsync(
             
                 to : forgotPasswordDto.Email,
                 subject : "Password Reset",
-                body : $"Please click the link below to reset your password:\n\n{resetLink}"
+                body : $"Please enter the code to reset your password:\n\n{resetCode}"
             );
         }
 
         public async Task ResetPasswordAsync(ResetPasswordDto resetPasswordDto)
         {
-            AppUser? user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
+            AppUser? user = await _userManager.Users.FirstOrDefaultAsync(u=>u.ResetCode == resetPasswordDto.ResetCode && u.ResetCodeExpireTime>DateTime.UtcNow);
             if (user is null)
-                throw new Exception("User not found");
+                throw new Exception("Reset Code is incorrect or expired");
 
-            var result = await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.NewPassword);
+
+           string token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+       
+
+            var result = await _userManager.ResetPasswordAsync(user,token, resetPasswordDto.NewPassword);
 
             if (!result.Succeeded)
             {
@@ -132,6 +143,20 @@ namespace FinalProject.Persistence.Implementations.Services
                 }
                 throw new Exception(errorBuilder.ToString());
             }
+
+            user.ResetCode = null;
+            user.ResetCodeExpireTime = null;
+            await _userManager.UpdateAsync(user);
+            
         }
+
+
+        private string GenerateResetCode()
+        {
+            string code = Guid.NewGuid().ToString().Substring(0,6).ToUpper();
+            return code;
+        }
+
+    
     }
 }
