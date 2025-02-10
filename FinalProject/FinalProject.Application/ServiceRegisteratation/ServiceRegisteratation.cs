@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using FinalProject.Application.MappingProfiles;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -18,6 +19,7 @@ namespace FinalProject.Application.ServiceRegisteratation
             services.AddFluentValidationAutoValidation().
                 AddFluentValidationClientsideAdapters()
                 .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddScoped<UserRoleResolver>();
             return services;
         }
     }

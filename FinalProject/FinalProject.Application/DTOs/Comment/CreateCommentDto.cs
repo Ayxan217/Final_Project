@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace FinalProject.Application.DTOs.Comment
 {
     public record CreateCommentDto(
-        string UserId,
-    string Content,
-    int DoctorId
+       string Content,
+       int DoctorId
+       
     
 );
 }

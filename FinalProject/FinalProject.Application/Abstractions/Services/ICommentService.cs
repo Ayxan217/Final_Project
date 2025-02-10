@@ -12,6 +12,7 @@ namespace FinalProject.Application.Abstractions.Services
         Task<IEnumerable<CommentItemDto>> GetDoctorCommentsAsync(int doctorId);
         Task<GetCommentDto> GetCommentByIdAsync(int id);
         Task CreateCommentAsync(CreateCommentDto commentDto);
+        Task UpdateCommentAsync(int id,UpdateCommentDto commentDto);
         Task DeleteCommentAsync(int id);
     }
 }

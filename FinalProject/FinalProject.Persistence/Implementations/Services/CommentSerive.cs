@@ -4,10 +4,12 @@ using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Comment;
 using FinalProject.Domain.Entities;
 using FinalProject.Persistence.Implementations.Repositories;
+using Microsoft.AspNetCore.Identity;
 using SendGrid.Helpers.Errors.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,15 +19,18 @@ namespace FinalProject.Persistence.Implementations.Services
     {
         private readonly ICommentRepository _commentRepository;
         private readonly IMapper _mapper;
+       
 
         public CommentSerive(ICommentRepository commentRepository
-            ,IMapper mapper)
+            ,IMapper mapper
+           )
         {
             _commentRepository = commentRepository;
-            _mapper = mapper;
+            _mapper = mapper;  
         }
         public async Task CreateCommentAsync(CreateCommentDto commentDto)
         {
+            
             Comment comment = _mapper.Map<Comment>(commentDto);
             comment.CreatedAt = DateTime.Now;
             comment.ModifiedAt = DateTime.Now;
@@ -58,6 +63,20 @@ namespace FinalProject.Persistence.Implementations.Services
         {
             IEnumerable<Comment> comments = await _commentRepository.GetDoctorCommentsAsync(doctorId);
             return _mapper.Map<IEnumerable<CommentItemDto>>(comments);
+        }
+
+        public async Task UpdateCommentAsync(int id, UpdateCommentDto commentDto)
+        {
+            Comment comment = await _commentRepository.GetbyIdAsync(id);
+
+            if (comment is null)
+                throw new Exception("Comment does not exists");
+
+            _mapper.Map(commentDto, comment);
+
+             _commentRepository.Update(comment);
+            
+            await _commentRepository.SaveChangesAsync();
         }
     }
 }

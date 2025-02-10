@@ -19,12 +19,18 @@ namespace FinalProject.Application.MappingProfiles
             CreateMap<UpdateCommentDto, Comment>()
                 .ForMember(c => c.Id, opt => opt.Ignore());
 
-            CreateMap<Comment, GetCommentDto>()
-                .ForCtorParam(nameof(GetCommentDto.UserName), opt => opt.MapFrom(src => src.AppUser.UserName))
+            
+                CreateMap<Comment, GetCommentDto>()
+
                 .ReverseMap();
-            CreateMap<Comment, CommentItemDto>()
-                .ForCtorParam(nameof(GetCommentDto.UserName), opt => opt.MapFrom(src => src.AppUser.UserName));
-    
+
+            CreateMap<Comment, CommentItemDto>();
+
+
+
+
+
+
 
 
 

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SendGrid.Helpers.Mail;
 using SendGrid;
+using PostmarkDotNet;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -21,30 +22,29 @@ namespace FinalProject.Persistence.Implementations.Services
             _configuration = configuration;
         }
 
-        public async Task SendEmailAsync(string to, string subject, string body)
-        {
-            using var message = new MailMessage();
-            message.To.Add(new MailAddress(to));
-            message.From = new MailAddress(_configuration["MailChimp:FromEmail"]);
-            message.Subject = subject;
-            message.Body = body;
-            message.IsBodyHtml = true;
 
-            // Mandrill SMTP ayarları
-            using var smtp = new SmtpClient
+
+        private const string APIKEY = "3355d1ea-dabd-407c-87c2-3637f466cdc1";
+
+        public  async Task SendEmailAsync(string to, string subject, string body)
+        {
+            var client = new PostmarkClient(APIKEY);
+
+            var message = new PostmarkMessage
             {
-                Host = "smtp.mandrillapp.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(
-                    _configuration["MailChimp:Username"], // Email adresiniz
-                    _configuration["MailChimp:ApiKey"]    // Mandrill API Key
-                )
+                From = "ayxanrm-bp217@code.edu.az",
+                To = "memmedliayxan@gmail.com",
+                Subject = "Reset",
+                HtmlBody = "<strong>Hello</strong> dear Postmark user.",
+                TextBody = "Reset your email"
             };
 
-            await smtp.SendMailAsync(message);
+            var response = await client.SendMessageAsync(message);
+
+            if (response.Status != PostmarkStatus.Success)
+            {
+                throw new Exception($"Email gönderimi başarısız: {response.Message}");
+            }
         }
     }
 }

@@ -62,7 +62,7 @@ namespace FinalProject.Persistence.Implementations.Services
                 throw new Exception("Username ,email or Password incorrect");
             }
 
-             return _tokenHandler.CreateAccessToken(user,15);
+             return await _tokenHandler.CreateAccessToken(user,15);
 
         }
 
@@ -79,7 +79,7 @@ namespace FinalProject.Persistence.Implementations.Services
 
             AppUser user = _mapper.Map<AppUser>(userDto);
 
-            var result = await _userManager.CreateAsync(_mapper.Map<AppUser>(userDto),userDto.Password);
+            var result = await _userManager.CreateAsync(user,userDto.Password);
             if (!result.Succeeded)
             {
                 StringBuilder builder = new();

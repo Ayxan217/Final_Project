@@ -1,8 +1,10 @@
-﻿using FinalProject.Application.Abstractions.Services;
+﻿using CloudinaryDotNet.Actions;
+using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Comment;
 using FinalProject.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SendGrid.Helpers.Errors.Model;
 using System.Security.Claims;
@@ -20,42 +22,50 @@ namespace FinalProject.Controllers
             _commentService = commentService;
         }
 
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<GetCommentDto>> GetById(int id)
-        {
-            try
-            {
-                var comment = await _commentService.GetCommentByIdAsync(id);
-                return Ok(comment);
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-        }
-
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CommentItemDto>>> GetDoctorComments(int doctorId)
+        public async Task<IActionResult> Get(int doctorId)
         {
             var comments = await _commentService.GetDoctorCommentsAsync(doctorId);
             return Ok(comments);
         }
 
-        [Authorize(Roles ="Patient")]
-        [HttpPost("doctor/{doctorId}")]
-        public async Task<IActionResult> Create(int doctorId, [FromBody] CreateCommentDto createCommentDto)
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            
+                var comment = await _commentService.GetCommentByIdAsync(id);
+                return Ok(comment);
+        }
+
+
+        
+        [HttpPost]
+        public async Task<IActionResult> Create([FromForm] CreateCommentDto commentDto)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (userId == null)
+            if (userId is null)
                 return Unauthorized();
 
-            
-           
 
-            await _commentService.CreateCommentAsync(createCommentDto);
+
+
+            await _commentService.CreateCommentAsync(commentDto);
             return StatusCode(StatusCodes.Status201Created);
         }
+
+
+        [HttpPut("{id}")]
+
+        public async Task<IActionResult> Update(int id,UpdateCommentDto commentDto)
+        {
+            if (id < 1) return BadRequest();
+            await _commentService.UpdateCommentAsync(id,commentDto);
+            return NoContent();
+        }
+
+ 
 
         [Authorize]
         [HttpDelete("{id}")]
@@ -64,7 +74,7 @@ namespace FinalProject.Controllers
             try
             {
                 var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                if (userId == null)
+                if (userId is null)
                     return Unauthorized();
 
                 GetCommentDto comment = await _commentService.GetCommentByIdAsync(id);

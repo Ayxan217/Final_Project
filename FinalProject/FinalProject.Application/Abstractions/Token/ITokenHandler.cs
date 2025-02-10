@@ -11,7 +11,7 @@ namespace FinalProject.Application.Abstractions.Token
 {
     public interface ITokenHandler
     {
-        TokenResponseDto CreateAccessToken(AppUser user,int minutes);
+        Task<TokenResponseDto> CreateAccessToken(AppUser user,int minutes);
         string CreateRefreshToken();
 
     }

@@ -34,6 +34,8 @@ namespace FinalProject.Persistence.ServiceRegisteratation
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<ICommentService,CommentSerive>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<AppDbContextInitalizer>();
 
             services.AddIdentity<AppUser, IdentityRole>(options =>

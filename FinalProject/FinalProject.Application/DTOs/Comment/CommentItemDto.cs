@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 namespace FinalProject.Application.DTOs.Comment
 {
    public record CommentItemDto(int Id,
-       string UserName,
+       string UserId,
        string UserRole,
+       string Content,
+       string UserName,
        int DoctorId);
    
 }
