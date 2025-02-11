@@ -259,6 +259,9 @@ namespace FinalProject.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Salary")
+                        .HasColumnType("int");
+
                     b.Property<string>("Skype")
                         .HasColumnType("nvarchar(max)");
 
@@ -343,6 +346,9 @@ namespace FinalProject.Persistence.Migrations
                     b.Property<int>("DoctorId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("InsuranceRate")
+                        .HasColumnType("decimal(8,2)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -352,10 +358,13 @@ namespace FinalProject.Persistence.Migrations
                     b.Property<decimal>("NetSalary")
                         .HasColumnType("decimal(8,2)");
 
+                    b.Property<DateOnly>("PaymentTime")
+                        .HasColumnType("date");
+
                     b.Property<decimal>("Salary")
                         .HasColumnType("decimal(8,2)");
 
-                    b.Property<decimal>("Taxes")
+                    b.Property<decimal>("TaxRate")
                         .HasColumnType("decimal(8,2)");
 
                     b.HasKey("Id");

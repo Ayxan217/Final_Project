@@ -27,15 +27,15 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task<ICollection<PatientItemDto>> GetAllAsync(int page = 1,int take = 3)
         {
-            var patients = await _patientRepository.GetAll(skip: (page - 1) * take, take: take)
+            ICollection<Patient> patients = await _patientRepository.GetAll(skip: (page - 1) * take, take: take)
                    .ToListAsync();
             ;
-            return _mapper.Map<List<PatientItemDto>>(patients);
+            return _mapper.Map<ICollection<PatientItemDto>>(patients);
         }
 
         public async Task<GetPatientDto> GetByIdAsync(int id)
         {
-            var patient = await _patientRepository.GetbyIdAsync(id);
+            Patient patient = await _patientRepository.GetbyIdAsync(id);
             if (patient is null)
                 throw new NotFoundException($"Patient with ID {id} not found.");
 
@@ -46,18 +46,19 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task UpdateAsync(int id,UpdatePatientDto updatePatientDto)
         {
-            var patient = await _patientRepository.GetbyIdAsync(id);
+            Patient patient = await _patientRepository.GetbyIdAsync(id);
             if (patient is null)
                 throw new NotFoundException($"Patient with ID {id} not found.");
 
             _mapper.Map(updatePatientDto, patient);
+            patient.ModifiedAt = DateTime.Now;
              _patientRepository.Update(patient);
             await _patientRepository.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
-            var patient = await _patientRepository.GetbyIdAsync(id);
+            Patient patient = await _patientRepository.GetbyIdAsync(id);
             if (patient == null)
                 throw new NotFoundException($"Patient with ID {id} not found.");
 
@@ -76,7 +77,7 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task CreateAsync(CreatePatientDto patientDto)
         {
-            var patient = _mapper.Map<Patient>(patientDto);
+            Patient patient = _mapper.Map<Patient>(patientDto);
             patient.CreatedAt = DateTime.Now;
             patient.ModifiedAt = DateTime.Now;
             patient.IdentityCode = Guid.NewGuid().ToString().Substring(0,7).ToUpperInvariant();
@@ -90,7 +91,7 @@ namespace FinalProject.Persistence.Implementations.Services
         {
             if (IdentityCode.Length != 7)
                 throw new Exception("Identity code must be 7 length");
-            var patient = await _patientRepository.SearchPatientIdentityAsync(IdentityCode);
+            Patient patient = await _patientRepository.SearchPatientIdentityAsync(IdentityCode);
             if(patient is null)
                 throw new Exception("Patient does not exists");
             return _mapper.Map<GetPatientDto>(patient);

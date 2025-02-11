@@ -36,6 +36,8 @@ namespace FinalProject.Persistence.ServiceRegisteratation
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<ICommentService,CommentSerive>();
             services.AddScoped<ICommentRepository, CommentRepository>();
+            services.AddScoped<IPayrollService, PayrollService>();
+            services.AddScoped<IPayrollRepository, PayrollRepository>();
             services.AddScoped<AppDbContextInitalizer>();
 
             services.AddIdentity<AppUser, IdentityRole>(options =>

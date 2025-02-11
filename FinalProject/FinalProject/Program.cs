@@ -24,6 +24,7 @@ builder.Services.AddPersistenceServices(builder.Configuration)
                 .AddApplicationServices()
                 .AddInfrastructureServices(builder.Configuration);
 
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "FinalProject", Version = "v1" });

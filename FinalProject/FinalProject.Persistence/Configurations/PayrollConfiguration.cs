@@ -15,7 +15,8 @@ namespace FinalProject.Persistence.Configurations
         {
             builder.Property(x=>x.Salary).HasColumnType("decimal(8,2)");
             builder.Property(x => x.NetSalary).HasColumnType("decimal(8,2)");
-            builder.Property(x => x.Taxes).HasColumnType("decimal(8,2)");
+            builder.Property(x => x.TaxRate).HasColumnType("decimal(8,2)");
+            builder.Property(x => x.InsuranceRate).HasColumnType("decimal(8,2)");
         }
     }
 }

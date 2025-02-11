@@ -19,6 +19,7 @@ namespace FinalProject.Domain.Entities
         public string? Skype { get; set; }
         public string? Facebook { get; set; }
         public string? Ven {  get; set; }
+        public int? Salary { get; set; }
         
 
        //Relational Properties

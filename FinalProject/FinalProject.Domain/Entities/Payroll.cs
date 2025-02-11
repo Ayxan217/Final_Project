@@ -1,4 +1,5 @@
 ﻿using FinalProject.Domain.Entites;
+using Microsoft.EntityFrameworkCore.Storage.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,10 @@ namespace FinalProject.Domain.Entities
     {
         
         public decimal Salary { get; set; }
-        public decimal Taxes { get; set; }
+        public decimal TaxRate { get; set; }
+        public decimal InsuranceRate { get; set; }
         public decimal NetSalary { get; set; }
+        public DateOnly PaymentTime {  get; set; } 
 
         // Relational 
         public int DoctorId { get; set; }

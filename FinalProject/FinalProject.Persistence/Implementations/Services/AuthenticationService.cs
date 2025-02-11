@@ -105,7 +105,7 @@ namespace FinalProject.Persistence.Implementations.Services
             if (user is null)
                 throw new Exception("User not found");
 
-           string resetCode = GenerateResetCode();
+           string resetCode = Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
            DateTime expireTime = DateTime.UtcNow.AddMinutes(5);
 
 
@@ -151,11 +151,7 @@ namespace FinalProject.Persistence.Implementations.Services
         }
 
 
-        private string GenerateResetCode()
-        {
-            string code = Guid.NewGuid().ToString().Substring(0,6).ToUpper();
-            return code;
-        }
+      
 
     
     }
