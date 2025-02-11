@@ -33,11 +33,18 @@ namespace FinalProject.Persistence.Implementations.Services
         public async Task CreateAsync(CreatePayrollDto payrollDto)
         {
             if(!await _doctorRepository.AnyAsync(d=>d.Id == payrollDto.DoctorId))
-                throw new Exception("Please enter a valid DoctorId");
+                throw new Exception("Doctor can't found");
+
+            Payroll existPayroll = await _payrollRepository.SearchPayrollAsync(payrollDto.DoctorId);
+            if (existPayroll != null)
+                throw new Exception("this doctor already have a payroll");
+
             Payroll payroll = _mapper.Map<Payroll>(payrollDto);
             payroll.CreatedAt = DateTime.Now;
             payroll.ModifiedAt = DateTime.Now;
-            payroll.PaymentTime  = DateOnly.FromDateTime(DateTime.Now);
+            DateTime nextMonth = DateTime.Now.AddMonths(1);
+            payroll.PaymentTime = new DateOnly(nextMonth.Year, nextMonth.Month, 1);
+
             decimal tax = (payrollDto.TaxRate / 100) * payrollDto.Salary;
             decimal insurance = (payrollDto.InsuranceRate / 100) * payrollDto.Salary;
             payroll.NetSalary = payrollDto.Salary - (tax+insurance);
