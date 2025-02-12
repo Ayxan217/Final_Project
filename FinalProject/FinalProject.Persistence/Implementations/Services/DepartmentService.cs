@@ -58,7 +58,7 @@ namespace FinalProject.Persistence.Implementations.Services
             Department department = await _departmentRepository.GetbyIdAsync(id);
 
             if (department is null)
-                return null;
+                throw new Exception("Not found");
             
 
             GetDepartmentDto departmentDto = _mapper.Map<GetDepartmentDto>(department);

@@ -24,7 +24,9 @@ namespace FinalProject.Persistence.Contexts
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Comment> Comments { get; set; }
-
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Review> Reviews { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             

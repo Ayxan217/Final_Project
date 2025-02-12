@@ -38,6 +38,8 @@ namespace FinalProject.Persistence.ServiceRegisteratation
             services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<IPayrollService, PayrollService>();
             services.AddScoped<IPayrollRepository, PayrollRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<AppDbContextInitalizer>();
 
             services.AddIdentity<AppUser, IdentityRole>(options =>

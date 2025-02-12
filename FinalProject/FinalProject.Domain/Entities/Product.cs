@@ -20,5 +20,7 @@ namespace FinalProject.Domain.Entities
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         
+        public ICollection<Review>? Review { get; set; }
+        
     }
 }
