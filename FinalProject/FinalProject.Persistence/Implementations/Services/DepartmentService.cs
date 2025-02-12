@@ -26,7 +26,9 @@ namespace FinalProject.Persistence.Implementations.Services
         public async Task CreateAsync(CreateDepartmentDto departmentDto)
         {
             if (await _departmentRepository.AnyAsync(c => c.Name == departmentDto.Name)) throw new Exception("Alredy Exists");
-
+            var chiefDoctor = await _departmentRepository.SearchChiefDoctorAsync(departmentDto.ChiefDoctorId);
+            if (chiefDoctor is null)
+                throw new Exception("doctorId not found");
             Department department = _mapper.Map<Department>(departmentDto);
             department.CreatedAt = DateTime.Now;
             department.ModifiedAt = DateTime.Now;
@@ -73,6 +75,10 @@ namespace FinalProject.Persistence.Implementations.Services
             Department department = await _departmentRepository.GetbyIdAsync(id);
             if (department is null)
                 throw new Exception($"Department with id {id} was not found");
+
+            var chiefDoctor = await _departmentRepository.SearchChiefDoctorAsync(departmentDto.ChiefDoctorId);
+            if (chiefDoctor is null)
+                throw new Exception("doctorId not found");
 
             bool exists = await _departmentRepository
                 .AnyAsync(c => c.Name == departmentDto.Name && c.Id != id);

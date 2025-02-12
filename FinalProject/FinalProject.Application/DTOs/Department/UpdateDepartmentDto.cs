@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Application.DTOs.Department
 {
-    public record UpdateDepartmentDto(string Name,string Description,int? ChiefDoctorId);
+    public record UpdateDepartmentDto(string Name,string Description,int ChiefDoctorId);
    
 }

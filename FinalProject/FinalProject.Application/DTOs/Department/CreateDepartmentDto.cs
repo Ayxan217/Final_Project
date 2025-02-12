@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Application.DTOs.Department
 {
-    public record CreateDepartmentDto(string Name,string Description,bool status,int? ChiefDoctorId);
+    public record CreateDepartmentDto(string Name,string Description,bool status,int ChiefDoctorId);
    
 }

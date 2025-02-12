@@ -1,6 +1,6 @@
 ﻿using FinalProject.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Configurations
 {
-    internal class DepartmentConfigurations : IEntityTypeConfiguration<Department>
+    internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
-        public void Configure(EntityTypeBuilder<Department> builder)
+        public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.HasIndex(x=>x.Name).IsUnique();
+            builder.HasIndex(x => x.Name).IsUnique();
             builder.Property(x => x.Name).HasColumnType("nvarchar(100)");
-            builder.Property(x => x.Description).IsRequired().HasColumnType("nvarchar(1000)");
         }
     }
 }
