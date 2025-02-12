@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Application.DTOs.Tokens
 {
-    public record TokenResponseDto(string Token,string RefreshToken,DateTime Expire);
+    public record TokenResponseDto(string Token,DateTime Expire);
     
 }

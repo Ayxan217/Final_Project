@@ -57,5 +57,14 @@ namespace FinalProject.Controllers
             return NoContent();
         }
 
+
+        [HttpPost("cancel-appointment")]
+
+        public async Task<IActionResult> Cancel(string appointmentNumber)
+        {
+            await _appointmentService.CancelAppointmentAsync(appointmentNumber);
+            return NoContent();
+        }
+
     }
 }

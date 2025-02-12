@@ -110,6 +110,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FinalProject.Controllers.AppointmentsController",
+    "Method": "Cancel",
+    "RelativePath": "api/Appointments/cancel-appointment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "appointmentNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FinalProject.Controllers.AuthenticationController",
     "Method": "ForgotPassword",
     "RelativePath": "api/Authentication/forgot-password",

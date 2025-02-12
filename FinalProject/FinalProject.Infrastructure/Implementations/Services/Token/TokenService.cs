@@ -80,7 +80,7 @@ namespace FinalProject.Persistence.Implementations.Token
 
 
             return new TokenResponseDto(tokenHandler.WriteToken(securityToken),
-                 CreateRefreshToken(),
+                 
                  securityToken.ValidTo);
 
 

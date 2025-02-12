@@ -13,6 +13,7 @@ namespace FinalProject.Application.Abstractions.Repositories
         Task<IEnumerable<Appointment>> GetAllAppointmentsWithDetailsAsync(int page,int take);
         Task<Appointment?> GetAppointmentByIdWithDetailsAsync(int id);
         Task<Appointment?> GetAppointmentByDateAndDoctorAsync(DateTime date, int doctorId);
+        Task<Appointment?> GetAppointmentByNumber(string appointmentNumber);
         Task<bool> HasPatientAppointmentForDateAsync(int patientId, DateTime date);
     }
 }

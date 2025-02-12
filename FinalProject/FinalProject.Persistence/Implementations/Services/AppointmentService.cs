@@ -61,6 +61,9 @@ namespace FinalProject.Persistence.Implementations.Services
                 throw new Exception("Patient does not exists");
 
             DateTime roundedDate = appointmentDto.AppointmentDate.RoundToNearest10Minutes();
+            DateTime oneWeekLater = DateTime.UtcNow.AddDays(7);
+            if (roundedDate > oneWeekLater)
+                throw new Exception("Appointments can only be made up to 1 week in advance.");
 
             Appointment? existingAppointment = await _appointmentRepository
            .GetAppointmentByDateAndDoctorAsync(roundedDate, appointmentDto.DoctorId);
@@ -82,14 +85,16 @@ namespace FinalProject.Persistence.Implementations.Services
             appointment.AppointmentDate = roundedDate;
             appointment.CreatedAt = DateTime.Now;
             appointment.ModifiedAt = DateTime.Now;
-
+            appointment.AppointmentNumber = Guid.NewGuid().ToString().Substring(0,8).ToUpper();
             await _appointmentRepository.AddAsync(appointment);
             await _appointmentRepository.SaveChangesAsync();    
         }
 
+
+
         public async Task UpdateAsync(int id,UpdateAppointmentDto appointmentDto)
         {
-            var appointment = await _appointmentRepository.GetbyIdAsync(id);
+            Appointment appointment = await _appointmentRepository.GetbyIdAsync(id);
             if (appointment is null)
                 throw new NotFoundException("Appointment not found");
 
@@ -104,12 +109,21 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task DeleteAsync(int id)
         {
-            var appointment = await _appointmentRepository.GetbyIdAsync(id);
+            Appointment appointment = await _appointmentRepository.GetbyIdAsync(id);
             if (appointment is null)
                 throw new NotFoundException("Appointment not found");
 
             _appointmentRepository.Delete(appointment);
             await _appointmentRepository.SaveChangesAsync();    
+        }
+
+        public async Task CancelAppointmentAsync(string appointmentNumber)
+        {
+            Appointment? appointment = await _appointmentRepository.GetAppointmentByNumber(appointmentNumber);
+            if (appointment is null)
+                throw new NotFoundException("Appointment does not exist");
+            appointment.IsCanceled = true;
+            await _appointmentRepository.SaveChangesAsync();
         }
     }
 }

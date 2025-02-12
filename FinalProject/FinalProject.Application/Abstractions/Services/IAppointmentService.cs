@@ -13,6 +13,7 @@ namespace FinalProject.Application.Abstractions.Services
         Task<GetAppointmentDto> GetByIdAsync(int id);
         Task<IEnumerable<AppointmentItemDto>> GetAllAsync(int page,int take);
         Task CreateAsync(CreateAppointmentDto appointmentDto);
+        Task CancelAppointmentAsync(string appointmentNumber);
         Task UpdateAsync(int id,UpdateAppointmentDto appointmentDto);
         Task DeleteAsync(int id);
     }

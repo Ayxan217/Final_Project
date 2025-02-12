@@ -66,5 +66,12 @@ namespace FinalProject.Persistence.Implementations.Repositories
                 );
         }
 
+        public async Task<Appointment?> GetAppointmentByNumber(string appointmentNumber)
+        {
+            Appointment? appointment = await _context.Appointments
+                .FirstOrDefaultAsync(a => a.AppointmentNumber == appointmentNumber);
+            return appointment;
+        }
+
     }
 }
