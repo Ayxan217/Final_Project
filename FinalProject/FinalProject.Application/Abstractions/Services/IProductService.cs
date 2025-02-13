@@ -1,6 +1,7 @@
 ﻿
 using FinalProject.Application.DTOs.Payroll;
 using FinalProject.Application.DTOs.Product;
+using FinalProject.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,8 @@ namespace FinalProject.Application.Abstractions.Services
         Task CreateAsync(CreateProductDto productDto);
         Task UpdateAsync(int id, UpdateProductDto productDto);
         Task DeleteAsync(int id);
+        Task<IEnumerable<GetProductDto>> FilterByPriceAsync(decimal minPrice, decimal maxPrice);
+        public Task<IEnumerable<GetProductDto>> GetProductsByPriceDescending(int page,int take);
+        public Task<IEnumerable<GetProductDto>> GetProductsByPriceAscending(int page, int take);
     }
 }

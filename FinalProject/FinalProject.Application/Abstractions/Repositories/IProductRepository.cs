@@ -10,5 +10,9 @@ namespace FinalProject.Application.Abstractions.Repositories
 {
     public interface  IProductRepository : IRepository<Product>
     {
+        public Task<IEnumerable<Product>> GetProductsByPriceRange(decimal minPrice, decimal maxPrice);
+        public Task<IEnumerable<Product>> GetProductsByPriceDescending(int page,int take);
+        public Task<IEnumerable<Product>> GetProductsByPriceAscending(int page, int take);
     }
+    
 }

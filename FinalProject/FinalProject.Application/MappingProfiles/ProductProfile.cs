@@ -15,15 +15,14 @@ namespace FinalProject.Application.MappingProfiles
         public ProductProfile()
         {
             CreateMap<Product, GetProductDto>()
-                 .ForMember(nameof(GetProductDto.Reviews), opt => opt.Ignore())
-                .ForMember(nameof(GetProductDto.InStock), opt => opt.Ignore())
                 .ReverseMap();
             CreateMap<CreateProductDto, Product>();
+                
             CreateMap<UpdateProductDto, Product>().ForMember(p => p.Id, opt => opt.Ignore());
 
-            CreateMap<Product, ProductItemDto>()
-                .ForMember(nameof(ProductItemDto.Reviews), opt => opt.Ignore())
-                .ForMember(nameof(ProductItemDto.InStock), opt => opt.Ignore());
+            CreateMap<Product, ProductItemDto>();
+               
+          
         }
     }
 }

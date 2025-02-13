@@ -74,12 +74,35 @@ namespace FinalProject.Persistence.Implementations.Services
                 throw new Exception("Category does not exists");
             Product product = await _productRepository.GetbyIdAsync(id);
             if (product is null)
-                throw new NotFoundException($"Patient with ID {id} not found.");
+                throw new NotFoundException($"Product with ID {id} not found.");
 
             _mapper.Map(productDto, product);
             product.ModifiedAt = DateTime.Now;
             _productRepository.Update(product);
             await _productRepository.SaveChangesAsync();
+        }
+
+
+        public async Task<IEnumerable<GetProductDto>> FilterByPriceAsync(decimal minPrice, decimal maxPrice)
+        {
+            var products = await _productRepository.GetProductsByPriceRange(minPrice, maxPrice);
+            return _mapper.Map<IEnumerable<GetProductDto>>(products);
+        }
+
+      
+
+        public async Task<IEnumerable<GetProductDto>> GetProductsByPriceDescending(int page,int take)
+        {
+            var products = await _productRepository.GetProductsByPriceDescending(page, take);
+                
+            return _mapper.Map<IEnumerable<GetProductDto>>(products);
+        }
+
+        public async Task<IEnumerable<GetProductDto>> GetProductsByPriceAscending(int page, int take)
+        {
+            var products = await _productRepository.GetProductsByPriceAscending(page, take);
+
+            return _mapper.Map<IEnumerable<GetProductDto>>(products);
         }
     }
 }

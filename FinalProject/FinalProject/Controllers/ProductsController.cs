@@ -56,5 +56,29 @@ namespace FinalProject.Controllers
             return NoContent();
         }
 
+
+        [HttpGet("filter-by-price")]
+
+        public async Task<IActionResult> FilterByPrice(decimal minPrice,decimal maxPrice)
+        {
+            var products = await _productService.FilterByPriceAsync(minPrice,maxPrice);
+            return Ok(products);
+        }
+
+        [HttpGet("price-decending-order")]
+
+        public async Task<IActionResult> PriceByDecending(int page = 1,int take = 3)
+        {
+            var products = await _productService.GetProductsByPriceDescending(page, take);
+            return Ok(products);
+        }
+
+        [HttpGet("price-ascending-order")]
+        public async Task<IActionResult> PriceByAscending(int page = 1, int take = 3)
+        {
+            var products = await _productService.GetProductsByPriceAscending(page, take);
+            return Ok(products);
+        }
+
     }
 }
