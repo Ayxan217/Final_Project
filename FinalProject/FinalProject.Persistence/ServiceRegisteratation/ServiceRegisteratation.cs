@@ -40,6 +40,8 @@ namespace FinalProject.Persistence.ServiceRegisteratation
             services.AddScoped<IPayrollRepository, PayrollRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductService, ProductService>();
             services.AddScoped<AppDbContextInitalizer>();
 
             services.AddIdentity<AppUser, IdentityRole>(options =>

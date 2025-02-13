@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <Folder Include="DTOs\ProductReview\" />
-    <Folder Include="DTOs\Product\" />
   </ItemGroup>
 
 </Project>

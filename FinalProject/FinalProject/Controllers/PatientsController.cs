@@ -50,6 +50,8 @@ namespace FinalProject.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+            if (id < 1)
+                return BadRequest();
             await _patientService.DeleteAsync(id);
             return NoContent();
         }

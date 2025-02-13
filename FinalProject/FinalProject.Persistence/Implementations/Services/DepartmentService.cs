@@ -86,13 +86,11 @@ namespace FinalProject.Persistence.Implementations.Services
                 throw new Exception($"Department with name '{departmentDto.Name}' already exists");
 
             
-            if (departmentDto.ChiefDoctorId.HasValue)
-            {
-                bool chiefDoctorExists = await _departmentRepository
+              bool chiefDoctorExists = await _departmentRepository
                     .AnyAsync(d => d.ChiefDoctorId == departmentDto.ChiefDoctorId && d.Id != id);
                 if (chiefDoctorExists)
                     throw new Exception($"Doctor with id {departmentDto.ChiefDoctorId} is already a chief doctor in another department");
-            }
+            
 
             _mapper.Map(departmentDto, department);
             department.ModifiedAt = DateTime.Now;

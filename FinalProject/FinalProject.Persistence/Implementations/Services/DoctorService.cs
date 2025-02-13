@@ -59,7 +59,7 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task<IEnumerable<DoctorItemDto>> GetAllAsync(int page,int take)
         {
-            var doctors = await _doctorRepository
+            IEnumerable<Doctor> doctors = await _doctorRepository
                    .GetAll(skip: (page - 1) * take, take: take)
                    .ToListAsync();
 
@@ -86,6 +86,8 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task UpdateAsync(int id, UpdateDoctorDto doctorDto)
         {
+            if (!await _departmentRepository.AnyAsync(d => d.Id == doctorDto.DepartmentId))
+                throw new Exception("Department does not exists");
             var doctor = await _doctorRepository.GetbyIdAsync(id);
             if (doctor is null)
                 throw new NotFoundException("Doctor not found");
