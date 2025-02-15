@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,8 @@ namespace FinalProject.Persistence.ServiceRegisteratation
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
+            services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<AppDbContextInitalizer>();
 
             services.AddIdentity<AppUser, IdentityRole>(options =>
@@ -60,9 +63,10 @@ namespace FinalProject.Persistence.ServiceRegisteratation
 .AddEntityFrameworkStores<AppDbContext>()  
 .AddDefaultTokenProviders();
 
-    
 
-            
+
+
+
             return services;
  
         }

@@ -143,7 +143,7 @@ namespace FinalProject.Persistence.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Appointments", (string)null);
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Category", b =>
@@ -172,7 +172,7 @@ namespace FinalProject.Persistence.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Comment", b =>
@@ -211,7 +211,7 @@ namespace FinalProject.Persistence.Migrations
 
                     b.HasIndex("DoctorId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Department", b =>
@@ -250,7 +250,7 @@ namespace FinalProject.Persistence.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Departments", (string)null);
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Doctor", b =>
@@ -315,7 +315,7 @@ namespace FinalProject.Persistence.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Doctors", (string)null);
+                    b.ToTable("Doctors");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Patient", b =>
@@ -365,7 +365,7 @@ namespace FinalProject.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Patients", (string)null);
+                    b.ToTable("Patients");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Payroll", b =>
@@ -408,7 +408,7 @@ namespace FinalProject.Persistence.Migrations
                     b.HasIndex("DoctorId")
                         .IsUnique();
 
-                    b.ToTable("Payrolls", (string)null);
+                    b.ToTable("Payrolls");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Product", b =>
@@ -453,7 +453,7 @@ namespace FinalProject.Persistence.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Review", b =>
@@ -463,6 +463,9 @@ namespace FinalProject.Persistence.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -479,11 +482,17 @@ namespace FinalProject.Persistence.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Reviews", (string)null);
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -691,12 +700,20 @@ namespace FinalProject.Persistence.Migrations
             modelBuilder.Entity("FinalProject.Domain.Entities.Review", b =>
                 {
                     b.HasOne("FinalProject.Domain.Entities.Product", "Product")
-                        .WithMany("Review")
+                        .WithMany("Reviews")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("FinalProject.Domain.Entities.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Product");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -777,7 +794,7 @@ namespace FinalProject.Persistence.Migrations
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Product", b =>
                 {
-                    b.Navigation("Review");
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

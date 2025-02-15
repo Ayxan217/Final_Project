@@ -56,7 +56,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
-
+app.UseAuthentication();
+app.UseAuthorization();
 var scope = app.Services.CreateScope();
 var initalizer = scope.ServiceProvider.GetRequiredService<AppDbContextInitalizer>();
 initalizer.InitializeDb().Wait();

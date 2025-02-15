@@ -32,10 +32,10 @@ namespace FinalProject.Infrastructure.ServiceRegisteration
             {
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = false,
+                    ValidateIssuerSigningKey = false,
                     ValidIssuer = configuration["JWT:Issuer"],
                     ValidAudience = configuration["JWT:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(
@@ -48,6 +48,7 @@ namespace FinalProject.Infrastructure.ServiceRegisteration
 
             services.AddScoped<ITokenHandler, TokenService>();
             services.AddScoped<ICloudinaryService, CloudinaryService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddAuthorization();
             return services;
 

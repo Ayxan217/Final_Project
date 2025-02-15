@@ -18,14 +18,14 @@ namespace FinalProject.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll(int page = 1,int take = 3)
+        public async Task<IActionResult> Get(int page = 1,int take = 3)
         {
             var patients = await _patientService.GetAllAsync(page,take);
             return Ok(patients);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var patient = await _patientService.GetByIdAsync(id);
             return Ok(patient);

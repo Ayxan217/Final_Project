@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Application.DTOs.ProductReview
 {
-    public record UpdateReviewDto(string Content);
+    public record UpdateReviewDto(string? Content,int Rating);
   
 }

@@ -29,7 +29,7 @@ namespace FinalProject.Persistence.Implementations.Services
         {
             ICollection<Patient> patients = await _patientRepository.GetAll(skip: (page - 1) * take, take: take)
                    .ToListAsync();
-            ;
+            
             return _mapper.Map<ICollection<PatientItemDto>>(patients);
         }
 
@@ -59,7 +59,7 @@ namespace FinalProject.Persistence.Implementations.Services
         public async Task DeleteAsync(int id)
         {
             Patient patient = await _patientRepository.GetbyIdAsync(id);
-            if (patient == null)
+            if (patient is null)
                 throw new NotFoundException($"Patient with ID {id} not found.");
 
             _patientRepository.Delete(patient);
