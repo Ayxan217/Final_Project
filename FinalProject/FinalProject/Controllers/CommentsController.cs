@@ -40,7 +40,7 @@ namespace FinalProject.Controllers
         }
 
 
-        
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] CreateCommentDto commentDto)
         {

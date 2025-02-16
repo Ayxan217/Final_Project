@@ -867,6 +867,63 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FinalProject.Controllers.PaymentsController",
+    "Method": "CreatePaymentIntent",
+    "RelativePath": "api/Payments/create-payment-intent",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "amount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "currency",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CardNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ExpMont",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "ExpYear",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "CVC",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProject.Controllers.PaymentsController",
+    "Method": "VerifyPayment",
+    "RelativePath": "api/Payments/verify-payment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "paymentIntentId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FinalProject.Controllers.PayrollController",
     "Method": "GetAll",
     "RelativePath": "api/Payroll",

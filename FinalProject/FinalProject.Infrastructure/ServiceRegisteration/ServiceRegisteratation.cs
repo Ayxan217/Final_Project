@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,10 +46,10 @@ namespace FinalProject.Infrastructure.ServiceRegisteration
             });
 
             // Services
-
             services.AddScoped<ITokenHandler, TokenService>();
             services.AddScoped<ICloudinaryService, CloudinaryService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IStripeService, StripeService>();
             services.AddAuthorization();
             return services;
 

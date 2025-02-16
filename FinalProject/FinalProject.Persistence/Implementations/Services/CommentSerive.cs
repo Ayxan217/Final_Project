@@ -18,19 +18,23 @@ namespace FinalProject.Persistence.Implementations.Services
     internal class CommentSerive : ICommentService
     {
         private readonly ICommentRepository _commentRepository;
+        private readonly IDoctorRepository _doctorRepository;
         private readonly IMapper _mapper;
        
 
         public CommentSerive(ICommentRepository commentRepository
+            ,IDoctorRepository doctorRepository
             ,IMapper mapper
            )
         {
             _commentRepository = commentRepository;
+            _doctorRepository = doctorRepository;
             _mapper = mapper;  
         }
         public async Task CreateCommentAsync(CreateCommentDto commentDto)
         {
-            
+            if (!await _doctorRepository.AnyAsync(d => d.Id == commentDto.DoctorId))
+                throw new Exception("doctor does not exists");
             Comment comment = _mapper.Map<Comment>(commentDto);
             comment.CreatedAt = DateTime.Now;
             comment.ModifiedAt = DateTime.Now;
@@ -43,7 +47,7 @@ namespace FinalProject.Persistence.Implementations.Services
         {
             Comment comment = await _commentRepository.GetbyIdAsync(id);
             if (comment is null)
-                throw new Exception("Department Not Found");
+                throw new Exception("Comment Not Found");
 
             _commentRepository.Delete(comment);
             await _commentRepository.SaveChangesAsync();

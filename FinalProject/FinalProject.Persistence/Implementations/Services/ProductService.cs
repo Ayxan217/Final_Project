@@ -20,15 +20,17 @@ namespace FinalProject.Persistence.Implementations.Services
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IReviewService _reviewService;
 
         public ProductService(IProductRepository productRepository,
             ICategoryRepository categoryService,
-            IMapper mapper)
+            IMapper mapper,
+            IReviewService reviewService)
         {
             _productRepository = productRepository;
             _mapper = mapper;
             _categoryRepository = categoryService;
-
+            _reviewService = reviewService;   
         }
         public async Task CreateAsync(CreateProductDto productDto)
         {
@@ -55,7 +57,7 @@ namespace FinalProject.Persistence.Implementations.Services
         {
             ICollection<Product> products = await _productRepository.GetAll(skip: (page - 1) * take, take: take)
                  .ToListAsync();
-            
+
             return _mapper.Map<ICollection<ProductItemDto>>(products);
         }
 

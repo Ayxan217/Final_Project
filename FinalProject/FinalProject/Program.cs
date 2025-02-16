@@ -8,6 +8,9 @@ using System.Text;
 using FinalProject.Infrastructure.ServiceRegisteration;
 using FinalProject.Persistence.Contexts;
 using Microsoft.OpenApi.Models;
+using FinalProject.Domain.Entities;
+using Stripe;
+
 
 
 
@@ -25,18 +28,21 @@ builder.Services.AddPersistenceServices(builder.Configuration)
                 .AddInfrastructureServices(builder.Configuration);
 
 
+
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "FinalProject", Version = "v1" });
 
-    
+    // JWT Auth için Bearer Token Ayarý
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        Description = "JWT Token ile Authentication (Örnek: 'Bearer {token}')",
         Name = "Authorization",
         In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT"
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -50,16 +56,22 @@ builder.Services.AddSwaggerGen(c =>
                     Id = "Bearer"
                 }
             },
-            new string[] {}
+            new string[] { }
         }
     });
 });
+
+
+
+
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 
 var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
 var scope = app.Services.CreateScope();
 var initalizer = scope.ServiceProvider.GetRequiredService<AppDbContextInitalizer>();
+StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 initalizer.InitializeDb().Wait();
 initalizer.CreateRolesAsync().Wait();
 initalizer.InitalizeAdminAsync().Wait();

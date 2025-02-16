@@ -8,7 +8,6 @@ namespace FinalProject.Application.DTOs.Comment
 {
    public record CommentItemDto(int Id,
        string UserId,
-       string UserRole,
        string Content,
        string UserName,
        int DoctorId);

@@ -18,16 +18,21 @@ namespace FinalProject.Persistence.Implementations.Services
     internal class ReviewService : IReviewService
     {
         private readonly IReviewRepository _reviewRepository;
+        private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
 
-        public ReviewService(IReviewRepository reviewRepository
+        public ReviewService(IReviewRepository reviewRepository,
+            IProductRepository productRepository
             ,IMapper mapper)
         {
             _reviewRepository = reviewRepository;
+            _productRepository = productRepository;
             _mapper = mapper;
         }
         public async Task CreateAsync(string userId,CreateReviewDto reviewDto)
         {
+            if (!await _productRepository.AnyAsync(p => p.Id == reviewDto.ProductId))
+                throw new Exception("Product does not exists");
             Review review = _mapper.Map<Review>(reviewDto);
             review.UserId = userId;
             review.CreatedAt = DateTime.Now;
