@@ -19,7 +19,7 @@ namespace FinalProject.Application.ServiceRegisteratation
             services.AddFluentValidationAutoValidation().
                 AddFluentValidationClientsideAdapters()
                 .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-            services.AddScoped<UserRoleResolver>();
+
             return services;
         }
     }

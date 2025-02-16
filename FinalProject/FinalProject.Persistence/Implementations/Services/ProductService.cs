@@ -55,15 +55,15 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task<ICollection<ProductItemDto>> GetAllAsync(int page, int take)
         {
-            ICollection<Product> products = await _productRepository.GetAll(skip: (page - 1) * take, take: take)
-                 .ToListAsync();
+            ICollection<Product> products = await _productRepository.GetProductsWithReviews(page, take);
+                 
 
             return _mapper.Map<ICollection<ProductItemDto>>(products);
         }
 
         public async Task<GetProductDto> GetByIdAsync(int id)
         {
-            Product product = await _productRepository.GetbyIdAsync(id);
+            Product product = await _productRepository.GetProductWithReviewsByIdAsync(id);
             if (product is null)
                 throw new NotFoundException($"Product with ID {id} not found.");
 

@@ -10,43 +10,48 @@ using FinalProject.Persistence.Contexts;
 using Microsoft.OpenApi.Models;
 using FinalProject.Domain.Entities;
 using Stripe;
+using System.Text.Json.Serialization;
 
 
 
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddPersistenceServices(builder.Configuration)
-                .AddApplicationServices()
-                .AddInfrastructureServices(builder.Configuration);
-
-
-
-
-builder.Services.AddSwaggerGen(c =>
+internal class Program
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "FinalProject", Version = "v1" });
-
-    // JWT Auth için Bearer Token Ayarý
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    private static void Main(string[] args)
     {
-        Description = "JWT Token ile Authentication (Örnek: 'Bearer {token}')",
-        Name = "Authorization",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.Http,
-        Scheme = "Bearer",
-        BearerFormat = "JWT"
-    });
+        var builder = WebApplication.CreateBuilder(args);
 
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
+        // Add services to the container.
+
+        builder.Services.AddControllers();
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
+        builder.Services.AddPersistenceServices(builder.Configuration)
+                        .AddApplicationServices()
+                        .AddInfrastructureServices(builder.Configuration);
+
+
+
+
+        builder.Services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "FinalProject", Version = "v1" });
+
+            // JWT Auth için Bearer Token Ayarý
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Description = "JWT Token ile Authentication (Örnek: 'Bearer {token}')",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Scheme = "Bearer",
+                BearerFormat = "JWT"
+            });
+
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
         {
             new OpenApiSecurityScheme
             {
@@ -58,37 +63,42 @@ builder.Services.AddSwaggerGen(c =>
             },
             new string[] { }
         }
-    });
-});
+            });
+        });
+
+
+        builder.Services.AddControllers().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 
 
+        builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 
-builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
-
-var app = builder.Build();
-app.UseAuthentication();
-app.UseAuthorization();
-var scope = app.Services.CreateScope();
-var initalizer = scope.ServiceProvider.GetRequiredService<AppDbContextInitalizer>();
-StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
-initalizer.InitializeDb().Wait();
-initalizer.CreateRolesAsync().Wait();
-initalizer.InitalizeAdminAsync().Wait();
-
+        var app = builder.Build();
+        app.UseAuthentication();
+        app.UseAuthorization();
+        var scope = app.Services.CreateScope();
+        var initalizer = scope.ServiceProvider.GetRequiredService<AppDbContextInitalizer>();
+        StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+        initalizer.InitializeDb().Wait();
+        initalizer.CreateRolesAsync().Wait();
+        initalizer.InitalizeAdminAsync().Wait();
 
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+        app.MapControllers();
+
+        app.Run();
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();

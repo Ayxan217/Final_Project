@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Implementations.Repositories
@@ -41,11 +43,35 @@ namespace FinalProject.Persistence.Implementations.Repositories
 
         public async Task<IEnumerable<Product>> GetProductsByPriceAscending(int page, int take)
         {
-            return await _context.Products
+          return await _context.Products
             .OrderBy(p => p.Price)
             .Skip((page - 1) * take)
             .Take(take)
             .ToListAsync();
+
+        
+        }
+
+        public async Task<ICollection<Product>> GetProductsWithReviews(int page, int take)
+        {
+            return await _context.Products
+         .Include(p => p.Reviews)
+         .ToListAsync();
+
+            
+        }
+
+        public async Task<Product> GetProductWithReviewsByIdAsync(int id)
+        {
+            var product =  await _context.Products
+                .Include(p => p.Reviews)
+                .FirstOrDefaultAsync(p=>p.Id==id);
+
+
+            return product;
+
+
+
         }
     }
 }

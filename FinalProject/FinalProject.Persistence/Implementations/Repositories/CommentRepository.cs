@@ -24,15 +24,12 @@ namespace FinalProject.Persistence.Implementations.Repositories
         public async Task<Comment> GetByIdWithDetailsAsync(int id)
         {
             return await _context.Comments
-                .Include(c => c.AppUser)
-                .Include(c => c.Doctor)
                 .FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<IEnumerable<Comment>> GetDoctorCommentsAsync(int doctorId)
         {
             return await _context.Comments
-                .Include(c => c.AppUser)
                 .Where(c => c.DoctorId == doctorId)
                 .OrderByDescending(c => c.CreatedAt)
                 .ToListAsync();

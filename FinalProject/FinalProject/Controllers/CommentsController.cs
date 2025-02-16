@@ -13,6 +13,7 @@ namespace FinalProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+   
     public class CommentsController : ControllerBase
     {
         private readonly ICommentService _commentService;
@@ -57,6 +58,7 @@ namespace FinalProject.Controllers
 
 
         [HttpPut("{id}")]
+        [Authorize]
 
         public async Task<IActionResult> Update(int id,UpdateCommentDto commentDto)
         {

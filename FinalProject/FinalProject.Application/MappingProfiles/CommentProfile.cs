@@ -24,8 +24,8 @@ namespace FinalProject.Application.MappingProfiles
 
                 .ReverseMap();
 
-            CreateMap<Comment, CommentItemDto>()
-                .ForCtorParam(nameof(CommentItemDto.UserName), opt => opt.MapFrom(src => src.AppUser.Name));
+            CreateMap<Comment, CommentItemDto>();
+                
                
 
 
