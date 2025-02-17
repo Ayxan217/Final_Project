@@ -146,6 +146,65 @@ namespace FinalProject.Persistence.Migrations
                     b.ToTable("Appointments");
                 });
 
+            modelBuilder.Entity("FinalProject.Domain.Entities.Basket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Baskets");
+                });
+
+            modelBuilder.Entity("FinalProject.Domain.Entities.BasketItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("BasketId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BasketId");
+
+                    b.ToTable("BasketItems");
+                });
+
             modelBuilder.Entity("FinalProject.Domain.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -465,7 +524,7 @@ namespace FinalProject.Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -484,13 +543,11 @@ namespace FinalProject.Persistence.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Reviews");
                 });
@@ -647,21 +704,24 @@ namespace FinalProject.Persistence.Migrations
                     b.Navigation("Patient");
                 });
 
+            modelBuilder.Entity("FinalProject.Domain.Entities.BasketItem", b =>
+                {
+                    b.HasOne("FinalProject.Domain.Entities.Basket", null)
+                        .WithMany("Items")
+                        .HasForeignKey("BasketId");
+                });
+
             modelBuilder.Entity("FinalProject.Domain.Entities.Comment", b =>
                 {
-                    b.HasOne("FinalProject.Domain.Entities.AppUser", "AppUser")
+                    b.HasOne("FinalProject.Domain.Entities.AppUser", null)
                         .WithMany("Comments")
                         .HasForeignKey("AppUserId");
 
-                    b.HasOne("FinalProject.Domain.Entities.Doctor", "Doctor")
+                    b.HasOne("FinalProject.Domain.Entities.Doctor", null)
                         .WithMany("Comments")
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("Doctor");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Doctor", b =>
@@ -699,21 +759,11 @@ namespace FinalProject.Persistence.Migrations
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Review", b =>
                 {
-                    b.HasOne("FinalProject.Domain.Entities.Product", "Product")
+                    b.HasOne("FinalProject.Domain.Entities.Product", null)
                         .WithMany("Reviews")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("FinalProject.Domain.Entities.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -770,6 +820,11 @@ namespace FinalProject.Persistence.Migrations
             modelBuilder.Entity("FinalProject.Domain.Entities.AppUser", b =>
                 {
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("FinalProject.Domain.Entities.Basket", b =>
+                {
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("FinalProject.Domain.Entities.Category", b =>

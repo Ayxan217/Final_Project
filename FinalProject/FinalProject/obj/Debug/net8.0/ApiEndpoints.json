@@ -230,6 +230,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FinalProject.Controllers.BasketController",
+    "Method": "CreateAndAddToBasket",
+    "RelativePath": "api/Basket/create-and-add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ProductId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Quantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FinalProject.Controllers.CategoriesController",
     "Method": "Get",
     "RelativePath": "api/Categories",

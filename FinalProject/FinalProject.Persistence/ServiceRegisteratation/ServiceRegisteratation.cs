@@ -45,6 +45,8 @@ namespace FinalProject.Persistence.ServiceRegisteratation
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IReviewRepository, ReviewRepository>();
             services.AddScoped<IReviewService, ReviewService>();
+            services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped<AppDbContextInitalizer>();
 
             services.AddIdentity<AppUser, IdentityRole>(options =>
