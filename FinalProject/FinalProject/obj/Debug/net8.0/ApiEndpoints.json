@@ -231,8 +231,8 @@
   },
   {
     "ContainingType": "FinalProject.Controllers.BasketController",
-    "Method": "CreateAndAddToBasket",
-    "RelativePath": "api/Basket/create-and-add",
+    "Method": "AddBasket",
+    "RelativePath": "api/Basket/add-basket",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -244,6 +244,48 @@
       },
       {
         "Name": "Quantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProject.Controllers.BasketController",
+    "Method": "Decrase",
+    "RelativePath": "api/Basket/decrase-item-count",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ProductId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProject.Controllers.BasketController",
+    "Method": "Get",
+    "RelativePath": "api/Basket/get-basket",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProject.Controllers.BasketController",
+    "Method": "Delete",
+    "RelativePath": "api/Basket/remove-item",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ProductId",
         "Type": "System.Int32",
         "IsRequired": false
       }

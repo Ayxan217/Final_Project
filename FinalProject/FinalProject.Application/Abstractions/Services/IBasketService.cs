@@ -1,4 +1,5 @@
-﻿using FinalProject.Application.DTOs.Basket;
+﻿using FinalProject.Application.Abstractions.Repositories;
+using FinalProject.Application.DTOs.Basket;
 using FinalProject.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,10 @@ namespace FinalProject.Application.Abstractions.Services
 {
     public interface IBasketService
     {
-        Task<Basket> GetBasket(string userId);
-        Task CreateBasketAsync(string userId, int productId, int quantity);
-        Task AddBasketAsyncDto(CreateBasketDto basketDto);
-        Task UpdateBasketAsync(UpdateBasketDto basketDto);
+        Task<BasketDto> GetBasketAsync(string userId);
+        Task AddBasketAsync(string userId, int productId, int quantity);
+        Task RemoveItemAsync(string userId, int productId);
+        Task DecreaseItemQuantityAsync(string userId, int productId);
+
     }
 }

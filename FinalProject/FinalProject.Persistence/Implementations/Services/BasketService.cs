@@ -1,4 +1,5 @@
-﻿using FinalProject.Application.Abstractions.Repositories;
+﻿using AutoMapper;
+using FinalProject.Application.Abstractions.Repositories;
 using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Basket;
 using FinalProject.Domain.Entities;
@@ -13,20 +14,24 @@ namespace FinalProject.Persistence.Implementations.Services
     internal class BasketService : IBasketService
     {
         private readonly IBasketRepository _basketRepository;
+        private readonly IProductRepository _productRepository;
+        private readonly IMapper _mapper;
 
-        public BasketService(IBasketRepository basketRepository)
+        public BasketService(IBasketRepository basketRepository,
+            IProductRepository productRepository
+            ,IMapper mapper)
         {
             _basketRepository = basketRepository;
+            _productRepository = productRepository;
+            _mapper = mapper;
         }
 
-        public Task AddBasketAsyncDto(CreateBasketDto basketDto)
-        {
-            throw new NotImplementedException();
-        }
+ 
 
-        public async Task CreateBasketAsync(string userId, int productId, int quantity)
+        public async Task AddBasketAsync(string userId, int productId, int quantity)
         {
-           
+            if (!await _productRepository.AnyAsync(p => p.Id == productId))
+                throw new Exception("Please enter valid ProductId");
             var existingBasket = await _basketRepository.GetBasketByUserIdAsync(userId);
             if (existingBasket == null)
             {
@@ -37,7 +42,8 @@ namespace FinalProject.Persistence.Implementations.Services
                     Items = new List<BasketItem>()
                 };
 
-
+                existingBasket.CreatedAt = DateTime.Now;
+                existingBasket.ModifiedAt = DateTime.Now;
                 await _basketRepository.SaveChangesAsync();
             }
 
@@ -47,6 +53,7 @@ namespace FinalProject.Persistence.Implementations.Services
             {
                 
                 existingItem.Quantity += quantity;
+                existingBasket.ModifiedAt = DateTime.Now;
             }
             else
             {
@@ -56,6 +63,7 @@ namespace FinalProject.Persistence.Implementations.Services
                     ProductId = productId,
                     Quantity = quantity
                 });
+                existingBasket.ModifiedAt = DateTime.Now;
             }
 
 
@@ -64,15 +72,43 @@ namespace FinalProject.Persistence.Implementations.Services
 
         }
 
-
-        public Task<Basket> GetBasket(string userId)
+        public async Task DecreaseItemQuantityAsync(string userId, int productId)
         {
-            return _basketRepository.GetBasketByUserIdAsync(userId);
+            Basket basket = await _basketRepository.GetBasketByUserIdAsync(userId);
+            if (basket is null)
+                throw new Exception("Basket not found");
+
+            BasketItem item = basket.Items.FirstOrDefault(i => i.ProductId == productId);
+            if (item is null)
+                throw new Exception("item not found");
+
+            if (item.Quantity > 1)
+                item.Quantity--;
+            else
+                basket.Items.Remove(item);
+
+            await _basketRepository.SaveChangesAsync();
         }
 
-        public Task UpdateBasketAsync(UpdateBasketDto basketDto)
+        public async Task<BasketDto> GetBasketAsync(string userId)
         {
-            throw new NotImplementedException();
+            Basket basket = await _basketRepository.GetBasketByUserIdAsync(userId);
+            return _mapper.Map<BasketDto>(basket);
+        }
+
+        public async Task RemoveItemAsync(string userId, int productId)
+        {
+            var basket = await _basketRepository.GetBasketByUserIdAsync(userId);
+            if (basket == null)
+                throw new Exception("basket is empty");
+
+            var itemToRemove = basket.Items.FirstOrDefault(i => i.ProductId == productId);
+            if (itemToRemove == null)
+                throw new Exception("item not found");
+
+            basket.Items.Remove(itemToRemove);
+            basket.ModifiedAt = DateTime.Now;
+            await _basketRepository.SaveChangesAsync();
         }
     }
 }
