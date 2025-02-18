@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Application.DTOs.Basket
 {
-    public record RemoveItemDto(int ProductId);
+    public record ItemDto(int ProductId);
     
 }

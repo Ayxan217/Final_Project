@@ -90,6 +90,38 @@ namespace FinalProject.Persistence.Implementations.Services
             await _basketRepository.SaveChangesAsync();
         }
 
+        public async Task IncreaseItemQuantityAsync(string userId, int productId)
+        {
+            Basket basket = await _basketRepository.GetBasketByUserIdAsync(userId);
+            if (basket is null)
+                throw new Exception("Basket not found");
+
+            BasketItem item = basket.Items.FirstOrDefault(i => i.ProductId == productId);
+            if (item is null)
+                throw new Exception("Item not found");
+
+            if (item.Quantity < 10)
+                item.Quantity++;
+
+            else throw new Exception("Item quantity must less than 10");
+
+            await _basketRepository.SaveChangesAsync();
+        }
+
+        public async Task ClearBasketAsync(string userId)
+        {
+            Basket basket = await _basketRepository.GetBasketByUserIdAsync(userId);
+            if (basket is null)
+                throw new Exception("Basket not found");
+            if (!basket.Items.Any()) 
+                return;
+
+            basket.Items.Clear(); 
+
+            await _basketRepository.SaveChangesAsync();
+        }
+
+
         public async Task<BasketDto> GetBasketAsync(string userId)
         {
             Basket basket = await _basketRepository.GetBasketByUserIdAsync(userId);

@@ -59,7 +59,7 @@ namespace FinalProject.Controllers
 
         [HttpPost("remove-item")]
 
-        public async Task<IActionResult> Delete([FromForm] RemoveItemDto itemDto)
+        public async Task<IActionResult> Delete([FromForm] ItemDto itemDto)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(userId))
@@ -71,7 +71,7 @@ namespace FinalProject.Controllers
 
         [HttpPost("decrase-item-count")]
 
-        public async Task<IActionResult> Decrase([FromForm] RemoveItemDto itemDto)
+        public async Task<IActionResult> Decrase([FromForm] ItemDto itemDto)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (string.IsNullOrEmpty(userId))
@@ -82,5 +82,30 @@ namespace FinalProject.Controllers
         }
 
 
+
+        [HttpPost("increase-item-count")]
+
+        public async Task<IActionResult> Increase([FromForm] ItemDto itemDto)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized("Plase login");
+
+            await _basketService.IncreaseItemQuantityAsync(userId,itemDto.ProductId);
+            return NoContent();
+        }
+
+
+        [HttpPost("clear-basket")]
+
+        public async Task<IActionResult> Clear()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized("Plase login");
+
+            await _basketService.ClearBasketAsync(userId);
+            return NoContent();
+        }
     }
 }

@@ -15,6 +15,8 @@ namespace FinalProject.Application.Abstractions.Services
         Task AddBasketAsync(string userId, int productId, int quantity);
         Task RemoveItemAsync(string userId, int productId);
         Task DecreaseItemQuantityAsync(string userId, int productId);
+        Task IncreaseItemQuantityAsync(string userId, int productId);
+        Task ClearBasketAsync(string userId);
 
     }
 }

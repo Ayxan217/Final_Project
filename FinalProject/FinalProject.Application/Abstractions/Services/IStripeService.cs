@@ -9,7 +9,6 @@ namespace FinalProject.Application.Abstractions.Services
 {
     public interface IStripeService
     {
-        Task<string> CreatePaymentIntent(CreatePaymentDto paymentDto);
-        Task<bool> VerifyPayment(string paymentIntentId);
+        Task<string> ProcessPaymentAsync(string userId, PaymentRequestDto paymentRequestDto);
     }
 }

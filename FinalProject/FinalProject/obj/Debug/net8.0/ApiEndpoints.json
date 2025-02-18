@@ -252,6 +252,16 @@
   },
   {
     "ContainingType": "FinalProject.Controllers.BasketController",
+    "Method": "Clear",
+    "RelativePath": "api/Basket/clear-basket",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProject.Controllers.BasketController",
     "Method": "Decrase",
     "RelativePath": "api/Basket/decrase-item-count",
     "HttpMethod": "POST",
@@ -274,6 +284,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProject.Controllers.BasketController",
+    "Method": "Increase",
+    "RelativePath": "api/Basket/increase-item-count",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ProductId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
