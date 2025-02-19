@@ -2,6 +2,7 @@
 using FinalProject.Application.DTOs.Payment;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FinalProject.Controllers
 {
@@ -16,25 +17,22 @@ namespace FinalProject.Controllers
             _paymentService = paymentService;
         }
 
-        [HttpPost("create-payment-intent")]
-        public async Task<IActionResult> CreatePaymentIntent([FromForm] CreatePaymentDto paymentDto)
-        {
-            try
-            {
-                var clientSecret = await _paymentService.CreatePaymentIntent(paymentDto);
-                return Ok(new { clientSecret });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { error = ex.Message });
-            }
-        }
 
-        [HttpPost("verify-payment")]
-        public async Task<IActionResult> VerifyPayment([FromForm] string paymentIntentId)
+        [HttpPost("process")]
+        public async Task<IActionResult> ProcessPayment([FromForm] PaymentRequestDto requestDto)
         {
-            bool isSuccess = await _paymentService.VerifyPayment(paymentIntentId);
-            return Ok(new { success = isSuccess });
+            if (requestDto == null || string.IsNullOrEmpty(requestDto.Token))
+                return BadRequest("Geçersiz ödeme isteği");
+
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized("please login");
+            var result = await _paymentService.ProcessPaymentAsync(userId, requestDto);
+
+            if (result == "Ödeme başarılı!")
+                return Ok(new { message = result });
+
+            return BadRequest(new { message = result });
         }
     }
 }

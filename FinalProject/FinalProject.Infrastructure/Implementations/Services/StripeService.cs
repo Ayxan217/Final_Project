@@ -1,4 +1,5 @@
-﻿using FinalProject.Application.Abstractions.Services;
+﻿using FinalProject.Application.Abstractions.Repositories;
+using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Payment;
 using FinalProject.Domain.Entities;
 using Microsoft.Extensions.Configuration;
@@ -14,56 +15,55 @@ namespace FinalProject.Infrastructure.Implementations.Services
 {
     internal class StripeService : IStripeService
     {
-      
-            private readonly IUnitOfWork _unitOfWork;  // UnitOfWork ile veri kaydetme işlemi yapılır
-            private readonly IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
+        private readonly IPaymentRepository _paymentRepository;
 
-        public StripeService(IUnitOfWork unitOfWork, IConfiguration configuration)
+        public StripeService(IPaymentRepository paymentRepository,
+            IConfiguration configuration)
+        {
+            _configuration = configuration;
+            _paymentRepository = paymentRepository;
+        }
+        public async Task<string> ProcessPaymentAsync(string userId, PaymentRequestDto paymentRequestDto)
+        {
+            StripeConfiguration.ApiKey = _configuration["Stripe:SecretKey"];
+
+            var amount = paymentRequestDto.Amount * 100;
+            var chargeOptions = new ChargeCreateOptions
             {
-                _unitOfWork = unitOfWork;
-                _configuration = configuration;
-            }
+                Amount = (long)amount,
+                Currency = paymentRequestDto.Currency,
+                Source = paymentRequestDto.Token,
+                Description = "Ödeme işlemi"
+            };
 
-            public async Task<string> ProcessPaymentAsync(string userId, PaymentRequestDto paymentRequest)
+            var chargeService = new ChargeService();
+            Charge charge = await chargeService.CreateAsync(chargeOptions);
+
+            if (charge.Status == "succeeded")
             {
-                StripeConfiguration.ApiKey = _configuration["Stripe:SecretKey"];
-
-                // Stripe ile token'ı doğrula ve ödeme işlemini başlat
-                var chargeOptions = new ChargeCreateOptions
+                var payment = new Payment
                 {
-                    Amount = (long)(paymentRequest.Amount * 100), // Stripe cent cinsinden alır
-                    Currency = paymentRequest.Currency,
-                    Source = paymentRequest.Token,
-                    Description = "Hizmet Bedeli"
+                    UserId = userId,
+                    Amount = paymentRequestDto.Amount,
+                    Currency = paymentRequestDto.Currency,
+                    TransactionId = charge.Id,
+                    Status = true,
+                    CreatedAt = DateTime.Now,
+                    ModifiedAt = DateTime.Now,
                 };
 
-                var chargeService = new ChargeService();
-                Charge charge = await chargeService.CreateAsync(chargeOptions);
+                await _paymentRepository.AddAsync(payment);
+                await _paymentRepository.SaveChangesAsync(); 
 
-                // Ödeme durumu kontrolü
-                if (charge.Status == "succeeded")
-                {
-                    // Ödeme başarılıysa veritabanına kaydet
-                    var payment = new Payment
-                    {
-                        UserId = userId,
-                        Amount = paymentRequest.Amount,
-                        Currency = paymentRequest.Currency,
-                        TransactionId = charge.Id,
-                        Status = "Success"
-                    };
-
-                    await _unitOfWork.PaymentRepository.AddAsync(payment);
-                    await _unitOfWork.CommitAsync();
-
-                    return "Ödeme başarılı!";
-                }
-                else
-                {
-                    // Ödeme başarısızsa hata döndür
-                    return "Ödeme başarısız!";
-                }
+                return "Ödeme başarılı!";
+            }
+            else
+            {
+                return "Ödeme başarısız!";
             }
         }
     }
+
+}
 

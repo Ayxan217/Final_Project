@@ -70,7 +70,13 @@ internal class Program
         builder.Services.AddControllers().AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowReactApp",
+                builder => builder.WithOrigins("http://localhost:3000")
+                                  .AllowAnyMethod()
+                                  .AllowAnyHeader());
+        });
 
         builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 

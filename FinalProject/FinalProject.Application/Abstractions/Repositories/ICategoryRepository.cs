@@ -10,6 +10,6 @@ namespace FinalProject.Application.Abstractions.Repositories
 {
     public interface ICategoryRepository : IRepository<Category>
     {
-
+        Task<IEnumerable<Category>> GetCategoryWithProducts(int page, int take);
     }
 }

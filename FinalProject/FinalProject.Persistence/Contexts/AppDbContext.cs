@@ -29,6 +29,7 @@ namespace FinalProject.Persistence.Contexts
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Payment> Payments { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             

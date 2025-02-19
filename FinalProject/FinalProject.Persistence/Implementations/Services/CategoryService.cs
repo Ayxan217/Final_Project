@@ -49,8 +49,8 @@ namespace FinalProject.Persistence.Implementations.Services
         public async Task<IEnumerable<CategoryItemDto>> GetAllAsync(int page, int take)
         {
             IEnumerable<Category> categories = await _categoryRepository
-                   .GetAll(skip: (page - 1) * take, take: take)
-                   .ToListAsync();
+                   .GetCategoryWithProducts(page,take);
+                   
 
             return _mapper.Map<IEnumerable<CategoryItemDto>>(categories);
         }

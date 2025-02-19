@@ -56,6 +56,8 @@ namespace FinalProject.Persistence.Implementations.Repositories
         {
             return await _context.Products
          .Include(p => p.Reviews)
+         .Skip((page - 1) * take)
+         .Take(take)
          .ToListAsync();
 
             

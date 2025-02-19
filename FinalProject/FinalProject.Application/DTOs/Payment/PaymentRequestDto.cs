@@ -10,6 +10,6 @@ namespace FinalProject.Application.DTOs.Payment
     {
         public string Token { get; set; }
         public decimal Amount { get; set; }
-        public string Currency
+        public string Currency {  get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace FinalProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ReviewsController : ControllerBase
     {
         private readonly IReviewService _reviewService;
