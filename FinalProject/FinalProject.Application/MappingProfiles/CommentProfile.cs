@@ -14,13 +14,16 @@ namespace FinalProject.Application.MappingProfiles
     {
         public CommentProfile()
         {
-            CreateMap<CreateCommentDto, Comment>();
+            CreateMap<CreateCommentDto, Comment>()
+                ;
 
             CreateMap<UpdateCommentDto, Comment>()
                 .ForMember(c => c.Id, opt => opt.Ignore());
 
             
                 CreateMap<Comment, GetCommentDto>()
+
+
 
                 .ReverseMap();
 

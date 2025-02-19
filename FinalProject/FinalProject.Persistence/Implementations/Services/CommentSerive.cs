@@ -31,11 +31,12 @@ namespace FinalProject.Persistence.Implementations.Services
             _doctorRepository = doctorRepository;
             _mapper = mapper;  
         }
-        public async Task CreateCommentAsync(CreateCommentDto commentDto)
+        public async Task CreateCommentAsync(string userId, CreateCommentDto commentDto)
         {
             if (!await _doctorRepository.AnyAsync(d => d.Id == commentDto.DoctorId))
                 throw new Exception("doctor does not exists");
             Comment comment = _mapper.Map<Comment>(commentDto);
+            comment.UserId = userId;
             comment.CreatedAt = DateTime.Now;
             comment.ModifiedAt = DateTime.Now;
             await _commentRepository.AddAsync(comment);

@@ -39,7 +39,7 @@ namespace FinalProject.Controllers
         public async Task<IActionResult> Create([FromForm] CreateReviewDto reviewDto)
         {
             string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if(userId == null) 
+            if(userId is null) 
                return Unauthorized();
 
             await _reviewService.CreateAsync(userId, reviewDto);

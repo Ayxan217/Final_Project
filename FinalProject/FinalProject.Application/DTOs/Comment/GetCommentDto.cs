@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Application.DTOs.Comment
 {
-    public record GetCommentDto(string UserId, int Id, string UserRole, string Content,
+    public record GetCommentDto(string UserId, string Content,
         string DoctorId);
   
 }

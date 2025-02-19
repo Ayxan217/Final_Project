@@ -52,7 +52,7 @@ namespace FinalProject.Controllers
 
 
 
-            await _commentService.CreateCommentAsync(commentDto);
+            await _commentService.CreateCommentAsync(userId,commentDto);
             return StatusCode(StatusCodes.Status201Created);
         }
 
@@ -69,7 +69,7 @@ namespace FinalProject.Controllers
 
  
 
-        [Authorize]
+        [Authorize(Roles="Patient,Doctor,Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

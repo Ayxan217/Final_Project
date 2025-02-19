@@ -13,8 +13,6 @@ namespace FinalProject.Domain.Entities
 
         // Relational
         public int DoctorId { get; set; }
-        //public Doctor Doctor { get; set; }
-        public int UserId { get; set; }
-        //public AppUser AppUser { get; set; }
+        public string UserId { get; set; }
     }
 }
