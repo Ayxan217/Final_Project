@@ -27,6 +27,7 @@ namespace FinalProject.Persistence.Implementations.Repositories
         {
             return await _context.Products
                 .Where(p=>p.Price>=minPrice && p.Price<=maxPrice)
+                .Include(p=>p.Reviews)
                 .ToListAsync();
         }
 
@@ -34,6 +35,7 @@ namespace FinalProject.Persistence.Implementations.Repositories
         {
             return await _context.Products
                 .OrderByDescending(p => p.Price)
+                .Include(p => p.Reviews)
                 .Skip((page - 1) * take)
                 .Take(take)
                 .ToListAsync();
@@ -45,6 +47,7 @@ namespace FinalProject.Persistence.Implementations.Repositories
         {
           return await _context.Products
             .OrderBy(p => p.Price)
+            .Include(p => p.Reviews)
             .Skip((page - 1) * take)
             .Take(take)
             .ToListAsync();
