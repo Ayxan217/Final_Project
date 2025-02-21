@@ -10,7 +10,7 @@ namespace FinalProject.Persistence.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            
+
 
             migrationBuilder.AddColumn<int>(
                 name: "CommentId",

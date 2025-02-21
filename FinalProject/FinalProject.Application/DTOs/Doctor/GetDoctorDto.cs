@@ -1,15 +1,8 @@
 ﻿using FinalProject.Application.DTOs.Comment;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using Entity = FinalProject.Domain.Entities;
 
 namespace FinalProject.Application.DTOs.Doctor
 {
-    public record  GetDoctorDto(
+    public record GetDoctorDto(
         string? ImageUrl,
         string Name,
     string Surname,
@@ -24,5 +17,5 @@ namespace FinalProject.Application.DTOs.Doctor
     string? Ven,
     ICollection<GetCommentDto> Comments
         );
-   
+
 }

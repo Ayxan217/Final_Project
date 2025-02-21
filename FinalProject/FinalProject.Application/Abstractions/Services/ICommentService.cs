@@ -1,9 +1,4 @@
 ﻿using FinalProject.Application.DTOs.Comment;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Application.Abstractions.Services
 {
@@ -12,7 +7,7 @@ namespace FinalProject.Application.Abstractions.Services
         Task<IEnumerable<CommentItemDto>> GetDoctorCommentsAsync(int doctorId);
         Task<GetCommentDto> GetCommentByIdAsync(int id);
         Task CreateCommentAsync(string userId, CreateCommentDto commentDto);
-        Task UpdateCommentAsync(int id,UpdateCommentDto commentDto);
+        Task UpdateCommentAsync(int id, UpdateCommentDto commentDto);
         Task DeleteCommentAsync(int id);
     }
 }

@@ -1,13 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Application.DTOs.Doctor
 {
-    public record  UpdateDoctorDto(
+    public record UpdateDoctorDto(
         IFormFile? Photo,
         string Name,
     string Surname,
@@ -19,5 +14,5 @@ namespace FinalProject.Application.DTOs.Doctor
     string? Skype,
     string? Facebook,
     string? Ven);
-    
+
 }

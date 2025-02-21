@@ -1,10 +1,4 @@
-﻿using FinalProject.Application.DTOs.Patient;
-using FinalProject.Application.DTOs.Payroll;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FinalProject.Application.DTOs.Payroll;
 
 namespace FinalProject.Application.Abstractions.Services
 {

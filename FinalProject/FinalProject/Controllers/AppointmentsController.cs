@@ -1,6 +1,5 @@
 ﻿using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Appointment;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProject.Controllers
@@ -13,22 +12,22 @@ namespace FinalProject.Controllers
 
         public AppointmentsController(IAppointmentService appointmentService)
         {
-            _appointmentService  = appointmentService;
+            _appointmentService = appointmentService;
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm]CreateAppointmentDto appointmentDto)
+        public async Task<IActionResult> Create([FromForm] CreateAppointmentDto appointmentDto)
         {
             await _appointmentService.CreateAsync(appointmentDto);
             return StatusCode(StatusCodes.Status201Created);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(int id,[FromForm]UpdateAppointmentDto appointmentDto)
+        public async Task<IActionResult> Update(int id, [FromForm] UpdateAppointmentDto appointmentDto)
         {
             if (id < 1) return BadRequest();
-            await _appointmentService.UpdateAsync(id,appointmentDto);
+            await _appointmentService.UpdateAsync(id, appointmentDto);
             return NoContent();
         }
 

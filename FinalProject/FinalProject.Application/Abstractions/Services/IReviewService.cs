@@ -1,14 +1,8 @@
-﻿using FinalProject.Application.DTOs.Product;
-using FinalProject.Application.DTOs.ProductReview;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FinalProject.Application.DTOs.ProductReview;
 
 namespace FinalProject.Application.Abstractions.Services
 {
-    public interface IReviewService 
+    public interface IReviewService
     {
         Task<IEnumerable<ReviewItemDto>> GetAllAsync(int page, int take);
         Task<GetReviewDto> GetByIdAsync(int id);

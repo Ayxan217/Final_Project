@@ -1,9 +1,6 @@
 ﻿using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Account;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 
 namespace FinalProject.Controllers
@@ -70,7 +67,7 @@ namespace FinalProject.Controllers
                 Unauthorized();
             try
             {
-                 await _authenticationService.Logout(userId);
+                await _authenticationService.Logout(userId);
                 return NoContent();
             }
             catch (Exception ex)
@@ -81,7 +78,7 @@ namespace FinalProject.Controllers
 
 
         [HttpPost("forgot-password")]
-        
+
         public async Task<IActionResult> ForgotPassword([FromForm] ForgotPasswordDto forgotPasswordDto)
         {
             try
@@ -95,9 +92,9 @@ namespace FinalProject.Controllers
             }
         }
 
-       
+
         [HttpPost("reset-password")]
-      
+
         public async Task<IActionResult> ResetPassword([FromForm] ResetPasswordDto resetPasswordDto)
         {
             try

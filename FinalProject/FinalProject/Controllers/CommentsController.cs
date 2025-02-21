@@ -1,10 +1,6 @@
-﻿using CloudinaryDotNet.Actions;
-using FinalProject.Application.Abstractions.Services;
+﻿using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Comment;
-using FinalProject.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SendGrid.Helpers.Errors.Model;
 using System.Security.Claims;
@@ -13,7 +9,7 @@ namespace FinalProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   
+
     public class CommentsController : ControllerBase
     {
         private readonly ICommentService _commentService;
@@ -35,9 +31,9 @@ namespace FinalProject.Controllers
         [Route("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            
-                var comment = await _commentService.GetCommentByIdAsync(id);
-                return Ok(comment);
+
+            var comment = await _commentService.GetCommentByIdAsync(id);
+            return Ok(comment);
         }
 
 
@@ -52,7 +48,7 @@ namespace FinalProject.Controllers
 
 
 
-            await _commentService.CreateCommentAsync(userId,commentDto);
+            await _commentService.CreateCommentAsync(userId, commentDto);
             return StatusCode(StatusCodes.Status201Created);
         }
 
@@ -60,16 +56,16 @@ namespace FinalProject.Controllers
         [HttpPut("{id}")]
         [Authorize]
 
-        public async Task<IActionResult> Update(int id,UpdateCommentDto commentDto)
+        public async Task<IActionResult> Update(int id, UpdateCommentDto commentDto)
         {
             if (id < 1) return BadRequest();
-            await _commentService.UpdateCommentAsync(id,commentDto);
+            await _commentService.UpdateCommentAsync(id, commentDto);
             return NoContent();
         }
 
- 
 
-        [Authorize(Roles="Patient,Doctor,Admin")]
+
+        [Authorize(Roles = "Patient,Doctor,Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -81,7 +77,7 @@ namespace FinalProject.Controllers
 
                 GetCommentDto comment = await _commentService.GetCommentByIdAsync(id);
 
-                
+
                 bool isAdmin = User.IsInRole("Admin");
                 if (!isAdmin && comment.UserId != userId)
                     return Forbid();

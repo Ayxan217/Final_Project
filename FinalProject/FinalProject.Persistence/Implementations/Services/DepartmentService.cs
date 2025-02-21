@@ -4,12 +4,6 @@ using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Department;
 using FinalProject.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -18,7 +12,7 @@ namespace FinalProject.Persistence.Implementations.Services
         private readonly IDepartmentRepository _departmentRepository;
         private readonly IMapper _mapper;
 
-        public DepartmentService(IDepartmentRepository departmentRepository,IMapper mapper) 
+        public DepartmentService(IDepartmentRepository departmentRepository, IMapper mapper)
         {
             _departmentRepository = departmentRepository;
             _mapper = mapper;
@@ -61,7 +55,7 @@ namespace FinalProject.Persistence.Implementations.Services
 
             if (department is null)
                 throw new Exception("Not found");
-            
+
 
             GetDepartmentDto departmentDto = _mapper.Map<GetDepartmentDto>(department);
 
@@ -85,12 +79,12 @@ namespace FinalProject.Persistence.Implementations.Services
             if (exists)
                 throw new Exception($"Department with name '{departmentDto.Name}' already exists");
 
-            
-              bool chiefDoctorExists = await _departmentRepository
-                    .AnyAsync(d => d.ChiefDoctorId == departmentDto.ChiefDoctorId && d.Id != id);
-                if (chiefDoctorExists)
-                    throw new Exception($"Doctor with id {departmentDto.ChiefDoctorId} is already a chief doctor in another department");
-            
+
+            bool chiefDoctorExists = await _departmentRepository
+                  .AnyAsync(d => d.ChiefDoctorId == departmentDto.ChiefDoctorId && d.Id != id);
+            if (chiefDoctorExists)
+                throw new Exception($"Doctor with id {departmentDto.ChiefDoctorId} is already a chief doctor in another department");
+
 
             _mapper.Map(departmentDto, department);
             department.ModifiedAt = DateTime.Now;

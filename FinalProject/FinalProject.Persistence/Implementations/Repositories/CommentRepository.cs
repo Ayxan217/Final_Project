@@ -3,21 +3,17 @@ using FinalProject.Domain.Entities;
 using FinalProject.Persistence.Contexts;
 using FinalProject.Persistence.Implementations.Repositories.Generic;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Implementations.Repositories
 {
-    internal class CommentRepository : Repository<Comment>,ICommentRepository
+    internal class CommentRepository : Repository<Comment>, ICommentRepository
     {
         private readonly AppDbContext _context;
-        public CommentRepository(AppDbContext context) : base(context) {
-        
-        _context = context;
-        
+        public CommentRepository(AppDbContext context) : base(context)
+        {
+
+            _context = context;
+
         }
 
 

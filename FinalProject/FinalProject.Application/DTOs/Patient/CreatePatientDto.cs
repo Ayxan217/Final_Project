@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FinalProject.Application.DTOs.Patient
+﻿namespace FinalProject.Application.DTOs.Patient
 {
-   public record CreatePatientDto(
-     string Name, 
-     string Surname, 
+    public record CreatePatientDto(
+     string Name,
+     string Surname,
      DateOnly DateOfBirth,
-     string Adress ,
-     string Phone, 
-     string Email );
+     string Adress,
+     string Phone,
+     string Email);
 }

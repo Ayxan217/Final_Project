@@ -4,12 +4,6 @@ using FinalProject.Application.DTOs.Payment;
 using FinalProject.Domain.Entities;
 using Microsoft.Extensions.Configuration;
 using Stripe;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static FinalProject.Infrastructure.Implementations.Services.StripeService;
 
 namespace FinalProject.Infrastructure.Implementations.Services
 {
@@ -54,7 +48,7 @@ namespace FinalProject.Infrastructure.Implementations.Services
                 };
 
                 await _paymentRepository.AddAsync(payment);
-                await _paymentRepository.SaveChangesAsync(); 
+                await _paymentRepository.SaveChangesAsync();
 
                 return "Ödeme başarılı!";
             }

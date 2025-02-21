@@ -1,12 +1,6 @@
 ﻿using AutoMapper;
-using FinalProject.Application.DTOs.Appointment;
 using FinalProject.Application.DTOs.Comment;
 using FinalProject.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Application.MappingProfiles
 {
@@ -20,16 +14,16 @@ namespace FinalProject.Application.MappingProfiles
             CreateMap<UpdateCommentDto, Comment>()
                 .ForMember(c => c.Id, opt => opt.Ignore());
 
-            
-                CreateMap<Comment, GetCommentDto>()
+
+            CreateMap<Comment, GetCommentDto>()
 
 
 
-                .ReverseMap();
+            .ReverseMap();
 
             CreateMap<Comment, CommentItemDto>();
-                
-               
+
+
 
 
 

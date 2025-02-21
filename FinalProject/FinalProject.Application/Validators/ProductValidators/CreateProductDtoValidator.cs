@@ -1,10 +1,5 @@
 ﻿using FinalProject.Application.DTOs.Product;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Application.Validators.ProductValidators
 {
@@ -15,7 +10,7 @@ namespace FinalProject.Application.Validators.ProductValidators
             RuleFor(p => p.Price)
                 .GreaterThan(0).WithMessage("Price must be greater than zero.");
 
-    
+
 
             RuleFor(p => p.Description)
                 .NotEmpty().WithMessage("Description cannot be empty.")

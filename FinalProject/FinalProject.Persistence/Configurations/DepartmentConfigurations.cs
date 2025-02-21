@@ -1,11 +1,6 @@
 ﻿using FinalProject.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Configurations
 {
@@ -13,7 +8,7 @@ namespace FinalProject.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Department> builder)
         {
-            builder.HasIndex(x=>x.Name).IsUnique();
+            builder.HasIndex(x => x.Name).IsUnique();
             builder.Property(x => x.Name).HasColumnType("nvarchar(100)");
             builder.Property(x => x.Description).IsRequired().HasColumnType("nvarchar(1000)");
         }

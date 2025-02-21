@@ -11,8 +11,8 @@ namespace FinalProject.Application.MappingProfiles
     {
         public AppUserProfile()
         {
-            CreateMap<RegisterDto,AppUser>();
-            
+            CreateMap<RegisterDto, AppUser>();
+
         }
 
     }

@@ -1,16 +1,10 @@
-using FinalProject.Persistence.ServiceRegisteratation;
 using FinalProject.Application.ServiceRegisteratation;
-using FinalProject.Application.Abstractions.Token;
-using FinalProject.Persistence.Implementations.Token;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using FinalProject.Domain.Entities;
 using FinalProject.Infrastructure.ServiceRegisteration;
 using FinalProject.Persistence.Contexts;
+using FinalProject.Persistence.ServiceRegisteratation;
 using Microsoft.OpenApi.Models;
-using FinalProject.Domain.Entities;
 using Stripe;
-using System.Text.Json.Serialization;
 
 
 

@@ -1,6 +1,5 @@
 ﻿using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Patient;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProject.Controllers
@@ -18,9 +17,9 @@ namespace FinalProject.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(int page = 1,int take = 3)
+        public async Task<IActionResult> Get(int page = 1, int take = 3)
         {
-            var patients = await _patientService.GetAllAsync(page,take);
+            var patients = await _patientService.GetAllAsync(page, take);
             return Ok(patients);
         }
 
@@ -34,7 +33,7 @@ namespace FinalProject.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] CreatePatientDto createPatientDto)
         {
-             await _patientService.CreateAsync(createPatientDto);
+            await _patientService.CreateAsync(createPatientDto);
             return StatusCode(StatusCodes.Status201Created);
         }
 
@@ -43,7 +42,7 @@ namespace FinalProject.Controllers
         {
             if (id < 1)
                 return BadRequest();
-            await _patientService.UpdateAsync(id,updatePatientDto);
+            await _patientService.UpdateAsync(id, updatePatientDto);
             return NoContent();
         }
 

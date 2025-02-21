@@ -1,7 +1,5 @@
 ﻿using FinalProject.Application.Abstractions.Services;
-using FinalProject.Application.DTOs.Patient;
 using FinalProject.Application.DTOs.Payroll;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProject.Controllers

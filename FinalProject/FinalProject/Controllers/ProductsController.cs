@@ -1,7 +1,5 @@
 ﻿using FinalProject.Application.Abstractions.Services;
-using FinalProject.Application.DTOs.Patient;
 using FinalProject.Application.DTOs.Product;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProject.Controllers
@@ -59,15 +57,15 @@ namespace FinalProject.Controllers
 
         [HttpGet("filter-by-price")]
 
-        public async Task<IActionResult> FilterByPrice(decimal minPrice,decimal maxPrice)
+        public async Task<IActionResult> FilterByPrice(decimal minPrice, decimal maxPrice)
         {
-            var products = await _productService.FilterByPriceAsync(minPrice,maxPrice);
+            var products = await _productService.FilterByPriceAsync(minPrice, maxPrice);
             return Ok(products);
         }
 
         [HttpGet("price-decending-order")]
 
-        public async Task<IActionResult> PriceByDecending(int page = 1,int take = 3)
+        public async Task<IActionResult> PriceByDecending(int page = 1, int take = 3)
         {
             var products = await _productService.GetProductsByPriceDescending(page, take);
             return Ok(products);

@@ -1,10 +1,4 @@
-﻿using FinalProject.Application.DTOs.Department;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FinalProject.Application.DTOs.Category;
+﻿using FinalProject.Application.DTOs.Category;
 
 namespace FinalProject.Application.Abstractions.Services
 {

@@ -1,11 +1,5 @@
 ﻿using FinalProject.Application.DTOs.Category;
-using FinalProject.Domain.Entities;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Application.Validators.CategoryValidators
 {

@@ -1,19 +1,10 @@
 ﻿using AutoMapper;
 using FinalProject.Application.Abstractions.Repositories;
 using FinalProject.Application.Abstractions.Services;
-using FinalProject.Application.DTOs.Department;
 using FinalProject.Application.DTOs.Doctor;
 using FinalProject.Domain.Entities;
-using FinalProject.Persistence.Contexts;
-using FinalProject.Persistence.Implementations.Repositories;
 using Microsoft.EntityFrameworkCore;
 using SendGrid.Helpers.Errors.Model;
-using SendGrid.Helpers.Mail;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -38,12 +29,12 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task CreateAsync(CreateDoctorDto doctorDto)
         {
-            
+
             if (!await _departmentRepository.AnyAsync(d => d.Id == doctorDto.DepartmentId))
                 throw new Exception("Department does not exists");
             if (doctorDto.Photo == null)
                 throw new Exception("Please upload Image");
-            (string imageUrl,string publicId) = await _cloudinaryService.UploadAsync(doctorDto.Photo); 
+            (string imageUrl, string publicId) = await _cloudinaryService.UploadAsync(doctorDto.Photo);
             Doctor doctor = _mapper.Map<Doctor>(doctorDto);
             doctor.ImageUrl = imageUrl;
             doctor.ImagePublicId = publicId;
@@ -66,10 +57,11 @@ namespace FinalProject.Persistence.Implementations.Services
             await _doctorRepository.SaveChangesAsync();
         }
 
-        public async Task<ICollection<DoctorItemDto>> GetAllAsync(int page,int take)
+        public async Task<ICollection<DoctorItemDto>> GetAllAsync(int page, int take)
         {
             ICollection<Doctor> doctors = await _doctorRepository
-                     .GetDoctorsWithCommentsAsync(page, take);
+                     .GetAll(null, null, false, false, skip: (page - 1) * take, take: take, "Comments")
+                     .ToListAsync();
             return _mapper.Map<ICollection<DoctorItemDto>>(doctors);
 
 
@@ -77,7 +69,7 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task<GetDoctorDto> GetByIdAsync(int id)
         {
-            Doctor doctor = await _doctorRepository.GetDoctorAsyncWithComments(id);
+            Doctor doctor = await _doctorRepository.GetbyIdAsync(id, "Comments");
 
             if (doctor is null)
                 throw new Exception("Not found");

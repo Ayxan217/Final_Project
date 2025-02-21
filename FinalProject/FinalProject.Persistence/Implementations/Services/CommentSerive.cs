@@ -3,15 +3,7 @@ using FinalProject.Application.Abstractions.Repositories;
 using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Comment;
 using FinalProject.Domain.Entities;
-using FinalProject.Persistence.Implementations.Repositories;
-using Microsoft.AspNetCore.Identity;
 using SendGrid.Helpers.Errors.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -20,16 +12,16 @@ namespace FinalProject.Persistence.Implementations.Services
         private readonly ICommentRepository _commentRepository;
         private readonly IDoctorRepository _doctorRepository;
         private readonly IMapper _mapper;
-       
+
 
         public CommentSerive(ICommentRepository commentRepository
-            ,IDoctorRepository doctorRepository
-            ,IMapper mapper
+            , IDoctorRepository doctorRepository
+            , IMapper mapper
            )
         {
             _commentRepository = commentRepository;
             _doctorRepository = doctorRepository;
-            _mapper = mapper;  
+            _mapper = mapper;
         }
         public async Task CreateCommentAsync(string userId, CreateCommentDto commentDto)
         {
@@ -79,8 +71,8 @@ namespace FinalProject.Persistence.Implementations.Services
 
             _mapper.Map(commentDto, comment);
 
-             _commentRepository.Update(comment);
-            
+            _commentRepository.Update(comment);
+
             await _commentRepository.SaveChangesAsync();
         }
     }

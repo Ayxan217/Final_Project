@@ -1,10 +1,5 @@
 ﻿using FinalProject.Application.DTOs.Account;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Application.Validators.AccountValidators
 {
@@ -14,7 +9,7 @@ namespace FinalProject.Application.Validators.AccountValidators
         {
             RuleFor(x => x.EmailOrUsername)
                 .NotEmpty();
-                
+
 
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Password is required")

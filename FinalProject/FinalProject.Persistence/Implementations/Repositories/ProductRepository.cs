@@ -55,28 +55,8 @@ namespace FinalProject.Persistence.Implementations.Repositories
         
         }
 
-        public async Task<ICollection<Product>> GetProductsWithReviews(int page, int take)
-        {
-            return await _context.Products
-         .Include(p => p.Reviews)
-         .Skip((page - 1) * take)
-         .Take(take)
-         .ToListAsync();
+    
 
-            
-        }
-
-        public async Task<Product> GetProductWithReviewsByIdAsync(int id)
-        {
-            var product =  await _context.Products
-                .Include(p => p.Reviews)
-                .FirstOrDefaultAsync(p=>p.Id==id);
-
-
-            return product;
-
-
-
-        }
+    
     }
 }

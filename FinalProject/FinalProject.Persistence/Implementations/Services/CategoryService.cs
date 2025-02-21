@@ -2,15 +2,8 @@
 using FinalProject.Application.Abstractions.Repositories;
 using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Category;
-using FinalProject.Application.DTOs.Department;
 using FinalProject.Domain.Entities;
-using FinalProject.Persistence.Implementations.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -20,7 +13,7 @@ namespace FinalProject.Persistence.Implementations.Services
         private readonly IMapper _mapper;
 
         public CategoryService(ICategoryRepository categoryRepository
-            ,IMapper mapper)
+            , IMapper mapper)
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
@@ -49,15 +42,16 @@ namespace FinalProject.Persistence.Implementations.Services
         public async Task<IEnumerable<CategoryItemDto>> GetAllAsync(int page, int take)
         {
             IEnumerable<Category> categories = await _categoryRepository
-                   .GetCategoryWithProducts(page,take);
-                   
+                   .GetAll(null, null, false, false, skip: (page - 1) * take, take: take, "Products", "Products.Reviews")
+                   .ToListAsync();
+
 
             return _mapper.Map<IEnumerable<CategoryItemDto>>(categories);
         }
 
         public async Task<GetCategoryDto> GetByIdAsync(int id)
         {
-            Category category = await _categoryRepository.GetbyIdAsync(id);
+            Category category = await _categoryRepository.GetbyIdAsync(id, "Products", "Products.Reviews");
 
             if (category is null)
                 throw new Exception("Not found");

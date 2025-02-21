@@ -1,10 +1,5 @@
 ﻿using FinalProject.Application.DTOs.Patient;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Application.Validators.PatientValidators
 {
@@ -38,8 +33,8 @@ namespace FinalProject.Application.Validators.PatientValidators
             RuleFor(p => p.Adress)
                 .NotEmpty().WithMessage("Address is required.")
                 .MaximumLength(200).WithMessage("Address cannot exceed 200 characters.");
-        
+
+        }
     }
-    }
-    
+
 }

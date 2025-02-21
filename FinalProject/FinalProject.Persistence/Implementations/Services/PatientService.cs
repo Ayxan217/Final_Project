@@ -5,12 +5,6 @@ using FinalProject.Application.DTOs.Patient;
 using FinalProject.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using SendGrid.Helpers.Errors.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -25,11 +19,11 @@ namespace FinalProject.Persistence.Implementations.Services
             _mapper = mapper;
         }
 
-        public async Task<ICollection<PatientItemDto>> GetAllAsync(int page = 1,int take = 3)
+        public async Task<ICollection<PatientItemDto>> GetAllAsync(int page = 1, int take = 3)
         {
             ICollection<Patient> patients = await _patientRepository.GetAll(skip: (page - 1) * take, take: take)
                    .ToListAsync();
-            
+
             return _mapper.Map<ICollection<PatientItemDto>>(patients);
         }
 
@@ -42,9 +36,9 @@ namespace FinalProject.Persistence.Implementations.Services
             return _mapper.Map<GetPatientDto>(patient);
         }
 
-     
 
-        public async Task UpdateAsync(int id,UpdatePatientDto updatePatientDto)
+
+        public async Task UpdateAsync(int id, UpdatePatientDto updatePatientDto)
         {
             Patient patient = await _patientRepository.GetbyIdAsync(id);
             if (patient is null)
@@ -52,7 +46,7 @@ namespace FinalProject.Persistence.Implementations.Services
 
             _mapper.Map(updatePatientDto, patient);
             patient.ModifiedAt = DateTime.Now;
-             _patientRepository.Update(patient);
+            _patientRepository.Update(patient);
             await _patientRepository.SaveChangesAsync();
         }
 
@@ -73,18 +67,18 @@ namespace FinalProject.Persistence.Implementations.Services
         }
 
 
-       
+
 
         public async Task CreateAsync(CreatePatientDto patientDto)
         {
             Patient patient = _mapper.Map<Patient>(patientDto);
             patient.CreatedAt = DateTime.Now;
             patient.ModifiedAt = DateTime.Now;
-            patient.IdentityCode = Guid.NewGuid().ToString().Substring(0,7).ToUpperInvariant();
+            patient.IdentityCode = Guid.NewGuid().ToString().Substring(0, 7).ToUpperInvariant();
             await _patientRepository.AddAsync(patient);
             await _patientRepository.SaveChangesAsync();
 
-            
+
         }
 
         public async Task<GetPatientDto> SearchIdentityAsync(string IdentityCode)
@@ -92,7 +86,7 @@ namespace FinalProject.Persistence.Implementations.Services
             if (IdentityCode.Length != 7)
                 throw new Exception("Identity code must be 7 length");
             Patient patient = await _patientRepository.SearchPatientIdentityAsync(IdentityCode);
-            if(patient is null)
+            if (patient is null)
                 throw new Exception("Patient does not exists");
             return _mapper.Map<GetPatientDto>(patient);
         }

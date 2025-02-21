@@ -1,20 +1,12 @@
 ﻿using FinalProject.Application.Abstractions.Token;
-using FinalProject.Application.DTOs.Account;
 using FinalProject.Application.DTOs.Tokens;
 using FinalProject.Domain.Entities;
-using FinalProject.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
 
 namespace FinalProject.Persistence.Implementations.Token
 {
@@ -44,7 +36,7 @@ namespace FinalProject.Persistence.Implementations.Token
             new Claim(ClaimTypes.Email, user.Email)
 
         };
-            foreach(var role in await _userManager.GetRolesAsync(user))
+            foreach (var role in await _userManager.GetRolesAsync(user))
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
@@ -56,7 +48,7 @@ namespace FinalProject.Persistence.Implementations.Token
 
             return claims;
         }
-        public async Task<TokenResponseDto> CreateAccessToken(AppUser user, int minutes,List<Claim> claims)
+        public async Task<TokenResponseDto> CreateAccessToken(AppUser user, int minutes, List<Claim> claims)
         {
             var secretKey = _configuration["JWT:SecretKey"]
         ?? throw new InvalidOperationException("JWT:SecretKey configuration is missing");
@@ -85,7 +77,7 @@ namespace FinalProject.Persistence.Implementations.Token
 
 
             return new TokenResponseDto(tokenHandler.WriteToken(securityToken),
-                 securityToken.ValidTo,CreateRefreshToken(),securityToken.ValidTo.AddDays(7));
+                 securityToken.ValidTo, CreateRefreshToken(), securityToken.ValidTo.AddDays(7));
 
 
 

@@ -1,9 +1,6 @@
-﻿using AutoMapper;
-using FinalProject.Application.Abstractions.Services;
+﻿using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Basket;
-using FinalProject.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -15,17 +12,17 @@ namespace FinalProject.Controllers
     public class BasketController : ControllerBase
     {
         private readonly IBasketService _basketService;
-       
+
 
         public BasketController(IBasketService basketService)
         {
-           _basketService = basketService;
-          
+            _basketService = basketService;
+
         }
         [HttpPost("add-basket")]
         public async Task<IActionResult> AddBasket([FromForm] CreateBasketDto basketDto)
         {
-            
+
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (string.IsNullOrEmpty(userId))
@@ -34,7 +31,7 @@ namespace FinalProject.Controllers
 
             try
             {
-               await _basketService.AddBasketAsync(userId, basketDto.ProductId, basketDto.Quantity);
+                await _basketService.AddBasketAsync(userId, basketDto.ProductId, basketDto.Quantity);
 
                 return Ok();
             }
@@ -52,7 +49,7 @@ namespace FinalProject.Controllers
             if (string.IsNullOrEmpty(userId))
                 return Unauthorized("Plase login");
             var basket = await _basketService.GetBasketAsync(userId);
-           
+
             return Ok(basket);
 
         }
@@ -65,7 +62,7 @@ namespace FinalProject.Controllers
             if (string.IsNullOrEmpty(userId))
                 return Unauthorized("Plase login");
 
-            await _basketService.RemoveItemAsync(userId,itemDto.ProductId);
+            await _basketService.RemoveItemAsync(userId, itemDto.ProductId);
             return NoContent();
         }
 
@@ -91,7 +88,7 @@ namespace FinalProject.Controllers
             if (string.IsNullOrEmpty(userId))
                 return Unauthorized("Plase login");
 
-            await _basketService.IncreaseItemQuantityAsync(userId,itemDto.ProductId);
+            await _basketService.IncreaseItemQuantityAsync(userId, itemDto.ProductId);
             return NoContent();
         }
 

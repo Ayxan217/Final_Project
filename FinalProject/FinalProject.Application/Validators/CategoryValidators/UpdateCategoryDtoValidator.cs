@@ -1,10 +1,5 @@
 ﻿using FinalProject.Application.DTOs.Category;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Application.Validators.CategoryValidators
 {
@@ -12,8 +7,8 @@ namespace FinalProject.Application.Validators.CategoryValidators
     {
         public UpdateCategoryDtoValidator()
         {
-            RuleFor(x=> x.Name).NotEmpty().MaximumLength(100).MinimumLength(3)
-                .Matches(@"^[a-zA-ZəƏıİöÖüÜğĞçÇşŞ]+$"); 
+            RuleFor(x => x.Name).NotEmpty().MaximumLength(100).MinimumLength(3)
+                .Matches(@"^[a-zA-ZəƏıİöÖüÜğĞçÇşŞ]+$");
         }
     }
 }

@@ -1,15 +1,7 @@
 ﻿using FinalProject.Application.Abstractions.Services;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using SendGrid.Helpers.Mail;
-using SendGrid;
-using PostmarkDotNet;
+using System.Net.Mail;
 
 namespace FinalProject.Infrastructure.Implementations.Services
 {
@@ -39,7 +31,7 @@ namespace FinalProject.Infrastructure.Implementations.Services
 
                     var mailMessage = new MailMessage
                     {
-                        From = new MailAddress(_configuration["SmtpSettings:Username"]), 
+                        From = new MailAddress(_configuration["SmtpSettings:Username"]),
                         Subject = subject,
                         Body = body,
                         IsBodyHtml = true

@@ -1,7 +1,5 @@
 ﻿using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.ProductReview;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -13,12 +11,12 @@ namespace FinalProject.Controllers
     public class ReviewsController : ControllerBase
     {
         private readonly IReviewService _reviewService;
-        
-        
+
+
         public ReviewsController(IReviewService reviewService)
         {
             _reviewService = reviewService;
-            
+
         }
 
         [HttpGet]
@@ -34,13 +32,13 @@ namespace FinalProject.Controllers
             var review = await _reviewService.GetByIdAsync(id);
             return Ok(review);
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] CreateReviewDto reviewDto)
         {
             string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if(userId is null) 
-               return Unauthorized();
+            if (userId is null)
+                return Unauthorized();
 
             await _reviewService.CreateAsync(userId, reviewDto);
             return StatusCode(StatusCodes.Status201Created);

@@ -1,13 +1,8 @@
-﻿using FinalProject.Domain.Entites;
+﻿using FinalProject.Application.Abstractions.Repositories.Generic;
+using FinalProject.Domain.Entites;
 using FinalProject.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using FinalProject.Application.Abstractions.Repositories.Generic;
 
 namespace FinalProject.Persistence.Implementations.Repositories.Generic
 {

@@ -1,10 +1,5 @@
 ﻿using FinalProject.Application.DTOs.Comment;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Application.Validators.CommentValidators
 {
@@ -21,6 +16,6 @@ namespace FinalProject.Application.Validators.CommentValidators
             RuleFor(x => x.DoctorId)
                 .NotEmpty().WithMessage("Doctor ID is required")
                 .GreaterThan(0).WithMessage("Please provide a valid Doctor ID");
+        }
     }
-}
 }

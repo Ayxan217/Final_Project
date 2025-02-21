@@ -1,17 +1,10 @@
 ﻿using AutoMapper;
 using FinalProject.Application.Abstractions.Repositories;
 using FinalProject.Application.Abstractions.Services;
-using FinalProject.Application.DTOs.Patient;
 using FinalProject.Application.DTOs.Payroll;
 using FinalProject.Domain.Entities;
-using FinalProject.Persistence.Implementations.Repositories;
 using Microsoft.EntityFrameworkCore;
 using SendGrid.Helpers.Errors.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -23,8 +16,8 @@ namespace FinalProject.Persistence.Implementations.Services
         private readonly IDoctorRepository _doctorRepository;
 
         public PayrollService(IPayrollRepository payrollRepository
-            ,IDoctorRepository doctorRepository
-            ,IMapper mapper)
+            , IDoctorRepository doctorRepository
+            , IMapper mapper)
         {
             _payrollRepository = payrollRepository;
             _mapper = mapper;
@@ -32,7 +25,7 @@ namespace FinalProject.Persistence.Implementations.Services
         }
         public async Task CreateAsync(CreatePayrollDto payrollDto)
         {
-            if(!await _doctorRepository.AnyAsync(d=>d.Id == payrollDto.DoctorId))
+            if (!await _doctorRepository.AnyAsync(d => d.Id == payrollDto.DoctorId))
                 throw new Exception("Doctor can't found");
 
             Payroll existPayroll = await _payrollRepository.SearchPayrollAsync(payrollDto.DoctorId);
@@ -47,9 +40,9 @@ namespace FinalProject.Persistence.Implementations.Services
 
             decimal tax = (payrollDto.TaxRate / 100) * payrollDto.Salary;
             decimal insurance = (payrollDto.InsuranceRate / 100) * payrollDto.Salary;
-            payroll.NetSalary = payrollDto.Salary - (tax+insurance);
-             
-            await  _payrollRepository.AddAsync(payroll);
+            payroll.NetSalary = payrollDto.Salary - (tax + insurance);
+
+            await _payrollRepository.AddAsync(payroll);
             await _payrollRepository.SaveChangesAsync();
         }
 
@@ -67,7 +60,7 @@ namespace FinalProject.Persistence.Implementations.Services
         {
             IEnumerable<Payroll> payroll = await _payrollRepository.GetAll(skip: (page - 1) * take, take: take)
                .ToListAsync();
-            
+
             return _mapper.Map<IEnumerable<PayrollItemDto>>(payroll);
         }
 

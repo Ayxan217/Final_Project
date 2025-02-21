@@ -1,7 +1,5 @@
 ﻿using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Category;
-using FinalProject.Application.DTOs.Department;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProject.Controllers
@@ -10,7 +8,7 @@ namespace FinalProject.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        
+
         private readonly ICategoryService _categoryService;
 
         public CategoriesController(ICategoryService categoryService)
@@ -48,7 +46,7 @@ namespace FinalProject.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id,UpdateCategoryDto categoryDto)
+        public async Task<IActionResult> Update(int id, UpdateCategoryDto categoryDto)
         {
             if (id < 1) return BadRequest();
 

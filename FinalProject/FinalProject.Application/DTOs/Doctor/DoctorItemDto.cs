@@ -1,16 +1,8 @@
 ﻿using FinalProject.Application.DTOs.Comment;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Entity = FinalProject.Domain.Entities;
 
 namespace FinalProject.Application.DTOs.Doctor
 {
-    
+
 
     public record DoctorItemDto(int Id,
         string? ImageUrl,
@@ -28,5 +20,5 @@ namespace FinalProject.Application.DTOs.Doctor
 
 
         );
-   
+
 }

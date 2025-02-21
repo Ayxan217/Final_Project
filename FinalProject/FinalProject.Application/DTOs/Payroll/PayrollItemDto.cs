@@ -1,11 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FinalProject.Application.DTOs.Payroll
+﻿namespace FinalProject.Application.DTOs.Payroll
 {
     public record PayrollItemDto(int Id,
         int DoctorId,
@@ -14,5 +7,5 @@ namespace FinalProject.Application.DTOs.Payroll
         decimal InsuranceRate,
         decimal NetSalary,
         DateOnly PaymentTime);
-  
+
 }

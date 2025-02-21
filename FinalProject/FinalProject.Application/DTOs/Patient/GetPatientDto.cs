@@ -1,11 +1,4 @@
-﻿using FinalProject.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FinalProject.Application.DTOs.Patient
+﻿namespace FinalProject.Application.DTOs.Patient
 {
     public record GetPatientDto(
      string IdentityCode,
@@ -14,6 +7,6 @@ namespace FinalProject.Application.DTOs.Patient
      DateOnly DateOfBirth,
      string Adress,
      string Phone,
-     string Email     );
-   
+     string Email);
+
 }

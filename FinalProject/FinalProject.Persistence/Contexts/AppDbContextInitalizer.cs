@@ -3,11 +3,6 @@ using FinalProject.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Contexts
 {
@@ -37,7 +32,7 @@ namespace FinalProject.Persistence.Contexts
 
         public async Task CreateRolesAsync()
         {
-            foreach(var role in Enum.GetValues(typeof(Roles)))
+            foreach (var role in Enum.GetValues(typeof(Roles)))
             {
                 if (!await _roleManager.RoleExistsAsync(role.ToString()))
                     await _roleManager.CreateAsync(new IdentityRole { Name = role.ToString() });
@@ -57,7 +52,7 @@ namespace FinalProject.Persistence.Contexts
             };
 
             await _userManager.CreateAsync(user, _configuration["AdminSettings:Password"]);
-            await _userManager.AddToRoleAsync(user,Roles.Admin.ToString());
+            await _userManager.AddToRoleAsync(user, Roles.Admin.ToString());
         }
     }
 }

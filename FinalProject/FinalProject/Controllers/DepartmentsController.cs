@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using FinalProject.Application.Abstractions.Services;
+﻿using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Department;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProject.Controllers
 {

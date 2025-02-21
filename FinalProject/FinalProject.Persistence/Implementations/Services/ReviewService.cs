@@ -1,17 +1,10 @@
 ﻿using AutoMapper;
 using FinalProject.Application.Abstractions.Repositories;
 using FinalProject.Application.Abstractions.Services;
-using FinalProject.Application.DTOs.Patient;
 using FinalProject.Application.DTOs.ProductReview;
 using FinalProject.Domain.Entities;
-using FinalProject.Persistence.Implementations.Repositories;
 using Microsoft.EntityFrameworkCore;
 using SendGrid.Helpers.Errors.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -23,13 +16,13 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public ReviewService(IReviewRepository reviewRepository,
             IProductRepository productRepository
-            ,IMapper mapper)
+            , IMapper mapper)
         {
             _reviewRepository = reviewRepository;
             _productRepository = productRepository;
             _mapper = mapper;
         }
-        public async Task CreateAsync(string userId,CreateReviewDto reviewDto)
+        public async Task CreateAsync(string userId, CreateReviewDto reviewDto)
         {
             if (!await _productRepository.AnyAsync(p => p.Id == reviewDto.ProductId))
                 throw new Exception("Product does not exists");

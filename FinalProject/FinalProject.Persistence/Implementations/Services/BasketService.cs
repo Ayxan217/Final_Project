@@ -3,11 +3,6 @@ using FinalProject.Application.Abstractions.Repositories;
 using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Basket;
 using FinalProject.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -19,14 +14,14 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public BasketService(IBasketRepository basketRepository,
             IProductRepository productRepository
-            ,IMapper mapper)
+            , IMapper mapper)
         {
             _basketRepository = basketRepository;
             _productRepository = productRepository;
             _mapper = mapper;
         }
 
- 
+
 
         public async Task AddBasketAsync(string userId, int productId, int quantity)
         {
@@ -35,7 +30,7 @@ namespace FinalProject.Persistence.Implementations.Services
             var existingBasket = await _basketRepository.GetBasketByUserIdAsync(userId);
             if (existingBasket == null)
             {
-               
+
                 existingBasket = new Basket
                 {
                     UserId = userId,
@@ -47,11 +42,11 @@ namespace FinalProject.Persistence.Implementations.Services
                 await _basketRepository.SaveChangesAsync();
             }
 
-            
+
             var existingItem = existingBasket.Items.FirstOrDefault(item => item.ProductId == productId);
             if (existingItem != null)
             {
-                
+
                 existingItem.Quantity += quantity;
                 existingBasket.ModifiedAt = DateTime.Now;
             }
@@ -67,8 +62,8 @@ namespace FinalProject.Persistence.Implementations.Services
             }
 
 
-             _basketRepository.Update(existingBasket);
-           await _basketRepository.SaveChangesAsync();
+            _basketRepository.Update(existingBasket);
+            await _basketRepository.SaveChangesAsync();
 
         }
 
@@ -113,10 +108,10 @@ namespace FinalProject.Persistence.Implementations.Services
             Basket basket = await _basketRepository.GetBasketByUserIdAsync(userId);
             if (basket is null)
                 throw new Exception("Basket not found");
-            if (!basket.Items.Any()) 
+            if (!basket.Items.Any())
                 return;
 
-            basket.Items.Clear(); 
+            basket.Items.Clear();
 
             await _basketRepository.SaveChangesAsync();
         }

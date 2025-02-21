@@ -1,26 +1,15 @@
 ﻿using AutoMapper;
 using FinalProject.Application.Abstractions.Services;
+using FinalProject.Application.Abstractions.Token;
 using FinalProject.Application.DTOs.Account;
+using FinalProject.Application.DTOs.Tokens;
 using FinalProject.Domain.Entities;
+using FinalProject.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using FinalProject.Application.Abstractions.Token;
-using FinalProject.Application.DTOs.Tokens;
-using FinalProject.Domain.Enums;
-using Azure.Core;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Text;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -57,8 +46,8 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task<TokenResponseDto> LoginAsync(LoginDto loginDto)
         {
-            
-            var user = await _userManager.Users.FirstOrDefaultAsync(u=>loginDto.EmailOrUsername==u.UserName || loginDto.EmailOrUsername==u.Email);
+
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => loginDto.EmailOrUsername == u.UserName || loginDto.EmailOrUsername == u.Email);
             if (user is null)
                 throw new Exception("Username ,email or Password incorrect");
 
@@ -69,7 +58,7 @@ namespace FinalProject.Persistence.Implementations.Services
                 throw new Exception("Username ,email or Password incorrect");
             }
             var claims = await _tokenHandler.CreateClaimsAsync(user);
-            TokenResponseDto tokenDto = await _tokenHandler.CreateAccessToken(user, 15,claims);
+            TokenResponseDto tokenDto = await _tokenHandler.CreateAccessToken(user, 15, claims);
             user.RefreshToken = tokenDto.RefreshToken;
             user.RefreshTokenExpireTime = DateTime.Now.AddDays(7);
             await _userManager.UpdateAsync(user);
@@ -79,7 +68,7 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task RegisterAsync(RegisterDto userDto)
         {
-          if(await _userManager.Users.AnyAsync(u=>u.UserName==userDto.UserName|| u.Email == userDto.Email))
+            if (await _userManager.Users.AnyAsync(u => u.UserName == userDto.UserName || u.Email == userDto.Email))
             {
                 throw new Exception("this user already exists");
             }
@@ -90,7 +79,7 @@ namespace FinalProject.Persistence.Implementations.Services
 
             AppUser user = _mapper.Map<AppUser>(userDto);
 
-            var result = await _userManager.CreateAsync(user,userDto.Password);
+            var result = await _userManager.CreateAsync(user, userDto.Password);
             if (!result.Succeeded)
             {
                 StringBuilder builder = new();
@@ -102,9 +91,9 @@ namespace FinalProject.Persistence.Implementations.Services
                 throw new Exception(builder.ToString());
             }
 
-            await _userManager.AddToRoleAsync(user,Roles.Patient.ToString());
-            
-           
+            await _userManager.AddToRoleAsync(user, Roles.Patient.ToString());
+
+
         }
 
         public async Task Logout(string userId)
@@ -125,8 +114,8 @@ namespace FinalProject.Persistence.Implementations.Services
             if (user is null)
                 throw new Exception("User not found");
 
-           string resetCode = Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
-           DateTime expireTime = DateTime.UtcNow.AddMinutes(5);
+            string resetCode = Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
+            DateTime expireTime = DateTime.UtcNow.AddMinutes(5);
 
 
             user.ResetCode = resetCode;
@@ -134,25 +123,25 @@ namespace FinalProject.Persistence.Implementations.Services
             await _userManager.UpdateAsync(user);
 
             await _emailService.SendEmailAsync(
-            
-                to : forgotPasswordDto.Email,
-                subject : "Password Reset",
-                body : $"Please enter the code to reset your password:\n\n{resetCode}"
+
+                to: forgotPasswordDto.Email,
+                subject: "Password Reset",
+                body: $"Please enter the code to reset your password:\n\n{resetCode}"
             );
         }
 
         public async Task ResetPasswordAsync(ResetPasswordDto resetPasswordDto)
         {
-            AppUser? user = await _userManager.Users.FirstOrDefaultAsync(u=>u.ResetCode == resetPasswordDto.ResetCode && u.ResetCodeExpireTime>DateTime.UtcNow);
+            AppUser? user = await _userManager.Users.FirstOrDefaultAsync(u => u.ResetCode == resetPasswordDto.ResetCode && u.ResetCodeExpireTime > DateTime.UtcNow);
             if (user is null)
                 throw new Exception("Reset Code is incorrect or expired");
 
 
-           string token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            string token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-       
 
-            var result = await _userManager.ResetPasswordAsync(user,token, resetPasswordDto.NewPassword);
+
+            var result = await _userManager.ResetPasswordAsync(user, token, resetPasswordDto.NewPassword);
 
             if (!result.Succeeded)
             {
@@ -167,7 +156,7 @@ namespace FinalProject.Persistence.Implementations.Services
             user.ResetCode = null;
             user.ResetCodeExpireTime = null;
             await _userManager.UpdateAsync(user);
-            
+
         }
 
         public async Task<TokenResponseDto> LoginWithRefreshToken(string refreshToken)
@@ -178,15 +167,15 @@ namespace FinalProject.Persistence.Implementations.Services
             if (user.RefreshTokenExpireTime < DateTime.Now)
                 throw new Exception("RefreshToken Expired");
             List<Claim> claims = await _tokenHandler.CreateClaimsAsync(user);
-            TokenResponseDto tokenDto = await _tokenHandler.CreateAccessToken(user,15,claims);
+            TokenResponseDto tokenDto = await _tokenHandler.CreateAccessToken(user, 15, claims);
 
             user.RefreshToken = user.RefreshToken;
             user.RefreshTokenExpireTime = user.RefreshTokenExpireTime;
 
-            await _userManager.UpdateAsync(user); 
+            await _userManager.UpdateAsync(user);
             return tokenDto;
 
-           
+
         }
     }
 }

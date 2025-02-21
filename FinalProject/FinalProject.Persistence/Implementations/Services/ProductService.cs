@@ -1,18 +1,10 @@
 ﻿using AutoMapper;
 using FinalProject.Application.Abstractions.Repositories;
 using FinalProject.Application.Abstractions.Services;
-using FinalProject.Application.DTOs.Patient;
 using FinalProject.Application.DTOs.Product;
 using FinalProject.Domain.Entities;
-using FinalProject.Persistence.Implementations.Repositories;
 using Microsoft.EntityFrameworkCore;
 using SendGrid.Helpers.Errors.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -33,7 +25,7 @@ namespace FinalProject.Persistence.Implementations.Services
             _productRepository = productRepository;
             _mapper = mapper;
             _categoryRepository = categoryService;
-            _reviewService = reviewService; 
+            _reviewService = reviewService;
             _cloudinaryService = cloudinaryService;
         }
         public async Task CreateAsync(CreateProductDto productDto)
@@ -43,7 +35,7 @@ namespace FinalProject.Persistence.Implementations.Services
 
             (string imageUrl, string publicId) = await _cloudinaryService.UploadAsync(productDto.Photo);
             Product product = _mapper.Map<Product>(productDto);
-            product.ImageUrl = imageUrl;    
+            product.ImageUrl = imageUrl;
             product.ImagePublicId = publicId;
             product.CreatedAt = DateTime.Now;
             product.ModifiedAt = DateTime.Now;
@@ -66,15 +58,16 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task<ICollection<ProductItemDto>> GetAllAsync(int page, int take)
         {
-            ICollection<Product> products = await _productRepository.GetProductsWithReviews(page, take);
-                 
+            ICollection<Product> products = await _productRepository.GetAll(null, null, false, false, skip: (page - 1) * take, take: take, "Reviews")
+ .ToListAsync(); ;
+
 
             return _mapper.Map<ICollection<ProductItemDto>>(products);
         }
 
         public async Task<GetProductDto> GetByIdAsync(int id)
         {
-            Product product = await _productRepository.GetProductWithReviewsByIdAsync(id);
+            Product product = await _productRepository.GetbyIdAsync(id, "Reviews");
             if (product is null)
                 throw new NotFoundException($"Product with ID {id} not found.");
 
@@ -107,12 +100,12 @@ namespace FinalProject.Persistence.Implementations.Services
             return _mapper.Map<IEnumerable<GetProductDto>>(products);
         }
 
-      
 
-        public async Task<IEnumerable<GetProductDto>> GetProductsByPriceDescending(int page,int take)
+
+        public async Task<IEnumerable<GetProductDto>> GetProductsByPriceDescending(int page, int take)
         {
             var products = await _productRepository.GetProductsByPriceDescending(page, take);
-                
+
             return _mapper.Map<IEnumerable<GetProductDto>>(products);
         }
 

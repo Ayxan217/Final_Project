@@ -4,14 +4,8 @@ using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Appointment;
 using FinalProject.Domain.Entities;
 using FinalProject.Domain.Extensions;
-using FinalProject.Persistence.Implementations.Repositories;
 using Microsoft.EntityFrameworkCore;
 using SendGrid.Helpers.Errors.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -24,8 +18,8 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public AppointmentService(IAppointmentRepository appointmentRepository
             , IMapper mapper
-            ,IDoctorRepository doctorRepository
-            ,IPatientRepository patientRepository)
+            , IDoctorRepository doctorRepository
+            , IPatientRepository patientRepository)
         {
             _appointmentRepository = appointmentRepository;
             _mapper = mapper;
@@ -35,7 +29,7 @@ namespace FinalProject.Persistence.Implementations.Services
 
         public async Task<GetAppointmentDto> GetByIdAsync(int id)
         {
-            Appointment? appointment = await _appointmentRepository.GetAppointmentByIdWithDetailsAsync(id);
+            Appointment? appointment = await _appointmentRepository.GetbyIdAsync(id, "Doctor", "Patient");
 
             if (appointment is null)
                 throw new NotFoundException("Appointment not found");
@@ -43,12 +37,13 @@ namespace FinalProject.Persistence.Implementations.Services
             return _mapper.Map<GetAppointmentDto>(appointment);
         }
 
-        public async Task<IEnumerable<AppointmentItemDto>> GetAllAsync(int page,int take)
+        public async Task<IEnumerable<AppointmentItemDto>> GetAllAsync(int page, int take)
         {
             IEnumerable<Appointment> appointments = await _appointmentRepository
-                            .GetAllAppointmentsWithDetailsAsync((page - 1) * take, take: take);
-                            
-                            
+                             .GetAll(null, null, false, false, skip: (page - 1) * take, take: take, "Doctor", "Patient")
+                   .ToListAsync(); ;
+
+
             return _mapper.Map<IEnumerable<AppointmentItemDto>>(appointments);
         }
 
@@ -85,14 +80,14 @@ namespace FinalProject.Persistence.Implementations.Services
             appointment.AppointmentDate = roundedDate;
             appointment.CreatedAt = DateTime.Now;
             appointment.ModifiedAt = DateTime.Now;
-            appointment.AppointmentNumber = Guid.NewGuid().ToString().Substring(0,8).ToUpper();
+            appointment.AppointmentNumber = Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
             await _appointmentRepository.AddAsync(appointment);
-            await _appointmentRepository.SaveChangesAsync();    
+            await _appointmentRepository.SaveChangesAsync();
         }
 
 
 
-        public async Task UpdateAsync(int id,UpdateAppointmentDto appointmentDto)
+        public async Task UpdateAsync(int id, UpdateAppointmentDto appointmentDto)
         {
             Appointment appointment = await _appointmentRepository.GetbyIdAsync(id);
             if (appointment is null)
@@ -100,7 +95,7 @@ namespace FinalProject.Persistence.Implementations.Services
 
             _mapper.Map(appointmentDto, appointment);
             appointment.ModifiedAt = DateTime.Now;
-             _appointmentRepository.Update(appointment);
+            _appointmentRepository.Update(appointment);
             await _appointmentRepository.SaveChangesAsync();
 
 
@@ -114,7 +109,7 @@ namespace FinalProject.Persistence.Implementations.Services
                 throw new NotFoundException("Appointment not found");
 
             _appointmentRepository.Delete(appointment);
-            await _appointmentRepository.SaveChangesAsync();    
+            await _appointmentRepository.SaveChangesAsync();
         }
 
         public async Task CancelAppointmentAsync(string appointmentNumber)

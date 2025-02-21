@@ -1,6 +1,5 @@
 ﻿using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Doctor;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProject.Controllers
@@ -17,7 +16,7 @@ namespace FinalProject.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(int page = 1,int take = 3)
+        public async Task<IActionResult> Get(int page = 1, int take = 3)
         {
             return Ok(await _doctorService.GetAllAsync(page, take));
         }

@@ -1,11 +1,4 @@
-﻿using FinalProject.Application.Abstractions.Repositories;
-using FinalProject.Application.DTOs.Basket;
-using FinalProject.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FinalProject.Application.DTOs.Basket;
 
 namespace FinalProject.Application.Abstractions.Services
 {

@@ -1,13 +1,8 @@
-﻿using CloudinaryDotNet.Actions;
-using CloudinaryDotNet;
+﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using FinalProject.Application.Abstractions.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalProject.Infrastructure.Implementations.Services
 {
