@@ -10,6 +10,7 @@ namespace FinalProject.Domain.Entities
 {
     public class Doctor : BaseNameableEntity
     {
+        public string ImageUrl { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }

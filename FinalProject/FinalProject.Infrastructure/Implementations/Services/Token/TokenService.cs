@@ -30,17 +30,9 @@ namespace FinalProject.Persistence.Implementations.Token
             _userManager = userManager;
         }
 
-        public async Task<TokenResponseDto> CreateAccessToken(AppUser user, int minutes)
+        public async Task<List<Claim>> CreateClaimsAsync(AppUser user)
         {
-            var secretKey = _configuration["JWT:SecretKey"]
-        ?? throw new InvalidOperationException("JWT:SecretKey configuration is missing");
-            SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(secretKey));
 
-
-            SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var roles = await _userManager.GetRolesAsync(user);
-           var role =roles.First();
             var claims = new List<Claim>
         {
 
@@ -49,19 +41,32 @@ namespace FinalProject.Persistence.Implementations.Token
             new Claim(ClaimTypes.NameIdentifier, user.Id),
             new Claim(ClaimTypes.GivenName, user.Name),
             new Claim(ClaimTypes.Name, user.UserName),
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Role,role),
-
+            new Claim(ClaimTypes.Email, user.Email)
 
         };
-
+            foreach(var role in await _userManager.GetRolesAsync(user))
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
 
             if (!string.IsNullOrEmpty(user.PhoneNumber))
             {
                 claims.Add(new Claim(ClaimTypes.MobilePhone, user.PhoneNumber));
             }
 
+            return claims;
+        }
+        public async Task<TokenResponseDto> CreateAccessToken(AppUser user, int minutes,List<Claim> claims)
+        {
+            var secretKey = _configuration["JWT:SecretKey"]
+        ?? throw new InvalidOperationException("JWT:SecretKey configuration is missing");
+            SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(secretKey));
 
+
+            SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha256);
+
+
+            claims = await CreateClaimsAsync(user);
 
             var expiration = DateTime.Now.AddMinutes(minutes);
 
@@ -80,8 +85,7 @@ namespace FinalProject.Persistence.Implementations.Token
 
 
             return new TokenResponseDto(tokenHandler.WriteToken(securityToken),
-                 
-                 securityToken.ValidTo);
+                 securityToken.ValidTo,CreateRefreshToken(),securityToken.ValidTo.AddDays(7));
 
 
 
@@ -89,10 +93,7 @@ namespace FinalProject.Persistence.Implementations.Token
 
         public string CreateRefreshToken()
         {
-            var numberByte = new byte[32];
-            using var random = RandomNumberGenerator.Create();
-            random.GetBytes(numberByte);
-            return Convert.ToBase64String(numberByte);
+            return Guid.NewGuid().ToString();
         }
 
 

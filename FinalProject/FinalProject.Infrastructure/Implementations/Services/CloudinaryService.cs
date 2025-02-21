@@ -30,8 +30,6 @@ namespace FinalProject.Infrastructure.Implementations.Services
         {
             if (file == null || file.Length == 0)
                 throw new ArgumentException("No file uploaded");
-
-            // Dosya uzantısı kontrolü
             var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
             var fileExtension = Path.GetExtension(file.FileName).ToLowerInvariant();
 

@@ -15,6 +15,8 @@ namespace FinalProject.Application.Abstractions.Services
         Task RegisterAsync(RegisterDto registerDto);
         Task ForgotPasswordAsync(ForgotPasswordDto forgotPasswordDto);
         Task ResetPasswordAsync(ResetPasswordDto resetPasswordDto);
+        Task<TokenResponseDto> LoginWithRefreshToken(string refreshToken);
+        Task Logout(string userId);
 
 
     }

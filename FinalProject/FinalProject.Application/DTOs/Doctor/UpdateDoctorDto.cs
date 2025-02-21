@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Application.DTOs.Doctor
 {
-    public record  UpdateDoctorDto(string Name,
+    public record  UpdateDoctorDto(
+        IFormFile? Photo,
+        string Name,
     string Surname,
     string Email,
     string PhoneNumber,

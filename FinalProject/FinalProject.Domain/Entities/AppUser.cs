@@ -16,6 +16,8 @@ namespace FinalProject.Domain.Entities
         public bool IsActive { get; set; }
         public string? ResetCode { get; set; }
         public DateTime? ResetCodeExpireTime { get; set; }
+        public string? RefreshToken { get; set; }
+        public DateTime? RefreshTokenExpireTime {  get; set; }
 
         public ICollection<Comment>? Comments { get; set; }
     

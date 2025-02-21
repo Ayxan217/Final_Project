@@ -71,6 +71,12 @@ namespace FinalProject.Persistence.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("RefreshTokenExpireTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ResetCode")
                         .HasColumnType("nvarchar(max)");
 
@@ -336,6 +342,10 @@ namespace FinalProject.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Facebook")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")

@@ -22,16 +22,18 @@ namespace FinalProject.Persistence.Implementations.Services
         private readonly IDoctorRepository _doctorRepository;
         private readonly IMapper _mapper;
         private readonly IDepartmentRepository _departmentRepository;
+        private readonly ICloudinaryService _cloudinaryService;
 
         public DoctorService(IDoctorRepository doctorRepository,
             IMapper mapper,
-            IDepartmentRepository departmentRepository
+            IDepartmentRepository departmentRepository,
+            ICloudinaryService cloudinaryService
             )
         {
             _doctorRepository = doctorRepository;
             _mapper = mapper;
             _departmentRepository = departmentRepository;
-            
+            _cloudinaryService = cloudinaryService;
         }
 
         public async Task CreateAsync(CreateDoctorDto doctorDto)
@@ -39,7 +41,11 @@ namespace FinalProject.Persistence.Implementations.Services
             
             if (!await _departmentRepository.AnyAsync(d => d.Id == doctorDto.DepartmentId))
                 throw new Exception("Department does not exists");
+            if (doctorDto.Photo == null)
+                throw new Exception("Please upload Image");
+            string imageUrl = await _cloudinaryService.UploadAsync(doctorDto.Photo);
             Doctor doctor = _mapper.Map<Doctor>(doctorDto);
+            doctor.ImageUrl = imageUrl; 
             doctor.CreatedAt = DateTime.Now;
             doctor.ModifiedAt = DateTime.Now;
             doctor.JoinDate = DateOnly.FromDateTime(DateTime.Now);

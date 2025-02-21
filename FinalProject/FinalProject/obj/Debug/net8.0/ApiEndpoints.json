@@ -164,6 +164,32 @@
   },
   {
     "ContainingType": "FinalProject.Controllers.AuthenticationController",
+    "Method": "LoginWithRefreshToken",
+    "RelativePath": "api/Authentication/login-with-refresh-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "refToken",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProject.Controllers.AuthenticationController",
+    "Method": "Logout",
+    "RelativePath": "api/Authentication/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FinalProject.Controllers.AuthenticationController",
     "Method": "Register",
     "RelativePath": "api/Authentication/register",
     "HttpMethod": "POST",
@@ -633,6 +659,11 @@
     "Order": 0,
     "Parameters": [
       {
+        "Name": "Photo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
         "Name": "Name",
         "Type": "System.String",
         "IsRequired": false
@@ -718,6 +749,11 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "Photo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       },
       {
         "Name": "Name",

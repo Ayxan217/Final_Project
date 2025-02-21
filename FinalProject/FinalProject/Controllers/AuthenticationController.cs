@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 
 namespace FinalProject.Controllers
 {
@@ -45,6 +46,39 @@ namespace FinalProject.Controllers
                 return BadRequest(new { Message = ex.Message });
             }
         }
+
+
+        [HttpPost("login-with-refresh-token")]
+        public async Task<IActionResult> LoginWithRefreshToken(string refToken)
+        {
+            try
+            {
+                var token = await _authenticationService.LoginWithRefreshToken(refToken);
+                return Ok(token);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
+
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId is null)
+                Unauthorized();
+            try
+            {
+                 await _authenticationService.Logout(userId);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
+
 
         [HttpPost("forgot-password")]
         

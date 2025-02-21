@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FinalProject.Application.DTOs.Comment;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace FinalProject.Application.DTOs.Doctor
     
 
     public record DoctorItemDto(int Id,
+        string? ImageUrl,
         string Name,
     string Surname,
     string Description,
@@ -22,7 +24,7 @@ namespace FinalProject.Application.DTOs.Doctor
     string? Skype,
     string? Facebook,
     string? Ven,
-    ICollection<Entity.Comment> Comments
+    ICollection<GetCommentDto> Comments
 
 
         );

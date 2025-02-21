@@ -17,6 +17,10 @@ using Microsoft.Extensions.Configuration;
 using FinalProject.Application.Abstractions.Token;
 using FinalProject.Application.DTOs.Tokens;
 using FinalProject.Domain.Enums;
+using Azure.Core;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FinalProject.Persistence.Implementations.Services
 {
@@ -64,8 +68,12 @@ namespace FinalProject.Persistence.Implementations.Services
                 user.AccessFailedCount++;
                 throw new Exception("Username ,email or Password incorrect");
             }
-
-             return await _tokenHandler.CreateAccessToken(user,15);
+            var claims = await _tokenHandler.CreateClaimsAsync(user);
+            TokenResponseDto tokenDto = await _tokenHandler.CreateAccessToken(user, 15,claims);
+            user.RefreshToken = tokenDto.RefreshToken;
+            user.RefreshTokenExpireTime = DateTime.Now.AddDays(7);
+            await _userManager.UpdateAsync(user);
+            return tokenDto;
 
         }
 
@@ -97,6 +105,18 @@ namespace FinalProject.Persistence.Implementations.Services
             await _userManager.AddToRoleAsync(user,Roles.Patient.ToString());
             
            
+        }
+
+        public async Task Logout(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user is null)
+                throw new Exception("User not found");
+
+            user.RefreshToken = null;
+            user.RefreshTokenExpireTime = DateTime.UtcNow;
+
+            await _userManager.UpdateAsync(user);
         }
 
         public async Task ForgotPasswordAsync(ForgotPasswordDto forgotPasswordDto)
@@ -150,9 +170,23 @@ namespace FinalProject.Persistence.Implementations.Services
             
         }
 
+        public async Task<TokenResponseDto> LoginWithRefreshToken(string refreshToken)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+            if (user is null)
+                throw new Exception("Not found");
+            if (user.RefreshTokenExpireTime < DateTime.Now)
+                throw new Exception("RefreshToken Expired");
+            List<Claim> claims = await _tokenHandler.CreateClaimsAsync(user);
+            TokenResponseDto tokenDto = await _tokenHandler.CreateAccessToken(user,15,claims);
 
-      
+            user.RefreshToken = user.RefreshToken;
+            user.RefreshTokenExpireTime = user.RefreshTokenExpireTime;
 
-    
+            await _userManager.UpdateAsync(user); 
+            return tokenDto;
+
+           
+        }
     }
 }
