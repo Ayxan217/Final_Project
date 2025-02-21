@@ -11,6 +11,7 @@ namespace FinalProject.Domain.Entities
     public class Doctor : BaseNameableEntity
     {
         public string ImageUrl { get; set; }
+        public string ImagePublicId { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
@@ -20,7 +21,6 @@ namespace FinalProject.Domain.Entities
         public string? Skype { get; set; }
         public string? Facebook { get; set; }
         public string? Ven {  get; set; }
-        public int? Salary { get; set; }
         
 
        //Relational Properties

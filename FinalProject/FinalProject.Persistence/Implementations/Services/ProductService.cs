@@ -10,6 +10,7 @@ using SendGrid.Helpers.Errors.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,22 +22,29 @@ namespace FinalProject.Persistence.Implementations.Services
         private readonly IMapper _mapper;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IReviewService _reviewService;
+        private readonly ICloudinaryService _cloudinaryService;
 
         public ProductService(IProductRepository productRepository,
             ICategoryRepository categoryService,
             IMapper mapper,
-            IReviewService reviewService)
+            IReviewService reviewService,
+            ICloudinaryService cloudinaryService)
         {
             _productRepository = productRepository;
             _mapper = mapper;
             _categoryRepository = categoryService;
-            _reviewService = reviewService;   
+            _reviewService = reviewService; 
+            _cloudinaryService = cloudinaryService;
         }
         public async Task CreateAsync(CreateProductDto productDto)
         {
             if (!await _categoryRepository.AnyAsync(c => c.Id == productDto.CategoryId))
                 throw new Exception("Category does not exists");
+
+            (string imageUrl, string publicId) = await _cloudinaryService.UploadAsync(productDto.Photo);
             Product product = _mapper.Map<Product>(productDto);
+            product.ImageUrl = imageUrl;    
+            product.ImagePublicId = publicId;
             product.CreatedAt = DateTime.Now;
             product.ModifiedAt = DateTime.Now;
             await _productRepository.AddAsync(product);
@@ -48,6 +56,9 @@ namespace FinalProject.Persistence.Implementations.Services
             Product product = await _productRepository.GetbyIdAsync(id);
             if (product == null)
                 throw new NotFoundException($"Product with ID {id} not found.");
+
+            if (!string.IsNullOrEmpty(product.ImagePublicId))
+                await _cloudinaryService.DeleteAsync(product.ImagePublicId);
 
             _productRepository.Delete(product);
             await _productRepository.SaveChangesAsync();
@@ -77,8 +88,13 @@ namespace FinalProject.Persistence.Implementations.Services
             Product product = await _productRepository.GetbyIdAsync(id);
             if (product is null)
                 throw new NotFoundException($"Product with ID {id} not found.");
-
+            if (!string.IsNullOrEmpty(product.ImagePublicId))
+                await _cloudinaryService.DeleteAsync(product.ImagePublicId);
+            (string imageUrl, string publicId) = await _cloudinaryService.UploadAsync(productDto.Photo);
             _mapper.Map(productDto, product);
+
+            product.ImageUrl = imageUrl;
+            product.ImagePublicId = publicId;
             product.ModifiedAt = DateTime.Now;
             _productRepository.Update(product);
             await _productRepository.SaveChangesAsync();

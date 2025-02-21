@@ -15,7 +15,6 @@ namespace FinalProject.Application.DTOs.Doctor
     string PhoneNumber,
     string Description,
     int DepartmentId,
-    decimal Salary,
     string? Twitter,
     string? Skype,
     string? Facebook,

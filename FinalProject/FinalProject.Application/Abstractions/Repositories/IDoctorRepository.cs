@@ -10,5 +10,7 @@ namespace FinalProject.Application.Abstractions.Repositories
 {
     public interface IDoctorRepository : IRepository<Doctor>
     {
+        Task<Doctor> GetDoctorAsyncWithComments(int id);
+        Task<ICollection<Doctor>> GetDoctorsWithCommentsAsync(int page, int take);
     }
 }

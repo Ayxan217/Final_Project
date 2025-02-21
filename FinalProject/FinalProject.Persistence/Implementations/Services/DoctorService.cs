@@ -43,9 +43,10 @@ namespace FinalProject.Persistence.Implementations.Services
                 throw new Exception("Department does not exists");
             if (doctorDto.Photo == null)
                 throw new Exception("Please upload Image");
-            string imageUrl = await _cloudinaryService.UploadAsync(doctorDto.Photo);
+            (string imageUrl,string publicId) = await _cloudinaryService.UploadAsync(doctorDto.Photo); 
             Doctor doctor = _mapper.Map<Doctor>(doctorDto);
-            doctor.ImageUrl = imageUrl; 
+            doctor.ImageUrl = imageUrl;
+            doctor.ImagePublicId = publicId;
             doctor.CreatedAt = DateTime.Now;
             doctor.ModifiedAt = DateTime.Now;
             doctor.JoinDate = DateOnly.FromDateTime(DateTime.Now);
@@ -58,29 +59,28 @@ namespace FinalProject.Persistence.Implementations.Services
             var doctor = await _doctorRepository.GetbyIdAsync(id);
             if (doctor is null)
                 throw new NotFoundException("Doctor not found");
+            if (!string.IsNullOrEmpty(doctor.ImagePublicId))
+                await _cloudinaryService.DeleteAsync(doctor.ImagePublicId);
 
             _doctorRepository.Delete(doctor);
             await _doctorRepository.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<DoctorItemDto>> GetAllAsync(int page,int take)
+        public async Task<ICollection<DoctorItemDto>> GetAllAsync(int page,int take)
         {
-            IEnumerable<Doctor> doctors = await _doctorRepository
-                   .GetAll(skip: (page - 1) * take, take: take)
-                   .ToListAsync();
-
-
-            return _mapper.Map<IEnumerable<DoctorItemDto>>(doctors);
+            ICollection<Doctor> doctors = await _doctorRepository
+                     .GetDoctorsWithCommentsAsync(page, take);
+            return _mapper.Map<ICollection<DoctorItemDto>>(doctors);
 
 
         }
 
         public async Task<GetDoctorDto> GetByIdAsync(int id)
         {
-            Doctor doctor = await _doctorRepository.GetbyIdAsync(id);
+            Doctor doctor = await _doctorRepository.GetDoctorAsyncWithComments(id);
 
             if (doctor is null)
-                return null;
+                throw new Exception("Not found");
 
 
             GetDoctorDto doctorDto = _mapper.Map<GetDoctorDto>(doctor);
@@ -102,5 +102,6 @@ namespace FinalProject.Persistence.Implementations.Services
             doctor.ModifiedAt = DateTime.Now;
             await _doctorRepository.SaveChangesAsync();
         }
+
     }
 }

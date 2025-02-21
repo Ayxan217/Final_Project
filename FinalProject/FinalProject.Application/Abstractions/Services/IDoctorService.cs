@@ -10,7 +10,7 @@ namespace FinalProject.Application.Abstractions.Services
 {
     public interface IDoctorService
     {
-        Task<IEnumerable<DoctorItemDto>> GetAllAsync(int page,int take);
+        Task<ICollection<DoctorItemDto>> GetAllAsync(int page,int take);
         Task<GetDoctorDto> GetByIdAsync(int id);
         Task CreateAsync(CreateDoctorDto doctorDto);
         Task UpdateAsync(int id, UpdateDoctorDto doctorDto);

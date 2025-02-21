@@ -26,7 +26,7 @@ namespace FinalProject.Infrastructure.Implementations.Services
             _cloudinary = new Cloudinary(account);
         }
 
-        public async Task<string> UploadAsync(IFormFile file)
+        public async Task<(string imageUrl, string publicId)> UploadAsync(IFormFile file)
         {
             if (file == null || file.Length == 0)
                 throw new ArgumentException("No file uploaded");
@@ -51,7 +51,7 @@ namespace FinalProject.Infrastructure.Implementations.Services
             if (uploadResult.Error != null)
                 throw new Exception(uploadResult.Error.Message);
 
-            return uploadResult.SecureUrl.ToString();
+            return (uploadResult.SecureUrl.ToString(), uploadResult.PublicId);
         }
 
         public async Task DeleteAsync(string publicId)

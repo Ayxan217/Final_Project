@@ -344,6 +344,10 @@ namespace FinalProject.Persistence.Migrations
                     b.Property<string>("Facebook")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImagePublicId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -364,9 +368,6 @@ namespace FinalProject.Persistence.Migrations
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Salary")
-                        .HasColumnType("int");
 
                     b.Property<string>("Skype")
                         .HasColumnType("nvarchar(max)");
@@ -539,8 +540,13 @@ namespace FinalProject.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<bool>("InStock")
-                        .HasColumnType("bit");
+                    b.Property<string>("ImagePublicId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");

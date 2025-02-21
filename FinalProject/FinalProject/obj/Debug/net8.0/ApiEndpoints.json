@@ -694,11 +694,6 @@
         "IsRequired": false
       },
       {
-        "Name": "Salary",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
         "Name": "Twitter",
         "Type": "System.String",
         "IsRequired": false
@@ -1162,6 +1157,11 @@
     "Order": 0,
     "Parameters": [
       {
+        "Name": "Photo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
         "Name": "Name",
         "Type": "System.String",
         "IsRequired": false
@@ -1217,6 +1217,11 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "Photo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       },
       {
         "Name": "Name",

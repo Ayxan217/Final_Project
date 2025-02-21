@@ -61,9 +61,9 @@ namespace FinalProject.Persistence.Implementations.Services
                 throw new Exception("Patient does not exists");
 
             DateTime roundedDate = appointmentDto.AppointmentDate.RoundToNearest10Minutes();
-            DateTime oneWeekLater = DateTime.UtcNow.AddDays(7);
+            DateTime oneWeekLater = DateTime.UtcNow.AddDays(90);
             if (roundedDate > oneWeekLater)
-                throw new Exception("Appointments can only be made up to 1 week in advance.");
+                throw new Exception("Appointments can only be made up to 3 month in advance.");
 
             Appointment? existingAppointment = await _appointmentRepository
            .GetAppointmentByDateAndDoctorAsync(roundedDate, appointmentDto.DoctorId);

@@ -8,7 +8,15 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Application.DTOs.Product
 {
-    public record ProductItemDto(int Id,string Name, string Description, string SKU, decimal Price, bool InStock,int CategoryId,ICollection<GetReviewDto>? Reviews);
+    public record ProductItemDto(
+        string ImageUrl,
+        int Id,
+        string Name,
+        string Description,
+        string SKU,
+        decimal Price,
+        int CategoryId,
+        ICollection<GetReviewDto>? Reviews);
 
 
 }
