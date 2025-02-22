@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Application.DTOs.Payment
 {
-    public record PaymentDto(long? Amount,string Currency);
+    public record PaymentDto(long? Amount,string Currency,string CardNumber,string CVV,string ExpiryYear,string ExpiryMonth);
 }

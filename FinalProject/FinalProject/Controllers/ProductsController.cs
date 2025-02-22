@@ -78,5 +78,12 @@ namespace FinalProject.Controllers
             return Ok(products);
         }
 
+        [HttpGet("sort-by-rating")]
+        public async Task<IActionResult> SortByRating(int page = 1, int take = 3)
+        {
+            var products = await _productService.GetProductsByRating(page, take);
+            return Ok(products);
+        }
+
     }
 }

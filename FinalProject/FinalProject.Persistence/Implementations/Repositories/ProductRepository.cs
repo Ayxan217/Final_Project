@@ -21,6 +21,7 @@ namespace FinalProject.Persistence.Implementations.Repositories
             return await _context.Products
                 .Where(p => p.Price >= minPrice && p.Price <= maxPrice)
                 .Include(p => p.Reviews)
+                .OrderBy(p => p.Price)
                 .ToListAsync();
         }
 
@@ -48,8 +49,16 @@ namespace FinalProject.Persistence.Implementations.Repositories
 
         }
 
+        public async Task<IEnumerable<Product>> GetProductsByRating(int page, int take)
+        {
+            return await _context.Products
+             .Include(p => p.Reviews)
+             .OrderByDescending(p => p.Reviews.Any() ?
+             p.Reviews.Average(r => r.Rating) : 0) 
+             .Skip((page - 1) * take)
+             .Take(take)
+             .ToListAsync();
 
-
-
+        }
     }
 }

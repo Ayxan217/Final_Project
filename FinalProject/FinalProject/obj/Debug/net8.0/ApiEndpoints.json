@@ -1321,6 +1321,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FinalProject.Controllers.ProductsController",
+    "Method": "SortByRating",
+    "RelativePath": "api/Products/sort-by-rating",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "take",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FinalProject.Controllers.ReviewsController",
     "Method": "Get",
     "RelativePath": "api/Reviews",

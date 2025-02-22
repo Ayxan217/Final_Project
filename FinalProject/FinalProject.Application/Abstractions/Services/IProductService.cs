@@ -12,5 +12,6 @@ namespace FinalProject.Application.Abstractions.Services
         Task<IEnumerable<GetProductDto>> FilterByPriceAsync(decimal minPrice, decimal maxPrice);
         public Task<IEnumerable<GetProductDto>> GetProductsByPriceDescending(int page, int take);
         public Task<IEnumerable<GetProductDto>> GetProductsByPriceAscending(int page, int take);
+        public Task<IEnumerable<GetProductDto>> GetProductsByRating(int page, int take);
     }
 }

@@ -115,5 +115,12 @@ namespace FinalProject.Persistence.Implementations.Services
 
             return _mapper.Map<IEnumerable<GetProductDto>>(products);
         }
+
+        public async Task<IEnumerable<GetProductDto>> GetProductsByRating(int page, int take)
+        {
+            var products = await _productRepository.GetProductsByRating(page, take);
+
+            return _mapper.Map<IEnumerable<GetProductDto>>(products);
+        }
     }
 }

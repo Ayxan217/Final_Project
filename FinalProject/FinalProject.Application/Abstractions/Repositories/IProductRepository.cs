@@ -8,6 +8,7 @@ namespace FinalProject.Application.Abstractions.Repositories
         Task<IEnumerable<Product>> GetProductsByPriceRange(decimal minPrice, decimal maxPrice);
         Task<IEnumerable<Product>> GetProductsByPriceDescending(int page, int take);
         Task<IEnumerable<Product>> GetProductsByPriceAscending(int page, int take);
+        Task<IEnumerable<Product>> GetProductsByRating(int page, int take);
 
     }
 
