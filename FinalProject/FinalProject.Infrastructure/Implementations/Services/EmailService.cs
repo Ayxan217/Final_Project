@@ -1,4 +1,5 @@
 ﻿using FinalProject.Application.Abstractions.Services;
+using FinalProject.Domain.Entities;
 using Microsoft.Extensions.Configuration;
 using System.Net;
 using System.Net.Mail;
@@ -49,6 +50,9 @@ namespace FinalProject.Infrastructure.Implementations.Services
             }
         }
 
+
+
+       
 
     }
 }

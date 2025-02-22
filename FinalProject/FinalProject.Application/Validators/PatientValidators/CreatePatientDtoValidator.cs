@@ -24,11 +24,15 @@ namespace FinalProject.Application.Validators.PatientValidators
 
             RuleFor(p => p.Phone)
                 .NotEmpty().WithMessage("Phone number is required.")
-                .Matches(@"^\+?\d+$").WithMessage("Invalid phone number format.");
+                .Matches(@"^\+?\d+$")
+                .WithMessage("Phone number can only contain digits and optionally start with +")
+                .MaximumLength(20)
+                .MinimumLength(7);
 
             RuleFor(p => p.Email)
                 .NotEmpty().WithMessage("Email address is required.")
                 .EmailAddress().WithMessage("Please enter a valid email address.");
+
 
             RuleFor(p => p.Adress)
                 .NotEmpty().WithMessage("Address is required.")
