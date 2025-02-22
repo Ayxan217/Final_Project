@@ -7,9 +7,8 @@ namespace FinalProject.Application.Validators.AppointmentValidators
     {
         public CreateAppointmentDtoValidator()
         {
-            RuleFor(x => x.PatientId)
-            .NotEmpty()
-            .GreaterThan(0);
+            RuleFor(x => x.PatientCode)
+            .NotEmpty();
 
             RuleFor(x => x.DoctorId)
             .NotEmpty()

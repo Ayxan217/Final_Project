@@ -1,4 +1,5 @@
-﻿using FinalProject.Application.DTOs.Comment;
+﻿using FinalProject.Application.DTOs.Appointment;
+using FinalProject.Application.DTOs.Comment;
 
 namespace FinalProject.Application.DTOs.Doctor
 {
@@ -17,7 +18,6 @@ namespace FinalProject.Application.DTOs.Doctor
     string? Facebook,
     string? Ven,
     ICollection<GetCommentDto> Comments
-
 
         );
 

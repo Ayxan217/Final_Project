@@ -9,9 +9,6 @@ namespace FinalProject.Application.Validators.AppointmentValidators
         {
 
 
-            RuleFor(x => x.PatientId)
-            .NotEmpty()
-                .GreaterThan(0);
 
 
             RuleFor(x => x.DoctorId)

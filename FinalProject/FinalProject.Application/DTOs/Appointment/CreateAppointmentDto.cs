@@ -3,7 +3,7 @@
     public record CreateAppointmentDto(
     DateTime AppointmentDate,
 
-    int PatientId,
+    string PatientCode,
     int DoctorId
 );
 }

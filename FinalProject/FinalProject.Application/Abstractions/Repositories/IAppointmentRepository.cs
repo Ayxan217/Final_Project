@@ -8,6 +8,6 @@ namespace FinalProject.Application.Abstractions.Repositories
 
         Task<Appointment?> GetAppointmentByDateAndDoctorAsync(DateTime date, int doctorId);
         Task<Appointment?> GetAppointmentByNumber(string appointmentNumber);
-        Task<bool> HasPatientAppointmentForDateAsync(int patientId, DateTime date);
+        Task<bool> HasPatientAppointmentForDateAsync(string PatientCode, DateTime date);
     }
 }

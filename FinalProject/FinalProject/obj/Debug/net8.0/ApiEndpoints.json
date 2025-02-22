@@ -13,8 +13,8 @@
         "IsRequired": false
       },
       {
-        "Name": "PatientId",
-        "Type": "System.Int32",
+        "Name": "PatientCode",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -41,11 +41,6 @@
       {
         "Name": "AppointmentDate",
         "Type": "System.DateTime",
-        "IsRequired": false
-      },
-      {
-        "Name": "PatientId",
-        "Type": "System.Int32",
         "IsRequired": false
       },
       {

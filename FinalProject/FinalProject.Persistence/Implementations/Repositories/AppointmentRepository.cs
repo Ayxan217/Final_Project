@@ -31,16 +31,20 @@ namespace FinalProject.Persistence.Implementations.Repositories
         }
 
 
-        public async Task<bool> HasPatientAppointmentForDateAsync(int patientId, DateTime date)
+        public async Task<bool> HasPatientAppointmentForDateAsync(string patientCode, DateTime date)
         {
 
+            var patient = await _context.Patients
+      .FirstOrDefaultAsync(p => p.IdentityCode == patientCode);
+            if(patient is null) 
+                return false;
             var startDate = date.Date;
 
             var endDate = startDate.AddDays(1).AddTicks(-1);
 
             return await _context.Appointments
                 .AnyAsync(a =>
-                    a.PatientId == patientId &&
+                    a.PatientId == patient.Id &&
                     a.AppointmentDate >= startDate &&
                     a.AppointmentDate <= endDate
                 );

@@ -13,6 +13,7 @@ namespace FinalProject.Application.DTOs.Doctor
     string? Twitter,
     string? Skype,
     string? Facebook,
-    string? Ven);
+    string? Ven
+    );
 
 }
