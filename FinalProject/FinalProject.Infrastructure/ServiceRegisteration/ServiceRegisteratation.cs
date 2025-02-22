@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
+
 namespace FinalProject.Infrastructure.ServiceRegisteration
 {
     public static class ServiceRegisteratation
@@ -24,10 +25,10 @@ namespace FinalProject.Infrastructure.ServiceRegisteration
             {
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateLifetime = false,
-                    ValidateIssuerSigningKey = false,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
                     ValidIssuer = configuration["JWT:Issuer"],
                     ValidAudience = configuration["JWT:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(
@@ -40,7 +41,8 @@ namespace FinalProject.Infrastructure.ServiceRegisteration
             services.AddScoped<ITokenHandler, TokenService>();
             services.AddScoped<ICloudinaryService, CloudinaryService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IStripeService, StripeService>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IPaymentService,PaymentService>();
             services.AddAuthorization();
             return services;
 

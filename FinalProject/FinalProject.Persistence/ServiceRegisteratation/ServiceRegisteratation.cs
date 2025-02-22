@@ -25,7 +25,6 @@ namespace FinalProject.Persistence.ServiceRegisteratation
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
-            services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<ICommentService, CommentSerive>();
             services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<IPayrollService, PayrollService>();
@@ -56,10 +55,6 @@ namespace FinalProject.Persistence.ServiceRegisteratation
             })
 .AddEntityFrameworkStores<AppDbContext>()
 .AddDefaultTokenProviders();
-
-
-
-
 
             return services;
 

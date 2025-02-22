@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace FinalProject.Persistence.Implementations.Token
@@ -35,6 +36,7 @@ namespace FinalProject.Persistence.Implementations.Token
             new Claim(ClaimTypes.Name, user.UserName),
             new Claim(ClaimTypes.Email, user.Email)
 
+
         };
             foreach (var role in await _userManager.GetRolesAsync(user))
             {
@@ -60,14 +62,14 @@ namespace FinalProject.Persistence.Implementations.Token
 
             claims = await CreateClaimsAsync(user);
 
-            var expiration = DateTime.Now.AddMinutes(minutes);
+            var expiration = DateTime.UtcNow.AddMinutes(minutes);
 
 
             JwtSecurityToken securityToken = new(
                 issuer: _configuration["JWT:Issuer"],
                 audience: _configuration["JWT:Audience"],
                 expires: expiration,
-                notBefore: DateTime.Now,
+                notBefore: DateTime.UtcNow,
                 signingCredentials: signingCredentials,
                 claims: claims
             );
@@ -83,9 +85,15 @@ namespace FinalProject.Persistence.Implementations.Token
 
         }
 
+
         public string CreateRefreshToken()
         {
-            return Guid.NewGuid().ToString();
+            byte[] randomBytes = new byte[32];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomBytes);
+            }
+            return Convert.ToBase64String(randomBytes);
         }
 
 

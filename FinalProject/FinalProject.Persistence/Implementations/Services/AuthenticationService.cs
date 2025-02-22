@@ -60,7 +60,7 @@ namespace FinalProject.Persistence.Implementations.Services
             var claims = await _tokenHandler.CreateClaimsAsync(user);
             TokenResponseDto tokenDto = await _tokenHandler.CreateAccessToken(user, 15, claims);
             user.RefreshToken = tokenDto.RefreshToken;
-            user.RefreshTokenExpireTime = DateTime.Now.AddDays(7);
+            user.RefreshTokenExpireTime = tokenDto.RefreshTokenExpireTime;
             await _userManager.UpdateAsync(user);
             return tokenDto;
 

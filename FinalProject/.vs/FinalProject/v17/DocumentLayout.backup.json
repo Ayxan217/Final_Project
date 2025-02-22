@@ -3,80 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.persistence\\implementations\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|solutionrelative:finalproject.persistence\\implementations\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{81AD478B-F0D7-4164-8A61-D8119E000072}|FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.infrastructure\\implementations\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81AD478B-F0D7-4164-8A61-D8119E000072}|FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj|solutionrelative:finalproject.infrastructure\\implementations\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.persistence\\implementations\\repositories\\reviewrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|solutionrelative:finalproject.persistence\\implementations\\repositories\\reviewrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{81AD478B-F0D7-4164-8A61-D8119E000072}|FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.infrastructure\\serviceregisteration\\serviceregisteratation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81AD478B-F0D7-4164-8A61-D8119E000072}|FinalProject.Infrastructure\\FinalProject.Infrastructure.csproj|solutionrelative:finalproject.infrastructure\\serviceregisteration\\serviceregisteratation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.persistence\\implementations\\repositories\\payrollrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|solutionrelative:finalproject.persistence\\implementations\\repositories\\payrollrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.persistence\\implementations\\repositories\\departmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|solutionrelative:finalproject.persistence\\implementations\\repositories\\departmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.persistence\\implementations\\repositories\\doctorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|solutionrelative:finalproject.persistence\\implementations\\repositories\\doctorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.persistence\\implementations\\repositories\\commentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|solutionrelative:finalproject.persistence\\implementations\\repositories\\commentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.persistence\\implementations\\services\\commentserive.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|solutionrelative:finalproject.persistence\\implementations\\services\\commentserive.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5ED513C-7E7E-473E-8294-B8345280F59A}|FinalProject.Application\\FinalProject.Application.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.application\\mappingprofiles\\commentprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5ED513C-7E7E-473E-8294-B8345280F59A}|FinalProject.Application\\FinalProject.Application.csproj|solutionrelative:finalproject.application\\mappingprofiles\\commentprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5ED513C-7E7E-473E-8294-B8345280F59A}|FinalProject.Application\\FinalProject.Application.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.application\\abstractions\\repositories\\icommentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5ED513C-7E7E-473E-8294-B8345280F59A}|FinalProject.Application\\FinalProject.Application.csproj|solutionrelative:finalproject.application\\abstractions\\repositories\\icommentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5ED513C-7E7E-473E-8294-B8345280F59A}|FinalProject.Application\\FinalProject.Application.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.application\\abstractions\\repositories\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5ED513C-7E7E-473E-8294-B8345280F59A}|FinalProject.Application\\FinalProject.Application.csproj|solutionrelative:finalproject.application\\abstractions\\repositories\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5ED513C-7E7E-473E-8294-B8345280F59A}|FinalProject.Application\\FinalProject.Application.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.application\\abstractions\\repositories\\ibasketrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5ED513C-7E7E-473E-8294-B8345280F59A}|FinalProject.Application\\FinalProject.Application.csproj|solutionrelative:finalproject.application\\abstractions\\repositories\\ibasketrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5ED513C-7E7E-473E-8294-B8345280F59A}|FinalProject.Application\\FinalProject.Application.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.application\\abstractions\\repositories\\iappointmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5ED513C-7E7E-473E-8294-B8345280F59A}|FinalProject.Application\\FinalProject.Application.csproj|solutionrelative:finalproject.application\\abstractions\\repositories\\iappointmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.persistence\\implementations\\services\\patientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|solutionrelative:finalproject.persistence\\implementations\\services\\patientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.persistence\\implementations\\repositories\\patientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|solutionrelative:finalproject.persistence\\implementations\\repositories\\patientrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.persistence\\implementations\\services\\payrollservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|solutionrelative:finalproject.persistence\\implementations\\services\\payrollservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5ED513C-7E7E-473E-8294-B8345280F59A}|FinalProject.Application\\FinalProject.Application.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.application\\abstractions\\repositories\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5ED513C-7E7E-473E-8294-B8345280F59A}|FinalProject.Application\\FinalProject.Application.csproj|solutionrelative:finalproject.application\\abstractions\\repositories\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.persistence\\implementations\\services\\reviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|solutionrelative:finalproject.persistence\\implementations\\services\\reviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.persistence\\implementations\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|solutionrelative:finalproject.persistence\\implementations\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject.persistence\\implementations\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00DFDE45-93A1-4443-8D3F-0C078FEFA130}|FinalProject.Persistence\\FinalProject.Persistence.csproj|solutionrelative:finalproject.persistence\\implementations\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DF25EE0B-9A6F-4047-98D4-BFAAAE67F950}|FinalProject\\FinalProject.csproj|c:\\users\\pc\\onedrive\\masa\u00FCst\u00FC\\final_project\\finalproject\\finalproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DF25EE0B-9A6F-4047-98D4-BFAAAE67F950}|FinalProject\\FinalProject.csproj|solutionrelative:finalproject\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -86,253 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject\\appsettings.json",
+              "RelativeDocumentMoniker": "FinalProject\\appsettings.json",
+              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject\\appsettings.json",
+              "RelativeToolTip": "FinalProject\\appsettings.json",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAC4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-02-22T10:33:01.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ReviewRepository.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\ReviewRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject.Persistence\\Implementations\\Repositories\\ReviewRepository.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\ReviewRepository.cs",
-              "RelativeToolTip": "FinalProject.Persistence\\Implementations\\Repositories\\ReviewRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "ServiceRegisteratation.cs",
+              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Infrastructure\\ServiceRegisteration\\ServiceRegisteratation.cs",
+              "RelativeDocumentMoniker": "FinalProject.Infrastructure\\ServiceRegisteration\\ServiceRegisteratation.cs",
+              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Infrastructure\\ServiceRegisteration\\ServiceRegisteratation.cs",
+              "RelativeToolTip": "FinalProject.Infrastructure\\ServiceRegisteration\\ServiceRegisteratation.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAA2wCwAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T15:03:33.134Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DepartmentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\DepartmentRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject.Persistence\\Implementations\\Repositories\\DepartmentRepository.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\DepartmentRepository.cs",
-              "RelativeToolTip": "FinalProject.Persistence\\Implementations\\Repositories\\DepartmentRepository.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T15:03:23.467Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CommentProfile.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Application\\MappingProfiles\\CommentProfile.cs",
-              "RelativeDocumentMoniker": "FinalProject.Application\\MappingProfiles\\CommentProfile.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Application\\MappingProfiles\\CommentProfile.cs",
-              "RelativeToolTip": "FinalProject.Application\\MappingProfiles\\CommentProfile.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T15:02:55.981Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ICommentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Application\\Abstractions\\Repositories\\ICommentRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject.Application\\Abstractions\\Repositories\\ICommentRepository.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Application\\Abstractions\\Repositories\\ICommentRepository.cs",
-              "RelativeToolTip": "FinalProject.Application\\Abstractions\\Repositories\\ICommentRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T15:02:46.548Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "IBasketRepository.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Application\\Abstractions\\Repositories\\IBasketRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject.Application\\Abstractions\\Repositories\\IBasketRepository.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Application\\Abstractions\\Repositories\\IBasketRepository.cs",
-              "RelativeToolTip": "FinalProject.Application\\Abstractions\\Repositories\\IBasketRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T15:02:41.988Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "IAppointmentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Application\\Abstractions\\Repositories\\IAppointmentRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject.Application\\Abstractions\\Repositories\\IAppointmentRepository.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Application\\Abstractions\\Repositories\\IAppointmentRepository.cs",
-              "RelativeToolTip": "FinalProject.Application\\Abstractions\\Repositories\\IAppointmentRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T15:02:38.473Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "PatientService.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Services\\PatientService.cs",
-              "RelativeDocumentMoniker": "FinalProject.Persistence\\Implementations\\Services\\PatientService.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Services\\PatientService.cs",
-              "RelativeToolTip": "FinalProject.Persistence\\Implementations\\Services\\PatientService.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T15:00:03.183Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "PayrollService.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Services\\PayrollService.cs",
-              "RelativeDocumentMoniker": "FinalProject.Persistence\\Implementations\\Services\\PayrollService.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Services\\PayrollService.cs",
-              "RelativeToolTip": "FinalProject.Persistence\\Implementations\\Services\\PayrollService.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAA4wCUAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T14:59:13.218Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "IProductRepository.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Application\\Abstractions\\Repositories\\IProductRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject.Application\\Abstractions\\Repositories\\IProductRepository.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Application\\Abstractions\\Repositories\\IProductRepository.cs",
-              "RelativeToolTip": "FinalProject.Application\\Abstractions\\Repositories\\IProductRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T14:57:09.664Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "ReviewService.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Services\\ReviewService.cs",
-              "RelativeDocumentMoniker": "FinalProject.Persistence\\Implementations\\Services\\ReviewService.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Services\\ReviewService.cs",
-              "RelativeToolTip": "FinalProject.Persistence\\Implementations\\Services\\ReviewService.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAcwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T14:55:50.131Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "ProductService.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Services\\ProductService.cs",
-              "RelativeDocumentMoniker": "FinalProject.Persistence\\Implementations\\Services\\ProductService.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Services\\ProductService.cs",
-              "RelativeToolTip": "FinalProject.Persistence\\Implementations\\Services\\ProductService.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAswE0AAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T14:54:21.556Z",
+              "WhenOpened": "2025-02-22T08:48:45.444Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ProductRepository.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\ProductRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject.Persistence\\Implementations\\Repositories\\ProductRepository.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\ProductRepository.cs",
-              "RelativeToolTip": "FinalProject.Persistence\\Implementations\\Repositories\\ProductRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAJAAAAAAAAAA==",
+              "Title": "PaymentService.cs",
+              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Infrastructure\\Implementations\\Services\\PaymentService.cs",
+              "RelativeDocumentMoniker": "FinalProject.Infrastructure\\Implementations\\Services\\PaymentService.cs",
+              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Infrastructure\\Implementations\\Services\\PaymentService.cs*",
+              "RelativeToolTip": "FinalProject.Infrastructure\\Implementations\\Services\\PaymentService.cs*",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T14:54:12.508Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PayrollRepository.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\PayrollRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject.Persistence\\Implementations\\Repositories\\PayrollRepository.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\PayrollRepository.cs",
-              "RelativeToolTip": "FinalProject.Persistence\\Implementations\\Repositories\\PayrollRepository.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T14:54:06.696Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "PaymentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\PaymentRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject.Persistence\\Implementations\\Repositories\\PaymentRepository.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\PaymentRepository.cs",
-              "RelativeToolTip": "FinalProject.Persistence\\Implementations\\Repositories\\PaymentRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T14:54:05.367Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "PatientRepository.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\PatientRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject.Persistence\\Implementations\\Repositories\\PatientRepository.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\PatientRepository.cs",
-              "RelativeToolTip": "FinalProject.Persistence\\Implementations\\Repositories\\PatientRepository.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T14:54:02.455Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DoctorRepository.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\DoctorRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject.Persistence\\Implementations\\Repositories\\DoctorRepository.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\DoctorRepository.cs",
-              "RelativeToolTip": "FinalProject.Persistence\\Implementations\\Repositories\\DoctorRepository.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T14:53:59.448Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CommentSerive.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Services\\CommentSerive.cs",
-              "RelativeDocumentMoniker": "FinalProject.Persistence\\Implementations\\Services\\CommentSerive.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Services\\CommentSerive.cs",
-              "RelativeToolTip": "FinalProject.Persistence\\Implementations\\Services\\CommentSerive.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAcwD8AAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T14:53:16.301Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CommentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\CommentRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject.Persistence\\Implementations\\Repositories\\CommentRepository.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Persistence\\Implementations\\Repositories\\CommentRepository.cs",
-              "RelativeToolTip": "FinalProject.Persistence\\Implementations\\Repositories\\CommentRepository.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAIBCwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T14:53:04.919Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ICategoryRepository.cs",
-              "DocumentMoniker": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Application\\Abstractions\\Repositories\\ICategoryRepository.cs",
-              "RelativeDocumentMoniker": "FinalProject.Application\\Abstractions\\Repositories\\ICategoryRepository.cs",
-              "ToolTip": "C:\\Users\\pc\\OneDrive\\Masa\u00FCst\u00FC\\Final_Project\\FinalProject\\FinalProject.Application\\Abstractions\\Repositories\\ICategoryRepository.cs",
-              "RelativeToolTip": "FinalProject.Application\\Abstractions\\Repositories\\ICategoryRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T14:52:45.185Z",
+              "WhenOpened": "2025-02-22T08:28:30.403Z",
               "EditorCaption": ""
             }
           ]

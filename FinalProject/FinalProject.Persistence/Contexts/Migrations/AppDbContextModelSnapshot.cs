@@ -447,8 +447,8 @@ namespace FinalProject.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<long?>("Amount")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -462,17 +462,6 @@ namespace FinalProject.Persistence.Migrations
 
                     b.Property<DateTime>("ModifiedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("TransactionId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

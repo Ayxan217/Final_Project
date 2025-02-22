@@ -67,7 +67,7 @@ internal class Program
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("AllowReactApp",
-                builder => builder.WithOrigins("http://localhost:3000")
+                builder => builder.WithOrigins("file:///C:/Users/pc/OneDrive/Masa%C3%BCst%C3%BC/StripeFront/index.html")
                                   .AllowAnyMethod()
                                   .AllowAnyHeader());
         });

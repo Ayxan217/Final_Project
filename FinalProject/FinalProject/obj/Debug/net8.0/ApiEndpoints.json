@@ -987,27 +987,17 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "FinalProject.Controllers.PaymentsController",
-    "Method": "ProcessPayment",
-    "RelativePath": "api/Payments/process",
+    "ContainingType": "FinalProject.Controllers.PaymentController",
+    "Method": "CreatePaymentIntent",
+    "RelativePath": "api/Payment/create-payment-intent",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Token",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Amount",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "Currency",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "request",
+        "Type": "FinalProject.Application.DTOs.Payment.PaymentDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
