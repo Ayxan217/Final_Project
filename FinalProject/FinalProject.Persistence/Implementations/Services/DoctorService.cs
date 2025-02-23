@@ -144,8 +144,8 @@ namespace FinalProject.Persistence.Implementations.Services
        - Start Date: {doctor.JoinDate}<br><br>
         Details of your Doctor Account:<br>
         userName:{doctor.Email}<br>
-        Password:{_configuration["DoctorDefault:Password"]}<br>
-        (Please change the password when you login account)<br><br>
+       Your temporary password: <strong>{_configuration["DoctorDefault:Password"]}</strong><br>
+       (For security reasons, please change your password after logging in.)<br><br>
         
        We are delighted to have you on our team and look forward to working with you.<br><br>
        Best regards,<br>
