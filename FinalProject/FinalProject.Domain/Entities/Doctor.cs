@@ -6,6 +6,7 @@ namespace FinalProject.Domain.Entities
     {
         public string ImageUrl { get; set; }
         public string ImagePublicId { get; set; }
+        public string IdentityCode { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }

@@ -5,6 +5,6 @@ namespace FinalProject.Application.Abstractions.Repositories
 {
     public interface IDoctorRepository : IRepository<Doctor>
     {
-
+        Task<Doctor> SearchByIdentityNumberAsync(string identityNumber);
     }
 }

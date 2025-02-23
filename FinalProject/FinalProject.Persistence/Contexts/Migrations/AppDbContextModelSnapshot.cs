@@ -344,6 +344,10 @@ namespace FinalProject.Persistence.Migrations
                     b.Property<string>("Facebook")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IdentityCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImagePublicId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

@@ -1,5 +1,6 @@
 ﻿using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Appointment;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProject.Controllers
@@ -33,6 +34,7 @@ namespace FinalProject.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> Get(int page = 1, int take = 3)
         {
             return Ok(await _appointmentService.GetAllAsync(page, take));
@@ -40,6 +42,7 @@ namespace FinalProject.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Get(int id)
         {
             var result = await _appointmentService.GetByIdAsync(id);
@@ -47,6 +50,7 @@ namespace FinalProject.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id < 1) return BadRequest();
@@ -63,6 +67,16 @@ namespace FinalProject.Controllers
         {
             await _appointmentService.CancelAppointmentAsync(appointmentNumber);
             return NoContent();
+        }
+
+
+
+        [HttpGet("Doctor-Appointments")]
+        [Authorize(Roles = "Doctor")]
+        public async Task<IActionResult> GetDoctorAppointments(string doctorCode)
+        {
+            var appointments = await _appointmentService.GetDoctorAppointmentsAsync(doctorCode);
+            return Ok(appointments);
         }
 
     }

@@ -3,7 +3,10 @@ using FinalProject.Application.Abstractions.Repositories;
 using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.DTOs.Doctor;
 using FinalProject.Domain.Entities;
+using FinalProject.Domain.Enums;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using SendGrid.Helpers.Errors.Model;
 
 namespace FinalProject.Persistence.Implementations.Services
@@ -14,17 +17,26 @@ namespace FinalProject.Persistence.Implementations.Services
         private readonly IMapper _mapper;
         private readonly IDepartmentRepository _departmentRepository;
         private readonly ICloudinaryService _cloudinaryService;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly IConfiguration _configuration;
+        private readonly IEmailService _emailService;
+        private const string EmailSubject = "Welcome to MedTex Clinic!";
 
         public DoctorService(IDoctorRepository doctorRepository,
             IMapper mapper,
             IDepartmentRepository departmentRepository,
-            ICloudinaryService cloudinaryService
+            ICloudinaryService cloudinaryService,
+            UserManager<AppUser> userManager,
+            IConfiguration configuration,IEmailService emailService
             )
         {
             _doctorRepository = doctorRepository;
             _mapper = mapper;
             _departmentRepository = departmentRepository;
             _cloudinaryService = cloudinaryService;
+            _userManager = userManager;
+            _configuration = configuration;
+            _emailService = emailService;
         }
 
         public async Task CreateAsync(CreateDoctorDto doctorDto)
@@ -38,12 +50,55 @@ namespace FinalProject.Persistence.Implementations.Services
             Doctor doctor = _mapper.Map<Doctor>(doctorDto);
             doctor.ImageUrl = imageUrl;
             doctor.ImagePublicId = publicId;
+            doctor.IdentityCode = Guid.NewGuid().ToString().Substring(0,8).ToUpper();
             doctor.CreatedAt = DateTime.Now;
             doctor.ModifiedAt = DateTime.Now;
             doctor.JoinDate = DateOnly.FromDateTime(DateTime.Now);
             await _doctorRepository.AddAsync(doctor);
             await _doctorRepository.SaveChangesAsync();
+
+            var doctorUser = new AppUser
+            {
+                Name = doctorDto.Name,
+                Surname = doctorDto.Surname,
+                UserName = doctorDto.Email,
+                Email = doctorDto.Email,
+            };
+
+            var result = await _userManager.CreateAsync(doctorUser, _configuration["DoctorDefault:Password"]);
+
+
+            if (result.Succeeded)
+                await _userManager.AddToRoleAsync(doctorUser, Roles.Doctor.ToString());
+
+            else
+               throw new Exception("Failed to create doctor user: " + string.Join(", ", result.Errors.Select(e => e.Description)));
+            string emailMessage = GenerateEmailMessage(doctor);
+
+            await _emailService.SendEmailAsync(doctor.Email, EmailSubject, emailMessage);
+
         }
+
+
+        private string GenerateEmailMessage(Doctor doctor)
+        {
+            return $@"
+       Hello Dr. {doctor.Surname},<br><br>
+       Congratulations! Your employment at MedTex Clinic has been successfully confirmed.<br><br>
+       Here are your registration details:<br><br>
+       - Identity Code: {doctor.IdentityCode}<br>
+       - Full Name: {doctor.Name} {doctor.Surname}<br>
+       - Start Date: {doctor.JoinDate}<br>
+        Your the details of your Doctor Account:<br>
+        userName:{doctor.Email}<br>
+        Password:Doctor1234<br>
+        (Please change the password when you login account)<br><br>
+        
+       We are delighted to have you on our team and look forward to working with you.<br><br>
+       Best regards,<br>
+       MedTex Team";
+        }
+
 
         public async Task DeleteAsync(int id)
         {

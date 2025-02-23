@@ -121,6 +121,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FinalProject.Controllers.AppointmentsController",
+    "Method": "GetDoctorAppointments",
+    "RelativePath": "api/Appointments/Doctor-Appointments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doctorCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FinalProject.Controllers.AuthenticationController",
     "Method": "ForgotPassword",
     "RelativePath": "api/Authentication/forgot-password",

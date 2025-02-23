@@ -149,5 +149,15 @@ namespace FinalProject.Persistence.Implementations.Services
             appointment.IsCanceled = true;
             await _appointmentRepository.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<GetAppointmentDto>> GetDoctorAppointmentsAsync(string doctorCode)
+        {
+            Doctor doctor = await _doctorRepository.SearchByIdentityNumberAsync(doctorCode);
+            if (doctor is null)
+                throw new Exception("Doctor not found");
+
+            return _mapper.Map<IEnumerable<GetAppointmentDto>>(doctor.Appointments);
+
+        }
     }
 }

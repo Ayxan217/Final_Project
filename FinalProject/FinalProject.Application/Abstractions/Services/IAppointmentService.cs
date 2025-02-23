@@ -10,5 +10,6 @@ namespace FinalProject.Application.Abstractions.Services
         Task CancelAppointmentAsync(string appointmentNumber);
         Task UpdateAsync(int id, UpdateAppointmentDto appointmentDto);
         Task DeleteAsync(int id);
+        Task<IEnumerable<GetAppointmentDto>> GetDoctorAppointmentsAsync(string doctorCode); 
     }
 }
