@@ -50,7 +50,7 @@ namespace FinalProject.Persistence.Implementations.Services
             Doctor doctor = _mapper.Map<Doctor>(doctorDto);
             doctor.ImageUrl = imageUrl;
             doctor.ImagePublicId = publicId;
-            doctor.IdentityCode = Guid.NewGuid().ToString().Substring(0,8).ToUpper();
+            doctor.IdentityCode = GenerateRandomString() ;
             doctor.CreatedAt = DateTime.Now;
             doctor.ModifiedAt = DateTime.Now;
             doctor.JoinDate = DateOnly.FromDateTime(DateTime.Now);
@@ -77,26 +77,6 @@ namespace FinalProject.Persistence.Implementations.Services
 
             await _emailService.SendEmailAsync(doctor.Email, EmailSubject, emailMessage);
 
-        }
-
-
-        private string GenerateEmailMessage(Doctor doctor)
-        {
-            return $@"
-       Hello Dr. {doctor.Surname},<br><br>
-       Congratulations! Your employment at MedTex Clinic has been successfully confirmed.<br><br>
-       Here are your registration details:<br><br>
-       - Identity Code: {doctor.IdentityCode}<br>
-       - Full Name: {doctor.Name} {doctor.Surname}<br>
-       - Start Date: {doctor.JoinDate}<br>
-        Your the details of your Doctor Account:<br>
-        userName:{doctor.Email}<br>
-        Password:Doctor1234<br>
-        (Please change the password when you login account)<br><br>
-        
-       We are delighted to have you on our team and look forward to working with you.<br><br>
-       Best regards,<br>
-       MedTex Team";
         }
 
 
@@ -148,6 +128,35 @@ namespace FinalProject.Persistence.Implementations.Services
             _mapper.Map(doctorDto, doctor);
             doctor.ModifiedAt = DateTime.Now;
             await _doctorRepository.SaveChangesAsync();
+        }
+
+
+
+
+        private string GenerateEmailMessage(Doctor doctor)
+        {
+            return $@"
+       Hello Dr. {doctor.Surname},<br><br>
+       Congratulations! Your employment at MedTex Clinic has been successfully confirmed.<br><br>
+       Here are your registration details:<br><br>
+       - Identity Code: {doctor.IdentityCode}<br>
+       - Full Name: {doctor.Name} {doctor.Surname}<br>
+       - Start Date: {doctor.JoinDate}<br><br>
+        Details of your Doctor Account:<br>
+        userName:{doctor.Email}<br>
+        Password:{_configuration["DoctorDefault:Password"]}<br>
+        (Please change the password when you login account)<br><br>
+        
+       We are delighted to have you on our team and look forward to working with you.<br><br>
+       Best regards,<br>
+       MedTex Team";
+        }
+
+
+        private string GenerateRandomString()
+        {
+            return Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
+               
         }
 
     }
