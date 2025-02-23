@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace FinalProject.Persistence.Implementations.Token
+namespace FinalProject.Infrastructure.Implementations.Token
 {
     public class TokenService : ITokenHandler
     {

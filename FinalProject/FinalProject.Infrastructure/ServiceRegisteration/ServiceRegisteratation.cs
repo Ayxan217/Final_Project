@@ -1,7 +1,8 @@
 ﻿using FinalProject.Application.Abstractions.Services;
 using FinalProject.Application.Abstractions.Token;
+
 using FinalProject.Infrastructure.Implementations.Services;
-using FinalProject.Persistence.Implementations.Token;
+using FinalProject.Infrastructure.Implementations.Token;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,7 +39,7 @@ namespace FinalProject.Infrastructure.ServiceRegisteration
             });
 
             // Services
-            services.AddScoped<ITokenHandler, TokenService>();
+            services.AddScoped<ITokenHandler,TokenService>();
             services.AddScoped<ICloudinaryService, CloudinaryService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IEmailService, EmailService>();
