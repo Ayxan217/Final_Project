@@ -81,7 +81,7 @@ namespace FinalProject.Persistence.Implementations.Services
             Product product = await _productRepository.GetbyIdAsync(id);
             if (product is null)
                 throw new NotFoundException($"Product with ID {id} not found.");
-            if (!string.IsNullOrEmpty(product.ImagePublicId))
+            if (!string.IsNullOrEmpty(product.ImagePublicId))//There is some products without image. This statement is Unnecessary at production enviroment
                 await _cloudinaryService.DeleteAsync(product.ImagePublicId);
             (string imageUrl, string publicId) = await _cloudinaryService.UploadAsync(productDto.Photo);
             _mapper.Map(productDto, product);

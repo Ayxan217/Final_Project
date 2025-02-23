@@ -125,6 +125,9 @@ namespace FinalProject.Persistence.Implementations.Services
             if (doctor is null)
                 throw new NotFoundException("Doctor not found");
 
+            if (!string.IsNullOrEmpty(doctor.ImagePublicId))//There is some doctors without image. This statement is Unnecessary at production enviroment
+                await _cloudinaryService.DeleteAsync(doctor.ImagePublicId);
+
             (string imageUrl, string publicId) = await _cloudinaryService.UploadAsync(doctorDto.Photo);
             _mapper.Map(doctorDto, doctor);
 
