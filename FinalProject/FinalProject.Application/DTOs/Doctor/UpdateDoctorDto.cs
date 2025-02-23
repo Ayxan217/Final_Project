@@ -3,7 +3,7 @@
 namespace FinalProject.Application.DTOs.Doctor
 {
     public record UpdateDoctorDto(
-        IFormFile? Photo,
+        IFormFile Photo,
         string Name,
     string Surname,
     string Email,

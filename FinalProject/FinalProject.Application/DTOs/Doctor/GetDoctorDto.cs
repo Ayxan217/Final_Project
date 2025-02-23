@@ -4,7 +4,7 @@ using FinalProject.Application.DTOs.Comment;
 namespace FinalProject.Application.DTOs.Doctor
 {
     public record GetDoctorDto(
-        string? ImageUrl,
+        string ImageUrl,
         string Name,
     string Surname,
     string Email,

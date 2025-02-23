@@ -6,7 +6,7 @@ namespace FinalProject.Application.DTOs.Doctor
 
 
     public record DoctorItemDto(int Id,
-        string? ImageUrl,
+        string ImageUrl,
         string Name,
     string Surname,
     string Description,

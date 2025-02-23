@@ -125,7 +125,11 @@ namespace FinalProject.Persistence.Implementations.Services
             if (doctor is null)
                 throw new NotFoundException("Doctor not found");
 
+            (string imageUrl, string publicId) = await _cloudinaryService.UploadAsync(doctorDto.Photo);
             _mapper.Map(doctorDto, doctor);
+
+            doctor.ImageUrl = imageUrl;
+            doctor.ImagePublicId = publicId;
             doctor.ModifiedAt = DateTime.Now;
             await _doctorRepository.SaveChangesAsync();
         }

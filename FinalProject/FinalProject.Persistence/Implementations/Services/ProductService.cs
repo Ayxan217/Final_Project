@@ -59,7 +59,7 @@ namespace FinalProject.Persistence.Implementations.Services
         public async Task<ICollection<ProductItemDto>> GetAllAsync(int page, int take)
         {
             ICollection<Product> products = await _productRepository.GetAll(null, null, false, false, skip: (page - 1) * take, take: take, "Reviews")
- .ToListAsync(); ;
+            .ToListAsync(); ;
 
 
             return _mapper.Map<ICollection<ProductItemDto>>(products);
